@@ -28,6 +28,11 @@
         .transition-all {
             transition: all 0.3s ease-in-out;
         }
+
+        /* Styles spécifiques pour le carrousel (hauteur fixe) */
+        .carousel-container {
+            height: 24rem; /* Hauteur pour le carrousel */
+        }
     </style>
     <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -52,16 +57,48 @@
 
     <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
         
-        <section id="accueil" class="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-primary">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-4 flex items-center">
-                <i class="fa-solid fa-city text-primary mr-3"></i> Bienvenue à la Mairie Communale
-            </h1>
-            <p class="text-lg text-gray-600 border-l-4 border-blue-400 pl-4 py-2 italic">
-                "Notre mission est de servir le citoyen, garantir l'ordre urbain et promouvoir le développement social et économique de notre commune."
-            </p>
-            <p class="mt-4 text-gray-700">
-                Explorez ci-dessous les **huit piliers** de notre administration, conçus pour vous apporter des services de proximité efficaces et transparents.
-            </p>
+        <section id="accueil" class="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-primary grid lg:grid-cols-2 gap-8">
+            
+            <div>
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-4 flex items-center">
+                    <i class="fa-solid fa-city text-primary mr-3"></i> Bienvenue à la Mairie Communale
+                </h1>
+                <p class="text-lg text-gray-600 border-l-4 border-blue-400 pl-4 py-2 italic mb-4">
+                    "Notre mission est de servir le citoyen, garantir l'ordre urbain et promouvoir le développement social et économique de notre commune."
+                </p>
+                <p class="mt-4 text-gray-700">
+                    Explorez ci-dessous les **huit piliers** de notre administration, conçus pour vous apporter des services de proximité efficaces et transparents.
+                </p>
+                <a href="#services" class="mt-6 inline-block bg-primary text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Découvrir les Services <i class="fa-solid fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+
+            <div id="carousel-example" class="relative w-full carousel-container" data-carousel="slide" data-carousel-interval="5000">
+                <div class="relative h-full overflow-hidden rounded-lg shadow-xl">
+                    
+                    <div class="duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://source.unsplash.com/random/800x600/?government,building,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=MAIRIE+COMMUNALE'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Bâtiment principal de la Mairie">
+                        <div class="absolute bottom-0 w-full p-4 bg-black bg-opacity-50 text-white text-center font-bold">Le Bâtiment de l'Administration</div>
+                    </div>
+                    
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://source.unsplash.com/random/800x600/?road,construction,city" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=TRAVAUX+PUBLICS'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Projet de voirie ou d'infrastructure">
+                        <div class="absolute bottom-0 w-full p-4 bg-black bg-opacity-50 text-white text-center font-bold">Projets d'Infrastructures en cours</div>
+                    </div>
+                    
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://source.unsplash.com/random/800x600/?education,community,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=AFFAIRES+SOCIALES'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Événement communautaire ou scolaire">
+                        <div class="absolute bottom-0 w-full p-4 bg-black bg-opacity-50 text-white text-center font-bold">Action Sociale et Éducation</div>
+                    </div>
+                    
+                </div>
+                <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
+                    <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-primary" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-primary" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-primary" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                </div>
+            </div>
         </section>
 
         <hr class="border-gray-300 my-12">
