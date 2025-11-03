@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Mairie de Kolwezi — Portail Institutionnel (Maquette)</title>
+    <title>Mairie de Kolwezi — Portail Institutionnel (Maquette V3)</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -13,137 +13,94 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoIF2cd8iUcnLpCVKsjaSjHh4qXoA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
-        /* Styles Personnalisés et Améliorations CSS */
+        /* Styles Personnalisés (Révisés) */
         body { 
             font-family: 'Inter', sans-serif; 
-            color: #374151; /* Couleur de texte par défaut */
-            background-color: #f8fafc; /* Légèrement off-white */
+            color: #374151; 
+            background-color: #f8fafc;
         }
         h1, h2, h3 { 
             font-family: 'Poppins', sans-serif; 
-            color: #1a202c; /* Couleur plus foncée pour les titres */
+            color: #1a202c; 
         }
 
-        /* Hero Section Background - Dégradé plus prononcé et moderne */
+        /* Hero Section Background - Dégradé moderne et puissant */
         .hero-bg { 
-            background: linear-gradient(135deg, #6366f1, #9333ea, #ec4899); /* Violet, Indigo, Rose */
-            color: white; /* Texte blanc sur fond coloré */
+            background: linear-gradient(135deg, #4f46e5, #9333ea); /* Indigo à Violet */
+            color: white; 
         }
-        .hero-bg h1, .hero-bg p { color: white; } /* Assure que le texte reste blanc */
+        .hero-bg h1, .hero-bg p { color: white; }
 
         /* Glassmorphism pour la barre de navigation */
         .glass { 
-            backdrop-filter: blur(12px); /* Blur plus intense */
-            background: rgba(255,255,255,0.85); 
-            border-bottom: 1px solid rgba(229,231,235,0.7); /* Petite bordure subtile */
+            backdrop-filter: blur(12px); 
+            background: rgba(255,255,255,0.9); 
+            border-bottom: 1px solid rgba(229,231,235,0.7); 
         }
 
-        /* Cartes de service et autres éléments interactifs */
-        .service-card, .commune-card, .image-gallery-card {
+        /* Cartes de navigation (Service et Commune) */
+        .interactive-card {
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 1.25rem; /* Coins plus arrondis */
-            overflow: hidden; /* Pour les images de galerie */
+            border-radius: 1.5rem; /* Coins très arrondis */
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
         }
-        .service-card:hover, .commune-card:hover, .image-gallery-card:hover {
-            transform: translateY(-8px) scale(1.02); /* Effet "pop" plus prononcé */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Ombre plus distincte */
+        .interactive-card:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 18px 40px rgba(0,0,0,0.1); 
         }
 
-        /* Boutons avec effet de dégradé au survol */
+        /* Sous-menu (liste de liens dans les cartes) */
+        .submenu-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            color: #4b5563; /* Gris foncé */
+            transition: color 0.2s ease, transform 0.2s ease;
+            font-weight: 500;
+        }
+        .submenu-link:hover {
+            color: #4f46e5; /* Couleur principale */
+            transform: translateX(4px);
+        }
+
+        /* Boutons avec effet de dégradé */
         .btn-primary {
-            background: linear-gradient(90deg, #6366f1, #9333ea);
-            box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+            background: linear-gradient(90deg, #4f46e5, #9333ea);
+            box-shadow: 0 4px 15px rgba(79,70,229,0.4);
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            background: linear-gradient(90deg, #9333ea, #6366f1);
-            box-shadow: 0 6px 20px rgba(147,51,234,0.5);
+            background: linear-gradient(90deg, #9333ea, #4f46e5);
+            box-shadow: 0 8px 25px rgba(147,51,234,0.5);
             transform: translateY(-2px);
-        }
-        .btn-secondary {
-            border: 2px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-        .btn-secondary:hover {
-            border-color: #a78bfa;
-            background-color: #f5f3ff;
-            color: #6d28d9;
-            transform: translateY(-2px);
-        }
-
-        /* Input et Textarea Focus */
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #8b5cf6; /* Couleur de focus plus vibrante */
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3); /* Anneau de focus */
-        }
-
-        /* Scrollbar moderne (Webkit) */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9; /* Couleur de la piste */
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #a78bfa; /* Couleur du "pouce" */
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8b5cf6;
-        }
-
-        /* Soulignement animé pour la navigation */
-        .nav-link {
-            position: relative;
-            padding-bottom: 4px;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: #6366f1;
-            transition: width 0.3s ease-out;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        .nav-link.active {
-            font-weight: 600;
-            color: #6366f1;
         }
     </style>
 </head>
 <body class="antialiased text-gray-800">
-    <header class="fixed top-0 left-0 right-0 z-50 shadow-lg bg-white/85 glass">
+    <header class="fixed top-0 left-0 right-0 z-50 shadow-xl glass">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="#home" class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' rx='8' fill='%236366f1'/><text x='50%' y='55%' font-size='18' font-family='Poppins' font-weight='bold' fill='white' text-anchor='middle' alignment-baseline='middle'>KZ</text></svg>" alt="Logo Mairie de Kolwezi" class="w-10 h-10 rounded-lg shadow-md"/>
+                <a href="#home" class="flex items-center gap-3">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' rx='8' fill='%234f46e5'/><text x='50%' y='55%' font-size='18' font-family='Poppins' font-weight='bold' fill='white' text-anchor='middle' alignment-baseline='middle'>KZ</text></svg>" alt="Logo Mairie de Kolwezi" class="w-10 h-10 rounded-lg shadow-md"/>
                     <div class="hidden sm:block">
                         <div class="text-base font-bold text-indigo-700">Mairie de Kolwezi</div>
-                        <div class="text-xs text-gray-500">Portail Institutionnel</div>
                     </div>
                 </a>
 
                 <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
-                    <a href="#home" class="nav-link">Accueil</a>
-                    <a href="#a-propos" class="nav-link">À propos</a>
-                    <a href="#communes" class="nav-link">Communes</a>
-                    <a href="#services" class="nav-link active">Services</a> <a href="#galerie" class="nav-link">Galerie</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="#home" class="hover:text-indigo-600 transition duration-150">Accueil</a>
+                    <a href="#a-propos" class="hover:text-indigo-600 transition duration-150">À propos</a>
+                    <a href="#communes" class="font-bold text-indigo-600 border-b-2 border-indigo-600">Communes</a>
+                    <a href="#services" class="font-bold text-indigo-600 border-b-2 border-indigo-600">Services</a>
+                    <a href="#galerie" class="hover:text-indigo-600 transition duration-150">Galerie</a>
+                    <a href="#contact" class="hover:text-indigo-600 transition duration-150">Contact</a>
                 </nav>
 
                 <div class="flex items-center gap-3">
-                    <a href="#connexion" class="text-sm px-4 py-2 font-semibold border border-indigo-600 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition duration-150">Espace Admin</a>
-                    <button id="btnMenu" class="md:hidden p-2 rounded-lg text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500" aria-label="Menu" aria-expanded="false">
-                        <svg id="iconMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                    <a href="#connexion" class="text-sm px-4 py-2 font-semibold border-2 border-indigo-600 rounded-lg bg-white text-indigo-700 hover:bg-indigo-50 transition duration-150">Espace Admin</a>
+                    <button id="btnMenu" class="md:hidden p-2 rounded-lg text-indigo-600 hover:bg-indigo-50" aria-label="Menu" aria-expanded="false">
+                        <i class="fas fa-bars h-6 w-6"></i>
                     </button>
                 </div>
             </div>
@@ -152,47 +109,36 @@
         <nav id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95">
             <div class="px-4 py-4 flex flex-col gap-3 font-medium">
                 <a href="#home" class="p-2 rounded-md hover:bg-gray-50">Accueil</a>
-                <a href="#a-propos" class="p-2 rounded-md hover:bg-gray-50">À propos</a>
-                <a href="#communes" class="p-2 rounded-md hover:bg-gray-50">Communes</a>
                 <a href="#services" class="p-2 rounded-md bg-indigo-50 text-indigo-600">Services</a>
-                <a href="#galerie" class="p-2 rounded-md hover:bg-gray-50">Galerie</a>
-                <a href="#contact" class="p-2 rounded-md hover:bg-gray-50">Contact</a>
-            </div>
+                </div>
         </nav>
     </header>
 
     <main class="pt-16">
         <section id="home" class="hero-bg py-24 sm:py-32 relative overflow-hidden">
-            <div class="absolute inset-0 z-0 opacity-20">
-                <div class="absolute w-60 h-60 bg-white rounded-full -top-10 -left-10 blur-3xl opacity-10"></div>
-                <div class="absolute w-80 h-80 bg-white rounded-full -bottom-20 -right-20 blur-3xl opacity-10"></div>
-            </div>
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white animate-fade-in-up">Kolwezi — <span class="text-purple-200">Votre Ville, Vos Services</span></h1>
-                        <p class="mt-5 text-lg sm:text-xl text-indigo-100 animate-fade-in-up delay-200">Le portail officiel pour **simplifier vos démarches**, accéder aux informations et interagir avec votre administration municipale.</p>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">Kolwezi — <span class="text-indigo-200">Votre Ville, Vos Services</span></h1>
+                        <p class="mt-5 text-lg sm:text-xl text-indigo-100">Le portail officiel pour **simplifier vos démarches**, accéder aux informations et interagir avec votre administration municipale.</p>
 
-                        <div class="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-400">
+                        <div class="mt-10 flex flex-col sm:flex-row gap-4">
                             <a href="#services" class="btn-primary px-8 py-3 rounded-full text-white text-base font-semibold shadow-xl">Explorer les Services</a>
-                            <a href="#contact" class="btn-secondary px-8 py-3 rounded-full bg-white text-gray-700 text-base font-medium shadow-md">Contacter la Mairie</a>
+                            <a href="#contact" class="px-8 py-3 rounded-full bg-white text-gray-700 text-base font-medium shadow-md hover:bg-gray-100 transition">Contacter la Mairie</a>
                         </div>
-
-                        <div class="mt-8 text-sm text-indigo-200 opacity-80">Dernière mise à jour : <span id="lastUpdateDate">03 novembre 2025</span></div>
                     </div>
-
-                    <div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-6 md:p-8 border border-gray-100 animate-fade-in-right">
-                        <img src="https://source.unsplash.com/random/800x600/?african+city+hall,kolwezi" alt="Vue aérienne de Kolwezi ou Mairie" class="w-full h-60 object-cover rounded-xl shadow-inner mb-6" />
+                    <div class="hidden md:block rounded-3xl overflow-hidden shadow-2xl bg-white p-6 md:p-8 border border-gray-100">
+                        <img src="https://source.unsplash.com/random/800x600/?african+city+hall,kolwezi" alt="Mairie de Kolwezi" class="w-full h-60 object-cover rounded-xl shadow-inner mb-6" />
                         <div class="grid grid-cols-2 gap-4">
                             <div class="p-4 rounded-lg bg-indigo-50 border border-indigo-200 text-center">
                                 <i class="fas fa-users text-indigo-600 text-2xl mb-2"></i>
-                                <div class="text-sm font-semibold text-indigo-700">Population estimée</div>
+                                <div class="text-sm font-semibold text-indigo-700">Population</div>
                                 <div class="text-2xl font-bold mt-1 text-gray-900">~ 1 Million</div>
                             </div>
                             <div class="p-4 rounded-lg bg-purple-50 border border-purple-200 text-center">
                                 <i class="fas fa-city text-purple-600 text-2xl mb-2"></i>
                                 <div class="text-sm font-semibold text-purple-700">Communes</div>
-                                <div class="text-2xl font-bold mt-1 text-gray-900">2 (bientôt 6)</div>
+                                <div class="text-2xl font-bold mt-1 text-gray-900">3 (Démembrement)</div>
                             </div>
                         </div>
                     </div>
@@ -202,53 +148,42 @@
         
         <hr class="border-gray-100 mx-auto max-w-6xl" />
 
-        <section id="a-propos" class="py-16 bg-white">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Notre Engagement Citoyen</h2>
-                <p class="mt-4 text-lg text-gray-600 leading-relaxed">La Mairie de Kolwezi s'engage à être une administration **moderne, transparente et proche de ses citoyens**. Nous œuvrons pour un développement harmonieux de notre ville, en promouvant l'**équité sociale**, un **cadre de vie sain** et une **croissance économique durable** pour tous les Lualabais.</p>
-            </div>
-        </section>
-        
-        <hr class="border-gray-100 mx-auto max-w-6xl" />
-
         <section id="communes" class="py-16 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-3xl font-extrabold mb-10 text-gray-900 text-center">Les Entités Administratives de Kolwezi</h2>
+                <h2 class="text-3xl font-extrabold mb-10 text-gray-900 text-center">🏛️ Nos Entités Administratives</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <article class="p-6 bg-white rounded-2xl shadow-xl commune-card border-t-4 border-indigo-600">
-                        <h3 class="text-xl font-bold text-indigo-700 mb-2 flex items-center gap-2"><i class="fas fa-building text-2xl"></i> Commune de Dilala</h3>
-                        <p class="mt-3 text-gray-600 text-sm leading-relaxed">Cœur historique et administratif de la ville, abritant la plupart des institutions clés et un fort pôle commercial dynamique.</p>
-                        <ul class="mt-4 text-sm text-gray-600 space-y-2">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Services Centraux de la Mairie</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Heures d'ouverture étendues</li>
-                        </ul>
-                        <div class="mt-5">
-                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 transition duration-150">Découvrir Dilala →</a>
+                    
+                    <article class="p-6 bg-white shadow-xl interactive-card border-t-8 border-indigo-600">
+                        <h3 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center gap-3"><i class="fas fa-location-dot text-3xl"></i> Commune de Dilala</h3>
+                        <p class="mb-4 text-gray-600 text-sm">Cœur historique et administratif, abritant la plupart des institutions clés et un fort pôle commercial.</p>
+                        <hr class="mb-4 border-indigo-100"/>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link text-indigo-600 hover:text-indigo-800"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> Services Centraux</a>
+                            <a href="#" class="submenu-link text-indigo-600 hover:text-indigo-800"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> Heures d'ouverture étendues</a>
                         </div>
+                        <a href="#" class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:text-indigo-800">Voir la Mairie de Dilala →</a>
                     </article>
 
-                    <article class="p-6 bg-white rounded-2xl shadow-xl commune-card border-t-4 border-yellow-600">
-                        <h3 class="text-xl font-bold text-yellow-700 mb-2 flex items-center gap-2"><i class="fas fa-industry text-2xl"></i> Commune de Manika</h3>
-                        <p class="mt-3 text-gray-600 text-sm leading-relaxed">Zone d'expansion rapide, centrée sur l'activité minière florissante et le développement de nouvelles infrastructures urbaines.</p>
-                        <ul class="mt-4 text-sm text-gray-600 space-y-2">
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Guichet Unique pour le commerce</li>
-                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Projets d'infrastructures majeurs</li>
-                        </ul>
-                        <div class="mt-5">
-                            <a href="#" class="text-yellow-600 text-sm font-semibold hover:text-yellow-800 transition duration-150">Découvrir Manika →</a>
+                    <article class="p-6 bg-white shadow-xl interactive-card border-t-8 border-yellow-600">
+                        <h3 class="text-2xl font-bold text-yellow-700 mb-4 flex items-center gap-3"><i class="fas fa-warehouse text-3xl"></i> Commune de Manika</h3>
+                        <p class="mb-4 text-gray-600 text-sm">Zone d'expansion rapide, centrée sur l'activité minière et le développement de nouvelles infrastructures urbaines.</p>
+                        <hr class="mb-4 border-yellow-100"/>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link text-yellow-600 hover:text-yellow-800"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> Guichet Unique pour le commerce</a>
+                            <a href="#" class="submenu-link text-yellow-600 hover:text-yellow-800"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> Projets d'infrastructures majeurs</a>
                         </div>
+                        <a href="#" class="mt-4 inline-block text-sm font-semibold text-yellow-600 hover:text-yellow-800">Voir la Mairie de Manika →</a>
                     </article>
 
-                    <article class="p-6 bg-white rounded-2xl shadow-xl commune-card border-t-4 border-gray-400 opacity-90">
-                        <h3 class="text-xl font-bold text-gray-700 mb-2 flex items-center gap-2"><i class="fas fa-tasks text-2xl"></i> Futur Démembrement (Luilu, etc.)</h3>
-                        <p class="mt-3 text-gray-600 text-sm leading-relaxed">En phase de démembrement, ces nouvelles entités visent à décentraliser les services pour une meilleure proximité citoyenne.</p>
-                        <ul class="mt-4 text-sm text-gray-600 space-y-2">
-                            <li class="flex items-center"><i class="fas fa-info-circle text-blue-500 mr-2"></i> Plan Local d'Aménagement en cours</li>
-                            <li class="flex items-center"><i class="fas fa-info-circle text-blue-500 mr-2"></i> Prochains centres de services de proximité</li>
-                        </ul>
-                        <div class="mt-5">
-                            <a href="#" class="text-gray-600 text-sm font-semibold hover:text-gray-800 transition duration-150">En savoir plus →</a>
+                    <article class="p-6 bg-white shadow-xl interactive-card border-t-8 border-gray-400">
+                        <h3 class="text-2xl font-bold text-gray-700 mb-4 flex items-center gap-3"><i class="fas fa-road text-3xl"></i> Commune de Luilu (Future)</h3>
+                        <p class="mb-4 text-gray-600 text-sm">En phase de démembrement (avec Musompo, Kasulo, etc.). Future entité axée sur la décentralisation des services.</p>
+                        <hr class="mb-4 border-gray-100"/>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link text-gray-600 hover:text-gray-800"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> Plan Local d'Aménagement en cours</a>
+                            <a href="#" class="submenu-link text-gray-600 hover:text-gray-800"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> Prochain centre de services de proximité</a>
                         </div>
+                        <a href="#" class="mt-4 inline-block text-sm font-semibold text-gray-600 hover:text-gray-800">En savoir plus sur la décentralisation →</a>
                     </article>
                 </div>
             </div>
@@ -258,120 +193,88 @@
 
         <section id="services" class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-3xl font-extrabold mb-8 text-gray-900 text-center">🌟 Nos 8 Services Communaux Clés</h2>
-                <p class="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto leading-relaxed">Chaque service est un engagement fort pour l'amélioration de votre quotidien. Explorez nos offres et accédez aux démarches en ligne simplifiées.</p>
+                <h2 class="text-3xl font-extrabold mb-8 text-gray-900 text-center">✅ Nos 8 Services Communaux Clés</h2>
+                <p class="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto">Accédez directement aux démarches en cliquant sur les sous-menus listés sous chaque service principal.</p>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-indigo-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-id-card text-indigo-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">1. État Civil</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>**Actes de:** Naissance, Mariage, Décès</li>
-                            <li>Légalisation de documents administratifs</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 flex items-center gap-1">Démarches en ligne <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-indigo-600">
+                        <i class="fas fa-id-card text-indigo-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">1. État Civil</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-file-alt text-indigo-500 mr-2"></i> Actes (Naissance, Mariage, Décès)</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-stamp text-indigo-500 mr-2"></i> Légalisation de documents</a>
+                            <a href="#" class="submenu-link font-semibold text-indigo-600"><i class="fas fa-arrow-circle-right text-indigo-600 mr-2"></i> Démarches en ligne →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-green-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-city text-green-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">2. Urbanisme & Habitat</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>**Délivrance des:** Permis de construire/habiter</li>
-                            <li>Gestion des alignements et des parcelles</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-green-600 text-sm font-semibold hover:text-green-800 flex items-center gap-1">Soumettre un dossier <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-green-600">
+                        <i class="fas fa-city text-green-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">2. Urbanisme & Habitat</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-ruler-combined text-green-500 mr-2"></i> Permis de construire/habiter</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-map-marker-alt text-green-500 mr-2"></i> Gestion des alignements et parcelles</a>
+                            <a href="#" class="submenu-link font-semibold text-green-600"><i class="fas fa-arrow-circle-right text-green-600 mr-2"></i> Soumettre un dossier →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-yellow-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-store text-yellow-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">3. Économie & Commerce</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>**Attribution des:** Licences et autorisations</li>
-                            <li>Gestion des taxes locales et marchés publics</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-yellow-600 text-sm font-semibold hover:text-yellow-800 flex items-center gap-1">Enregistrer une activité <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-yellow-600">
+                        <i class="fas fa-store text-yellow-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">3. Économie & Commerce</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-certificate text-yellow-500 mr-2"></i> Licences et autorisations</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-money-bill-wave text-yellow-500 mr-2"></i> Taxes locales et marchés publics</a>
+                            <a href="#" class="submenu-link font-semibold text-yellow-600"><i class="fas fa-arrow-circle-right text-yellow-600 mr-2"></i> Enregistrer une activité →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-teal-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-recycle text-teal-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">4. Hygiène & Environnement</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>Gestion de la **salubrité publique**</li>
-                            <li>Lutte contre les nuisances et déchets</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-teal-600 text-sm font-semibold hover:text-teal-800 flex items-center gap-1">Signaler un problème <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-teal-600">
+                        <i class="fas fa-trash-alt text-teal-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">4. Hygiène & Environnement</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-globe-africa text-teal-500 mr-2"></i> Gestion de la salubrité publique</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-bug text-teal-500 mr-2"></i> Lutte contre les nuisances et déchets</a>
+                            <a href="#" class="submenu-link font-semibold text-teal-600"><i class="fas fa-arrow-circle-right text-teal-600 mr-2"></i> Signaler un problème →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-red-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-shield-alt text-red-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">5. Police Administrative</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>**Application des** Arrêtés municipaux</li>
-                            <li>Contrôle des constructions/commerces illégaux</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-red-600 text-sm font-semibold hover:text-red-800 flex items-center gap-1">Consulter les arrêtés <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-red-600">
+                        <i class="fas fa-shield-alt text-red-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">5. Police Administrative</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-gavel text-red-500 mr-2"></i> Application des Arrêtés</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-ban text-red-500 mr-2"></i> Contrôle illégal (constructions/commerces)</a>
+                            <a href="#" class="submenu-link font-semibold text-red-600"><i class="fas fa-arrow-circle-right text-red-600 mr-2"></i> Consulter les arrêtés →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-pink-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-hands-helping text-pink-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">6. Social & Culture</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>**Assistance aux** personnes vulnérables</li>
-                            <li>Soutien aux associations et événements</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-pink-600 text-sm font-semibold hover:text-pink-800 flex items-center gap-1">Voir les aides sociales <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-pink-600">
+                        <i class="fas fa-hands-helping text-pink-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">6. Social & Culture</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-hand-holding-heart text-pink-500 mr-2"></i> Assistance aux vulnérables</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-users text-pink-500 mr-2"></i> Soutien aux associations et événements</a>
+                            <a href="#" class="submenu-link font-semibold text-pink-600"><i class="fas fa-arrow-circle-right text-pink-600 mr-2"></i> Voir les aides sociales →</a>
                         </div>
                     </div>
                     
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-blue-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-chart-line text-blue-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">7. Finances communales</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>Perception des **taxes et redevances**</li>
-                            <li>Élaboration et suivi budgétaire</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-blue-600 text-sm font-semibold hover:text-blue-800 flex items-center gap-1">Accéder aux télépaiements <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-blue-600">
+                        <i class="fas fa-chart-line text-blue-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">7. Finances communales</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-file-invoice-dollar text-blue-500 mr-2"></i> Taxes et redevances</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-chart-pie text-blue-500 mr-2"></i> Élaboration et suivi budgétaire</a>
+                            <a href="#" class="submenu-link font-semibold text-blue-600"><i class="fas fa-arrow-circle-right text-blue-600 mr-2"></i> Accéder aux télépaiements →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-gray-600 service-card">
-                        <div class="flex items-center gap-3 mb-3">
-                            <i class="fas fa-hard-hat text-gray-700 text-3xl"></i>
-                            <h3 class="text-lg font-bold text-gray-900">8. Technique & Infra.</h3>
-                        </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
-                            <li>Entretien des **routes et ponts**</li>
-                            <li>Gestion de l'éclairage public et des marchés</li>
-                        </ul>
-                        <div class="mt-4">
-                            <a href="#" class="text-gray-600 text-sm font-semibold hover:text-gray-800 flex items-center gap-1">Signaler un dommage <i class="fas fa-arrow-right text-xs"></i></a>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-gray-600">
+                        <i class="fas fa-hard-hat text-gray-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">8. Technique & Infra.</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-road text-gray-500 mr-2"></i> Entretien routes, ponts et marchés</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-lightbulb text-gray-500 mr-2"></i> Gestion de l'éclairage public</a>
+                            <a href="#" class="submenu-link font-semibold text-gray-600"><i class="fas fa-arrow-circle-right text-gray-600 mr-2"></i> Signaler un dommage →</a>
                         </div>
                     </div>
 
@@ -379,22 +282,18 @@
             </div>
         </section>
 
-        <hr class="border-gray-100 mx-auto max-w-6xl" />
-        
         <section id="galerie" class="py-16 bg-gray-100">
             <div class="max-w-6xl mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-gray-900 text-center">📸 Kolwezi en Images et Projets</h2>
-                <p class="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto leading-relaxed">Découvrez la beauté et le dynamisme de notre ville à travers cette sélection de photos. Chaque image raconte une partie de notre histoire et de nos ambitions.</p>
-
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <img src="https://source.unsplash.com/random/800x600/?mining+congo,kolwezi" alt="Activité minière" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
-                    <img src="https://source.unsplash.com/random/800x600/?market+africa,kolwezi" alt="Marché local" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
-                    <img src="https://source.unsplash.com/random/800x600/?infrastructure+rdc,kolwezi" alt="Infrastructures routières" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
-                    <img src="https://source.unsplash.com/random/800x600/?education+congo,kolwezi" alt="Écoles à Kolwezi" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
-                    <img src="https://source.unsplash.com/random/800x600/?mayor+office,kolwezi" alt="Bâtiment administratif" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
-                    <img src="https://source.unsplash.com/random/800x600/?hospital+africa,kolwezi" alt="Centre de santé" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
-                    <img src="https://source.unsplash.com/random/800x600/?community+event,kolwezi" alt="Événement communautaire" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
-                    <img src="https://source.unsplash.com/random/800x600/?cityscape+sunset,kolwezi" alt="Paysage urbain au coucher du soleil" class="w-full h-40 object-cover rounded-xl shadow-md image-gallery-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?mining+congo,kolwezi" alt="Activité minière" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?market+africa,kolwezi" alt="Marché local" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?infrastructure+rdc,kolwezi" alt="Infrastructures routières" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?education+congo,kolwezi" alt="Écoles à Kolwezi" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?mayor+office,kolwezi" alt="Bâtiment administratif" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?hospital+africa,kolwezi" alt="Centre de santé" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?community+event,kolwezi" alt="Événement communautaire" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?cityscape+sunset,kolwezi" alt="Paysage urbain au coucher du soleil" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
                 </div>
             </div>
         </section>
@@ -404,6 +303,142 @@
         <section id="contact" class="py-16 bg-white">
             <div class="max-w-3xl mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-4 text-gray-900 text-center">💬 Contactez-nous</h2>
-                <p class="text-lg text-gray-600 mb-6 text-center leading-relaxed">Vos questions, suggestions ou demandes sont importantes pour nous. Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais.</p>
+                <p class="text-lg text-gray-600 mb-6 text-center">Vos questions, suggestions ou demandes sont importantes pour nous. Remplissez ce formulaire.</p>
 
-                <form id="contactForm" class="grid grid-cols-1 gap-6 p-8 bg-indigo-50 rounded-xl shadow-2xl border-2 border-indigo-2
+                <form id="contactForm" class="grid grid-cols-1 gap-6 p-8 bg-indigo-50 rounded-xl shadow-2xl border-2 border-indigo-200">
+                    <input required name="nom" placeholder="Nom complet" class="p-3 border border-indigo-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" type="text" aria-label="Nom complet"/>
+                    <input required name="email" type="email" placeholder="Email (pour la réponse)" class="p-3 border border-indigo-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" aria-label="Votre adresse email"/>
+                    <textarea required name="message" placeholder="Votre message" rows="6" class="p-3 border border-indigo-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" aria-label="Votre message"></textarea>
+                    
+                    <button type="submit" id="submitBtn" class="btn-primary px-6 py-3 rounded-lg text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        Envoyer le message
+                    </button>
+                    
+                    <div id="formMsg" class="text-sm p-3 rounded-lg bg-green-100 text-green-700 border border-green-200 hidden font-medium" role="alert">
+                        ✅ Message envoyé avec succès. Nous vous répondrons dans les plus brefs délais.
+                    </div>
+                    <div id="errorMsg" class="text-sm p-3 rounded-lg bg-red-100 text-red-700 border border-red-200 hidden font-medium" role="alert">
+                        ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou vérifier votre connexion.
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="connexion" class="py-16 bg-gray-50">
+            <div class="max-w-md mx-auto px-4">
+                <h3 class="text-2xl font-bold text-gray-900 mb-5 text-center">🔒 Espace Administration</h3>
+                <form onsubmit="event.preventDefault();alert('ATTENTION : Ceci est un prototype. Intégrer un système d\'authentification réel (Firebase Auth, etc.) ici.');" class="p-8 bg-white rounded-xl shadow-2xl border-t-4 border-indigo-500">
+                    <input placeholder="Identifiant ou Email" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:ring-indigo-500 focus:border-indigo-500" required type="text" />
+                    <input placeholder="Mot de passe" type="password" class="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:ring-indigo-500 focus:border-indigo-500" required />
+                    <button class="btn-primary w-full px-4 py-2 rounded-lg text-white font-semibold">
+                        Se connecter
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="py-10 border-t mt-16 bg-gray-900">
+            <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-400">
+                <p class="mb-2">Mairie de Kolwezi — Province du Lualaba, RDC</p>
+                <p>© Mairie de Kolwezi. Tous droits réservés. Maquette de Présentation 2025.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module">
+        // Import des fonctions de Firebase Core et Firestore via CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // VOS DONNÉES DE CONFIGURATION FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVPiY7Mwj-BWp5MpWOrK4_xDG3LSihzvU",
+            authDomain: "projet-commune-52366.firebaseapp.com",
+            projectId: "projet-commune-52366",
+            storageBucket: "projet-commune-52366.firebasestorage.app",
+            messagingSenderId: "9615495431",
+            appId: "1:9615495431:web:fc9468c8092ddccbf8f5a2"
+        };
+
+        // Initialisation de Firebase et Firestore
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const contactsRef = collection(db, "contacts");
+
+        // Logique du formulaire de contact avec Firebase Firestore
+        const form = document.getElementById('contactForm');
+        const formMsg = document.getElementById('formMsg');
+        const errorMsg = document.getElementById('errorMsg');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Validation simple pour activer/désactiver le bouton
+        const validateForm = () => {
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            let allValid = true;
+            inputs.forEach(input => {
+                if (!input.value.trim() || (input.type === 'email' && !input.checkValidity())) {
+                    allValid = false;
+                }
+            });
+            submitBtn.disabled = !allValid;
+        };
+        form.addEventListener('input', validateForm);
+        validateForm(); // Vérification initiale
+
+        form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true; 
+            formMsg.classList.add('hidden');
+            errorMsg.classList.add('hidden');
+
+            const formData = new FormData(form);
+            const data = {
+                nom: formData.get('nom'),
+                email: formData.get('email'),
+                message: formData.get('message'),
+                date: new Date()
+            };
+
+            try {
+                // Envoi des données à Firestore
+                await addDoc(contactsRef, data);
+                
+                form.reset();
+                formMsg.classList.remove('hidden');
+                setTimeout(() => formMsg.classList.add('hidden'), 5000);
+                validateForm();
+            } catch (error) {
+                console.error("Erreur lors de l'envoi du message à Firebase :", error);
+                errorMsg.classList.remove('hidden');
+                submitBtn.disabled = false; 
+            }
+        });
+
+        // Toggle du menu mobile et défilement fluide
+        const btn = document.getElementById('btnMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        btn?.addEventListener('click', () => {
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true' || false;
+            btn.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e){
+                const href = this.getAttribute('href');
+                if(href && href.length > 1){
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        btn.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
