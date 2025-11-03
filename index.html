@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar Mairie de Kolwezi - Navigation Complète</title>
+    <title>Portail Mairie de Kolwezi - Accueil et Services</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            padding-top: 6rem; /* Pour que le contenu ne soit pas caché par la navbar fixe */
-            background-color: #f0f4f8; 
+            background-color: #f0f4f8; /* bg-gray-100 léger */
         }
+        /* Couleurs Thématiques */
         .primary-color {
             background-color: #1e40af; /* Bleu Institutionnel (blue-800) */
         }
         .text-primary {
-            color: #3b82f6; /* blue-500 */
+            color: #2563eb; /* blue-600 */
+        }
+        .border-primary {
+            border-color: #3b82f6; /* blue-500 */
         }
         .dropdown-item-hover:hover {
             background-color: #eff6ff; /* blue-50 */
@@ -26,16 +29,26 @@
              background-color: #ffffff;
              color: #1f2937; /* gray-800 */
         }
+        .card-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            transform: translateY(-4px);
+        }
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+        .carousel-container {
+            height: 24rem; /* Hauteur pour le carrousel */
+        }
     </style>
     <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 text-gray-800">
 
     <nav class="primary-color text-white shadow sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
             
-            <a href="#" class="flex items-center text-2xl font-extrabold space-x-2">
+            <a href="index.html" class="flex items-center text-2xl font-extrabold space-x-2">
                 <i class="fa-solid fa-gavel text-white"></i>
                 <span>Mairie de Kolwezi</span>
             </a>
@@ -68,11 +81,11 @@
                             <li><a href="service_etat_civil.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-file-contract mr-2 text-primary"></i> État Civil</a></li>
                             <li><a href="service_urbanisme.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-helmet-safety mr-2 text-green-600"></i> Urbanisme & Habitat</a></li>
                             <li><a href="service_economie.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-store-alt mr-2 text-yellow-600"></i> Économie & Commerce</a></li>
-                            <li><a href="service_hygiene.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-trash-can mr-2 text-teal-600"></i> Hygiène & Environnement</a></li>
-                            <li><a href="service_police.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-shield-halved mr-2 text-red-600"></i> Police administrative</a></li>
+                            <li><a href="service_hygiene.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-trash-can mr-2 text-teal-600"></i> Hygiène & Env.</a></li>
+                            <li><a href="service_police.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-shield-halved mr-2 text-red-600"></i> Police Adm.</a></li>
                             <li><a href="service_social.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-people-carry-box mr-2 text-purple-600"></i> Affaires sociales</a></li>
-                            <li><a href="service_finances.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-chart-pie mr-2 text-amber-600"></i> Finances communales</a></li>
-                            <li><a href="service_technique.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-wrench mr-2 text-sky-600"></i> Service Technique</a></li>
+                            <li><a href="service_finances.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-chart-pie mr-2 text-amber-600"></i> Finances</a></li>
+                            <li><a href="service_technique.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-wrench mr-2 text-sky-600"></i> Service Tech.</a></li>
                         </ul>
                     </div>
                 </li>
@@ -99,13 +112,220 @@
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
             </button>
         </div>
+    </nav>
 
-        </nav>
+    <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
+        
+        <section id="accueil" class="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-primary grid lg:grid-cols-2 gap-8">
+            
+            <div>
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-4 flex items-center">
+                    <i class="fa-solid fa-city text-primary mr-3"></i> Bienvenue à la Mairie Communale
+                </h1>
+                <p class="text-lg text-gray-600 border-l-4 border-blue-400 pl-4 py-2 italic mb-4">
+                    "Notre mission est de servir le citoyen, garantir l'ordre urbain et promouvoir le développement social et économique de notre commune."
+                </p>
+                <p class="mt-4 text-gray-700">
+                    Explorez ci-dessous les **huit piliers** de notre administration, conçus pour vous apporter des services de proximité efficaces et transparents.
+                </p>
+                <a href="#services" class="mt-6 inline-block bg-primary text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Découvrir les Services <i class="fa-solid fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+
+            <div id="carousel-example" class="relative w-full carousel-container" data-carousel="slide" data-carousel-interval="5000">
+                <div class="relative h-full overflow-hidden rounded-lg shadow-xl">
+                    
+                    <div class="duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://source.unsplash.com/random/800x600/?government,building,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=MAIRIE+COMMUNALE'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Bâtiment principal de la Mairie">
+                        <div class="absolute bottom-0 w-full p-4 bg-black bg-opacity-50 text-white text-center font-bold">Le Bâtiment de l'Administration</div>
+                    </div>
+                    
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://source.unsplash.com/random/800x600/?road,construction,city" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=TRAVAUX+PUBLICS'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Projet de voirie ou d'infrastructure">
+                        <div class="absolute bottom-0 w-full p-4 bg-black bg-opacity-50 text-white text-center font-bold">Projets d'Infrastructures en cours</div>
+                    </div>
+                    
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://source.unsplash.com/random/800x600/?education,community,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=AFFAIRES+SOCIALES'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Événement communautaire ou scolaire">
+                        <div class="absolute bottom-0 w-full p-4 bg-black bg-opacity-50 text-white text-center font-bold">Action Sociale et Éducation</div>
+                    </div>
+                    
+                </div>
+                <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
+                    <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-primary" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-primary" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-primary" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-300 my-12">
+
+        <section id="services" class="p-6 bg-white rounded-xl shadow-2xl border-t-4 border-blue-600">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center flex items-center justify-center">
+                <i class="fa-solid fa-gear text-primary mr-3"></i> Nos 8 Piliers de l'Administration Publique
+            </h2>
+            
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-primary">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-file-contract text-3xl text-primary mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">1. État Civil</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Le cœur administratif de la commune.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Délivrance d’actes (naissance, mariage, décès)</li>
+                        <li>Déclarations de naissances tardives</li>
+                        <li>Légalisation des documents administratifs</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-green-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-helmet-safety text-3xl text-green-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">2. Urbanisme et Habitat</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Garant de l’ordre architectural.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Délivrance des permis de construire/d’habiter</li>
+                        <li>Contrôle et inspection des chantiers</li>
+                        <li>Gestion des alignements et voiries</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-yellow-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-store-alt text-3xl text-yellow-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">3. Économie et Commerce</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Là où bat le cœur du marché local.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Enregistrement des établissements commerciaux</li>
+                        <li>Attribution des licences d’exploitation</li>
+                        <li>Gestion des taxes locales (étals, publicité)</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-teal-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-trash-can text-3xl text-teal-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">4. Hygiène et Environnement</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Pour une commune propre et saine.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Gestion de la salubrité publique</li>
+                        <li>Lutte contre l’insalubrité et les nuisances</li>
+                        <li>Suivi des déchets et assainissement</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-red-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-shield-halved text-3xl text-red-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">5. Police administrative</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Le bras régulateur du maire.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Application des arrêtés municipaux</li>
+                        <li>Contrôle des constructions illégales</li>
+                        <li>Coordination pour la sécurité locale</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-purple-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-people-carry-box text-3xl text-purple-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">6. Affaires sociales</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">L’humain au centre de la cité.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Assistance aux personnes vulnérables</li>
+                        <li>Soutien aux associations locales</li>
+                        <li>Organisation d’événements culturels</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-amber-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-chart-pie text-3xl text-amber-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">7. Finances communales</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Les chiffres derrière chaque projet.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Perception des taxes et redevances</li>
+                        <li>Élaboration du budget de la commune</li>
+                        <li>Gestion du patrimoine communal</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-sky-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-wrench text-3xl text-sky-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">8. Service Technique</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Ceux qui font que la ville "fonctionne".</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Entretien des routes et ponts</li>
+                        <li>Éclairage public et eau</li>
+                        <li>Suivi des travaux publics locaux</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
     
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">Structure de Navigation Implémentée</h1>
-        <p class="text-gray-700">Passez la souris sur **Communes**, **Services** et **Projets** dans la barre de navigation pour voir les sous-menus.</p>
-    </div>
+    <footer class="py-10 mt-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 text-sm text-gray-400">
+            <div class="grid md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
+                
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center justify-center md:justify-start">
+                        <i class="fa-solid fa-gavel mr-2 text-primary"></i> Mairie Communale
+                    </h3>
+                    <p class="text-gray-500 mb-2">
+                        <i class="fa-solid fa-location-dot mr-2 text-primary"></i> Avenue Principale, N°XX, Kolwezi
+                    </p>
+                    <p class="text-gray-500">
+                        <i class="fa-solid fa-envelope mr-2 text-primary"></i> contact@mairiekolwezi.cd
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="a_propos.html" class="hover:text-primary transition">À Propos (Histoire, Orga)</a></li>
+                        <li><a href="#services" class="hover:text-primary transition">Services Clés</a></li>
+                        <li><a href="actualites.html" class="hover:text-primary transition">Actualités & Presse</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Services Rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="service_urbanisme.html" class="hover:text-primary transition">Permis de Construire</a></li>
+                        <li><a href="service_etat_civil.html" class="hover:text-primary transition">Acte de Naissance</a></li>
+                        <li><a href="service_economie.html" class="hover:text-primary transition">Licence Commerciale</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Urgence</h4>
+                    <p class="text-2xl font-extrabold text-red-500">1XX</p>
+                    <p class="text-gray-500">Police Administrative / Sécurité</p>
+                </div>
+            </div>
+
+            <hr class="border-gray-700 my-6">
+
+            <div class="text-center">
+                <p>© 2024 Mairie de Kolwezi. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
