@@ -1,114 +1,235 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Services Communaux — Mairie de Kolwezi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail de la Commune - Services Administratifs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* bg-gray-100 léger */
+        }
+        /* Couleurs Thématiques */
+        .primary-color {
+            background-color: #1e40af; /* Bleu Institutionnel (blue-800) */
+        }
+        .text-primary {
+            color: #2563eb; /* blue-600 */
+        }
+        .border-primary {
+            border-color: #3b82f6; /* blue-500 */
+        }
+        .card-shadow:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            transform: translateY(-4px);
+        }
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+    <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <!-- HEADER -->
-  <header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-      <h1 class="text-lg font-bold text-indigo-700">Mairie de Kolwezi</h1>
-      <nav class="space-x-6 text-sm font-medium">
-        <a href="index.html" class="hover:text-indigo-600">Accueil</a>
-        <a href="#" class="text-indigo-600 border-b-2 border-indigo-600 pb-1">Services</a>
-        <a href="contact.html" class="hover:text-indigo-600">Contact</a>
-      </nav>
-    </div>
-  </header>
+<body class="bg-gray-100 text-gray-800">
 
-  <!-- HERO -->
-  <section class="text-center py-16 bg-indigo-600 text-white">
-    <h2 class="text-3xl font-extrabold mb-2">Services Communaux</h2>
-    <p class="text-sm max-w-2xl mx-auto">Découvrez l’ensemble des services proposés par les communes de Dilala et Manika : démarches administratives, autorisations, assistance sociale et plus encore.</p>
-  </section>
+    <nav class="primary-color text-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
+            <a href="index.html" class="flex items-center text-2xl font-extrabold space-x-2">
+                <i class="fa-solid fa-gavel text-white"></i>
+                <span>Portail de la Commune</span>
+            </a>
 
-  <!-- SERVICES GRID -->
-  <main class="max-w-6xl mx-auto px-4 py-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <ul class="hidden md:flex space-x-6 font-medium">
+                <li><a href="#services" class="hover:text-sky-300 transition duration-150"><i class="fa-solid fa-list-check mr-1"></i> Nos Services</a></li>
+                <li><a href="actualites.html" class="hover:text-sky-300 transition duration-150"><i class="fa-solid fa-newspaper mr-1"></i> Actualités</a></li>
+                <li><a href="contact.html" class="hover:text-sky-300 transition duration-150"><i class="fa-solid fa-envelope mr-1"></i> Contact</a></li>
+                <li><a href="administration.html" class="font-bold text-sky-300 p-2 rounded-lg hover:bg-blue-700 transition duration-150"><i class="fa-solid fa-lock mr-1"></i> Administration</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <!-- État Civil -->
-    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-      <div class="flex items-center gap-3 mb-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <h3 class="text-lg font-semibold">État Civil</h3>
-      </div>
-      <p class="text-sm text-gray-600">Actes de naissance, mariage, décès, légalisations et registres de population.</p>
-      <a href="#form-etatcivil" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Remplir une demande →</a>
-    </div>
+    <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
+        
+        <section id="accueil" class="bg-white p-8 rounded-xl shadow-2xl border-t-4 border-primary">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4 flex items-center">
+                <i class="fa-solid fa-city text-primary mr-3"></i> Bienvenue à la Mairie Communale
+            </h1>
+            <p class="text-lg text-gray-600 border-l-4 border-blue-400 pl-4 py-2 italic">
+                "Notre mission est de servir le citoyen, garantir l'ordre urbain et promouvoir le développement social et économique de notre commune."
+            </p>
+            <p class="mt-4 text-gray-700">
+                Explorez ci-dessous les **huit piliers** de notre administration, conçus pour vous apporter des services de proximité efficaces et transparents.
+            </p>
+        </section>
 
-    <!-- Urbanisme et Habitat -->
-    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-      <div class="flex items-center gap-3 mb-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V10z"/></svg>
-        <h3 class="text-lg font-semibold">Urbanisme & Habitat</h3>
-      </div>
-      <p class="text-sm text-gray-600">Permis de construire, alignements, plans d’urbanisme et attribution de terrains.</p>
-      <a href="#form-urbanisme" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Faire une demande →</a>
-    </div>
+        <hr class="border-gray-300 my-12">
 
-    <!-- Commerce & Économie Locale -->
-    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-      <div class="flex items-center gap-3 mb-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-2.28 0-4.167 1.72-4.167 3.833S9.72 15.667 12 15.667s4.167-1.72 4.167-3.834S14.28 8 12 8zm0-6a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>
-        <h3 class="text-lg font-semibold">Économie & Commerce</h3>
-      </div>
-      <p class="text-sm text-gray-600">Enregistrement d’entreprises, licences, marchés publics et taxes locales.</p>
-      <a href="#form-commerce" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Accéder au formulaire →</a>
-    </div>
+        <section id="services" class="p-6 bg-white rounded-xl shadow-2xl border-t-4 border-blue-600">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-10 text-center flex items-center justify-center">
+                <i class="fa-solid fa-gear text-primary mr-3"></i> Nos 8 Piliers de l'Administration Publique
+            </h2>
+            
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-primary">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-file-contract text-3xl text-primary mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">1. État Civil</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Le cœur administratif de la commune.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Délivrance d’actes (naissance, mariage, décès)</li>
+                        <li>Déclarations de naissances tardives</li>
+                        <li>Légalisation des documents administratifs</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-green-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-helmet-safety text-3xl text-green-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">2. Urbanisme et Habitat</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Garant de l’ordre architectural.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Délivrance des permis de construire/d’habiter</li>
+                        <li>Contrôle et inspection des chantiers</li>
+                        <li>Gestion des alignements et voiries</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-yellow-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-store-alt text-3xl text-yellow-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">3. Économie et Commerce</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Là où bat le cœur du marché local.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Enregistrement des établissements commerciaux</li>
+                        <li>Attribution des licences d’exploitation</li>
+                        <li>Gestion des taxes locales (étals, publicité)</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-teal-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-trash-can text-3xl text-teal-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">4. Hygiène et Environnement</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Pour une commune propre et saine.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Gestion de la salubrité publique</li>
+                        <li>Lutte contre l’insalubrité et les nuisances</li>
+                        <li>Suivi des déchets et assainissement</li>
+                    </ul>
+                </div>
 
-    <!-- Hygiène et Environnement -->
-    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-      <div class="flex items-center gap-3 mb-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <h3 class="text-lg font-semibold">Hygiène & Environnement</h3>
-      </div>
-      <p class="text-sm text-gray-600">Salubrité publique, collecte des déchets, environnement et campagnes d’assainissement.</p>
-      <a href="#form-hygiene" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Soumettre un signalement →</a>
-    </div>
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-red-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-shield-halved text-3xl text-red-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">5. Police administrative</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Le bras régulateur du maire.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Application des arrêtés municipaux</li>
+                        <li>Contrôle des constructions illégales</li>
+                        <li>Coordination pour la sécurité locale</li>
+                    </ul>
+                </div>
 
-    <!-- Affaires Sociales -->
-    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-      <div class="flex items-center gap-3 mb-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c2.21 0 4-1.79 4-4S14.21 0 12 0 8 1.79 8 4s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        <h3 class="text-lg font-semibold">Affaires Sociales</h3>
-      </div>
-      <p class="text-sm text-gray-600">Aide sociale, associations, activités culturelles et soutien aux personnes vulnérables.</p>
-      <a href="#form-social" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Faire une requête →</a>
-    </div>
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-purple-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-people-carry-box text-3xl text-purple-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">6. Affaires sociales</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">L’humain au centre de la cité.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Assistance aux personnes vulnérables</li>
+                        <li>Soutien aux associations locales</li>
+                        <li>Organisation d’événements culturels</li>
+                    </ul>
+                </div>
 
-    <!-- Finances Communales -->
-    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
-      <div class="flex items-center gap-3 mb-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-2.28 0-4.167 1.72-4.167 3.833S9.72 15.667 12 15.667s4.167-1.72 4.167-3.834S14.28 8 12 8zm0-6a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>
-        <h3 class="text-lg font-semibold">Finances Communales</h3>
-      </div>
-      <p class="text-sm text-gray-600">Perception des taxes, gestion du budget communal et suivi financier.</p>
-      <a href="#form-finance" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Consulter les taxes →</a>
-    </div>
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-amber-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-chart-pie text-3xl text-amber-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">7. Finances communales</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Les chiffres derrière chaque projet.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Perception des taxes et redevances</li>
+                        <li>Élaboration du budget de la commune</li>
+                        <li>Gestion du patrimoine communal</li>
+                    </ul>
+                </div>
 
-  </main>
+                <div class="p-6 bg-gray-50 rounded-lg shadow-lg transition-all card-shadow border-l-4 border-sky-600">
+                    <div class="flex items-center mb-3">
+                        <i class="fa-solid fa-wrench text-3xl text-sky-600 mr-3"></i>
+                        <h3 class="text-xl font-bold text-gray-900">8. Service Technique</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm italic mb-4">Ceux qui font que la ville "fonctionne".</p>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
+                        <li>Entretien des routes et ponts</li>
+                        <li>Éclairage public et eau</li>
+                        <li>Suivi des travaux publics locaux</li>
+                    </ul>
+                </div>
 
-  <!-- FORM PLACEHOLDER -->
-  <section id="form-etatcivil" class="max-w-4xl mx-auto py-16 px-4 border-t">
-    <h3 class="text-xl font-bold mb-3">Formulaire de demande — État civil</h3>
-    <form class="grid gap-4">
-      <input type="text" placeholder="Nom complet" class="p-3 border rounded-md" required />
-      <input type="email" placeholder="Email" class="p-3 border rounded-md" required />
-      <select class="p-3 border rounded-md">
-        <option>Demande d'acte de naissance</option>
-        <option>Demande d'acte de mariage</option>
-        <option>Demande d'acte de décès</option>
-      </select>
-      <textarea rows="4" placeholder="Détails ou message" class="p-3 border rounded-md"></textarea>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded-md">Soumettre</button>
-    </form>
-  </section>
+            </div>
+        </section>
 
-  <footer class="text-center text-sm text-gray-500 py-8 border-t mt-12">© Commune de Kolwezi — Tous droits réservés</footer>
+    </main>
+    
+    <footer class="py-10 mt-16 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 text-sm text-gray-400">
+            <div class="grid md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
+                
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-3 flex items-center justify-center md:justify-start">
+                        <i class="fa-solid fa-gavel mr-2 text-primary"></i> Mairie Communale
+                    </h3>
+                    <p class="text-gray-500 mb-2">
+                        <i class="fa-solid fa-location-dot mr-2 text-primary"></i> Avenue Principale, N°XX, Commune
+                    </p>
+                    <p class="text-gray-500">
+                        <i class="fa-solid fa-envelope mr-2 text-primary"></i> contact@commune.cd
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="hover:text-primary transition">Services Clés</a></li>
+                        <li><a href="actualites.html" class="hover:text-primary transition">Actualités</a></li>
+                        <li><a href="administration.html" class="hover:text-primary transition">Espace Administration</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Enregistrement</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition">Permis de Construire</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Acte de Naissance</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Licence Commerciale</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Urgence</h4>
+                    <p class="text-2xl font-extrabold text-red-500">1XX</p>
+                    <p class="text-gray-500">Police Administrative / Sécurité</p>
+                </div>
+            </div>
+
+            <hr class="border-gray-700 my-6">
+
+            <div class="text-center">
+                <p>© 2024 Administration Communale. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
