@@ -1,291 +1,518 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mairie - Portail Officiel</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Commune de Manika — Portail Institutionnel</title>
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoIF2cd8iUcnLpCVKsjaSjHh4qXoA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
+        /* Définition des couleurs Manika : Primaire (Institutionnel/Bleu) et Secondaire (Accent/Ambre pour l'économie) */
         :root {
-            --color-primary: #1e40af; /* Blue-800 */
-            --color-accent: #3b82f6;  /* Blue-500 */
+            --color-primary: #1e3a8a; /* Blue 800 (plus foncé que l'indigo) */
+            --color-accent: #fbbf24; /* Amber 400 (Jaune Vif) */
+            --color-secondary-text: #fef3c7; /* Amber 100 */
         }
+        
+        /* Styles de base */
         body {
             font-family: 'Inter', sans-serif;
+            color: #374151;
             background-color: #f8fafc;
         }
-        .primary-bg {
-            background-color: var(--color-primary);
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #1a202c;
         }
-        .text-primary {
-            color: var(--color-primary);
+
+        /* Hero Section Background (Bleu Manika) */
+        .hero-bg {
+            background: linear-gradient(135deg, var(--color-primary), #374151); /* Bleu Nuit vers Gris */
+            color: white;
         }
-        .text-accent {
+        .hero-title-accent {
             color: var(--color-accent);
         }
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+        .btn-primary:hover {
+            background-color: #facc15; /* Amber 500 */
+        }
+
+        /* Glassmorphism pour la barre de navigation (conservé) */
+        .glass {
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.95);
+            border-bottom: 1px solid rgba(229,231,235,0.7);
+        }
+
+        /* Liens de sous-menu pour les Mega Menus (Adapté aux couleurs Manika) */
+        .dropdown-link {
+            transition: background-color 0.2s, transform 0.2s;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            color: #4b5563; /* Gray 600 */
+        }
+        .dropdown-link:hover {
+            background-color: #fffbeb; /* bg-amber-50 */
+            transform: translateX(3px);
+            color: var(--color-primary);
+        }
+
+        /* Styles de la Navbar */
         .nav-link:hover {
-            color: #93c5fd; /* blue-300 */
-            transition: color 0.2s;
+            color: var(--color-accent) !important;
         }
-        .section-heading {
-            font-family: 'Oswald', sans-serif; /* Utiliser une police de titre si disponible */
+        
+        /* Cartes de Service (Adapté aux couleurs Manika) */
+        .interactive-card {
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .carousel-container {
-            height: 28rem; 
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
         }
+        .submenu-link {
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563;
+        }
+        .submenu-link:hover {
+            color: var(--color-primary);
+        }
+        
+        /* CSS spécifique au Carrousel (conservé) */
+        .carousel-item {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            height: 100%;
+        }
+        .carousel-item.active {
+            display: block;
+            opacity: 1;
+        }
+        .carousel-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        /* Utilitaires pour les transitions (conservé) */
+        .transition-opacity { transition: opacity 0.3s ease-in-out; }
     </style>
 </head>
-<body class="text-gray-800">
-
-    <header>
-        <nav class="primary-bg text-white shadow-lg sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-                
-                <a href="#accueil" class="flex items-center text-xl md:text-2xl font-extrabold space-x-2">
-                    <i class="fa-solid fa-gavel text-white"></i>
-                    <span>MAIRIE</span>
+<body class="antialiased text-gray-800">
+    <header class="fixed top-0 left-0 right-0 z-50 shadow-xl glass">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#home" class="flex items-center gap-3">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' rx='8' fill='%23fbbf24'/><text x='50%' y='55%' font-size='18' font-family='Poppins' font-weight='bold' fill='%231e3a8a' text-anchor='middle' alignment-baseline='middle'>MN</text></svg>" alt="Logo Commune de Manika" class="w-10 h-10 rounded-lg shadow-md"/>
+                    <div class="hidden sm:block">
+                        <div class="text-base font-bold" style="color: var(--color-primary);">Commune de Manika</div>
+                    </div>
                 </a>
 
-                <ul class="hidden lg:flex space-x-5 font-semibold text-sm items-center">
-                    <li><a href="#accueil" class="nav-link"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
-                    <li><a href="#a_propos" class="nav-link"><i class="fa-solid fa-circle-info mr-1"></i> À propos de la commune</a></li>
-                    <li><a href="#services" class="nav-link"><i class="fa-solid fa-list-check mr-1"></i> Services & formulaires</a></li>
-                    <li><a href="#actualites" class="nav-link"><i class="fa-solid fa-newspaper mr-1"></i> Actualités & événements</a></li>
-                    <li><a href="#projets" class="nav-link"><i class="fa-solid fa-road mr-1"></i> Développement & projets</a></li>
-                    <li><a href="#participation" class="nav-link"><i class="fa-solid fa-users mr-1"></i> Participation citoyenne</a></li>
-                    <li><a href="#contact" class="flex items-center font-bold bg-blue-600 p-2 rounded-lg hover:bg-blue-700 transition duration-150"><i class="fa-solid fa-envelope mr-1"></i> Contact / Nous rendre visite</a></li>
-                </ul>
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+                    <a href="#home" class="nav-link hover:text-accent transition duration-150 p-2">Accueil</a>
+                    <a href="#a-propos" class="nav-link hover:text-accent transition duration-150 p-2">À propos</a>
+                    
+                    <div class="relative group">
+                        <a href="#communes" class="font-bold nav-link transition duration-150 p-2 flex items-center" style="color: var(--color-primary);">
+                            Kolwezi Agglo
+                            <i class="fas fa-chevron-down w-3 h-3 ml-1 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 mt-0 w-60 p-3 bg-white border border-gray-100 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300 z-50">
+                            <h4 class="text-xs font-semibold uppercase text-gray-500 mb-2 px-2">Les Communes</h4>
+                            <a href="#dilala" class="dropdown-link hover:text-indigo-700 hover:bg-indigo-50">
+                                <i class="fas fa-location-dot w-4 h-4 mr-2"></i> Commune de Dilala
+                            </a>
+                            <a href="#" class="dropdown-link font-bold" style="background-color: #fef3c7; color: var(--color-primary); transform: translateX(3px);"> <i class="fas fa-warehouse w-4 h-4 mr-2" style="color: var(--color-accent);"></i> **Commune de Manika (Vous êtes ici)**
+                            </a>
+                            <a href="#luilu" class="dropdown-link hover:text-gray-700 hover:bg-gray-50">
+                                <i class="fas fa-road w-4 h-4 mr-2"></i> Luilu (Future)
+                            </a>
+                        </div>
+                    </div>
 
-                <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg lg:hidden hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                    <div class="relative group">
+                        <a href="#services" class="font-bold nav-link transition duration-150 p-2 flex items-center" style="color: var(--color-primary);">
+                            Services
+                            <i class="fas fa-chevron-down w-3 h-3 ml-1 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="absolute -left-1/2 mt-0 w-[400px] p-4 bg-white border border-gray-100 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-300 z-50">
+                            <h4 class="text-xs font-semibold uppercase text-gray-500 mb-2 px-2">Accès Direct aux Démarches</h4>
+                            <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                                <a href="#services" class="dropdown-link"><i class="fas fa-id-card w-4 h-4 mr-2" style="color: #4f46e5;"></i> État Civil (Actes)</a>
+                                <a href="#services" class="dropdown-link"><i class="fas fa-city w-4 h-4 mr-2" style="color: #10b981;"></i> Urbanisme & Habitat</a>
+                                <a href="#services" class="dropdown-link"><i class="fas fa-store w-4 h-4 mr-2" style="color: #f59e0b;"></i> Économie & Commerce</a>
+                                <a href="#services" class="dropdown-link"><i class="fas fa-trash-alt w-4 h-4 mr-2" style="color: #14b8a6;"></i> Hygiène & Environnement</a>
+                                <a href="#services" class="dropdown-link"><i class="fas fa-shield-alt w-4 h-4 mr-2" style="color: #ef4444;"></i> Police Administrative</a>
+                                <a href="#services" class="dropdown-link"><i class="fas fa-hands-helping w-4 h-4 mr-2" style="color: #ec4899;"></i> Social & Culture</a>
+                                <a href="#services" class="dropdown-link"><i class="fas fa-chart-line w-4 h-4 mr-2" style="color: #3b82f6;"></i> Finances communales</a>
+                                <a href="#services" class="dropdown-link"><i class="fas fa-hard-hat w-4 h-4 mr-2" style="color: #6b7280;"></i> Technique & Infra.</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#galerie" class="nav-link hover:text-accent transition duration-150 p-2">Galerie</a>
+                    <a href="#contact" class="nav-link hover:text-accent transition duration-150 p-2">Contact</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <a href="#connexion" class="text-sm px-4 py-2 font-semibold border-2 rounded-lg text-white hover:bg-yellow-400 transition duration-150" style="background-color: var(--color-accent); color: var(--color-primary); border-color: var(--color-accent);">Espace Admin</a>
+                    <button id="btnMenu" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-50" aria-label="Menu" aria-expanded="false">
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <nav id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95">
+            <div class="px-4 py-4 flex flex-col gap-3 font-medium">
+                <a href="#home" class="p-2 rounded-md hover:bg-gray-50">Accueil</a>
+                <a href="#services" class="p-2 rounded-md" style="background-color: var(--color-secondary-text); color: var(--color-primary);">Services</a>
+                <a href="#communes" class="p-2 rounded-md hover:bg-gray-50">Kolwezi Agglo</a>
+                <a href="#galerie" class="p-2 rounded-md hover:bg-gray-50">Galerie</a>
+                <a href="#contact" class="p-2 rounded-md hover:bg-gray-50">Contact</a>
             </div>
         </nav>
     </header>
 
-    <main class="max-w-7xl mx-auto py-12 px-6 space-y-20">
-        
-        <section id="accueil" class="bg-white rounded-2xl shadow-xl p-6 lg:p-10">
-            <h1 class="text-4xl font-extrabold text-primary mb-8 section-heading">Bienvenue sur le Portail Communal</h1>
-            
-            <div class="grid lg:grid-cols-3 gap-8">
-                
-                <div id="slider" class="lg:col-span-2 relative w-full carousel-container rounded-xl overflow-hidden shadow-2xl" data-carousel="slide" data-carousel-interval="5000">
-                    <div class="relative h-full">
-                        <div class="duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://source.unsplash.com/random/800x600/?city,government,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=SLIDER+VISUEL+1'" class="absolute block w-full h-full object-cover" alt="Image 1">
+    <main class="pt-16">
+        <section id="home" class="hero-bg py-24 sm:py-32 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    
+                    <div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white">MANIKA — <span class="hero-title-accent">Terre de Développement</span></h1>
+                        <p class="mt-5 text-lg sm:text-xl" style="color: var(--color-secondary-text);">Le portail officiel pour **faciliter les démarches** liées au commerce, à l'habitat et à l'urbanisme de votre commune.</p>
+
+                        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                            <a href="#services" class="btn-primary px-8 py-3 rounded-full text-base font-semibold shadow-xl">Explorer les Services</a>
+                            <a href="#contact" class="px-8 py-3 rounded-full bg-white text-gray-700 text-base font-medium shadow-md hover:bg-gray-100 transition">Contacter la Mairie</a>
                         </div>
-                         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://source.unsplash.com/random/800x600/?street,market,clean" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1e40af/ffffff?text=SLIDER+VISUEL+2'" class="absolute block w-full h-full object-cover" alt="Image 2">
+
+                        <div class="mt-8 text-sm text-indigo-200 opacity-80">Dernière mise à jour : <span id="lastUpdateDate">03 novembre 2025</span></div>
+                    </div>
+
+                    <div id="hero-carousel" class="relative rounded-3xl overflow-hidden shadow-2xl h-[450px]">
+                        
+                        <div class="carousel-item active absolute inset-0">
+                            <img src="https://source.unsplash.com/random/800x600/?city+hall,manika,rdc" alt="Mairie de Manika" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="carousel-item absolute inset-0">
+                            <img src="https://source.unsplash.com/random/800x600/?market+commerce+africa,manika" alt="Activité Commerciale Manika" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="carousel-item absolute inset-0">
+                            <img src="https://source.unsplash.com/random/800x600/?construction+site,manika" alt="Projet de Construction Manika" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="carousel-item absolute inset-0">
+                            <img src="https://source.unsplash.com/random/800x600/?residential+area+africa,manika" alt="Quartiers Résidentiels Manika" class="w-full h-full object-cover" />
+                        </div>
+
+                        <div class="absolute bottom-0 left-0 right-0 p-6 carousel-overlay text-white">
+                            <p class="text-lg font-semibold mb-2">📸 Manika en Chiffres et Projets</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 text-center">
+                                    <div class="text-sm font-semibold">Population estimée</div>
+                                    <div class="text-2xl font-bold mt-1">~ 550.000</div>
+                                </div>
+                                <div class="p-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 text-center">
+                                    <div class="text-sm font-semibold">Focus Développement</div>
+                                    <div class="text-2xl font-bold mt-1" style="color: var(--color-accent);">Urbanisme / Économie</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        
+        <hr class="border-gray-100 mx-auto max-w-6xl" />
 
-                <div class="lg:col-span-1 space-y-6">
-                    <div class="bg-blue-50 border-l-4 border-primary p-4 rounded-lg shadow-md">
-                        <h2 class="text-xl font-bold text-primary mb-2"><i class="fa-solid fa-bullhorn mr-2"></i> Mot de l'Autorité Locale</h2>
-                        <p class="text-sm italic text-gray-700">"Chers citoyens, notre commune s'engage pour la transparence et le développement. Ensemble, bâtissons un avenir meilleur..."</p>
-                        <p class="text-xs mt-2 font-semibold text-primary">Bourgmestre A. B.</p>
+        <section id="communes" class="py-16 bg-gray-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-3xl font-extrabold mb-10 text-gray-900 text-center">🏛️ Entités de l'Agglomération de Kolwezi</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <article class="p-6 bg-white shadow-xl interactive-card border-t-8 border-indigo-600">
+                        <h3 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center gap-3"><i class="fas fa-location-dot text-3xl"></i> Commune de Dilala</h3>
+                        <p class="mb-4 text-gray-600 text-sm">Cœur historique et administratif, abritant la plupart des institutions clés et un fort pôle commercial.</p>
+                        <hr class="mb-4 border-indigo-100"/>
+                        <a href="#" class="mt-4 inline-block text-sm font-semibold text-indigo-600 hover:text-indigo-800">Voir la Mairie de Dilala →</a>
+                    </article>
+
+                    <article class="p-6 bg-white shadow-xl interactive-card" style="border-top: 8px solid var(--color-accent); transform: scale(1.05); z-index: 10;">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-3" style="color: var(--color-primary);"><i class="fas fa-warehouse text-3xl" style="color: var(--color-accent);"></i> Commune de Manika</h3>
+                        <p class="mb-4 text-gray-600 text-sm font-semibold">**Zone d'expansion et économique**, centrée sur l'activité minière et le développement de nouvelles infrastructures urbaines.</p>
+                        <hr class="mb-4 border-yellow-100"/>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link" style="color: var(--color-accent);"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> **Guichet Unique pour le commerce**</a>
+                            <a href="#" class="submenu-link" style="color: var(--color-accent);"><i class="fas fa-angles-right w-4 h-4 mr-2"></i> Projets d'infrastructures majeurs</a>
+                        </div>
+                        <a href="#" class="mt-4 inline-block text-sm font-bold hover:text-gray-800" style="color: var(--color-primary);">Consulter le Portail de Manika →</a>
+                    </article>
+
+                    <article class="p-6 bg-white shadow-xl interactive-card border-t-8 border-gray-400">
+                        <h3 class="text-2xl font-bold text-gray-700 mb-4 flex items-center gap-3"><i class="fas fa-road text-3xl"></i> Commune de Luilu (Future)</h3>
+                        <p class="mb-4 text-gray-600 text-sm">En phase de démembrement. Future entité axée sur la décentralisation des services de proximité.</p>
+                        <hr class="mb-4 border-gray-100"/>
+                        <a href="#" class="mt-4 inline-block text-sm font-semibold text-gray-600 hover:text-gray-800">En savoir plus sur la décentralisation →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="border-gray-100 mx-auto max-w-6xl" />
+
+        <section id="services" class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-3xl font-extrabold mb-8 text-gray-900 text-center">✅ Nos 8 Services Communaux Clés</h2>
+                <p class="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto">Accédez directement aux démarches en cliquant sur les sous-menus listés sous chaque service principal.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    
+                    <div class="p-6 bg-white shadow-lg interactive-card" style="border-top: 4px solid var(--color-primary);">
+                        <i class="fas fa-id-card text-3xl mb-3 block" style="color: var(--color-primary);"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">1. État Civil</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-file-alt mr-2" style="color: var(--color-primary);"></i> Actes (Naissance, Mariage, Décès)</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-stamp mr-2" style="color: var(--color-primary);"></i> Légalisation de documents</a>
+                            <a href="#" class="submenu-link font-semibold" style="color: var(--color-primary);"><i class="fas fa-arrow-circle-right mr-2" style="color: var(--color-primary);"></i> Démarches en ligne →</a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white shadow-lg interactive-card" style="border-top: 4px solid var(--color-primary);">
+                        <i class="fas fa-city text-3xl mb-3 block" style="color: var(--color-primary);"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">2. Urbanisme & Habitat</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-ruler-combined mr-2" style="color: var(--color-primary);"></i> Permis de construire/habiter</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-map-marker-alt mr-2" style="color: var(--color-primary);"></i> Gestion des alignements et parcelles</a>
+                            <a href="#" class="submenu-link font-semibold" style="color: var(--color-primary);"><i class="fas fa-arrow-circle-right mr-2" style="color: var(--color-primary);"></i> Soumettre un dossier →</a>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-white shadow-lg interactive-card" style="border-top: 4px solid var(--color-accent);">
+                        <i class="fas fa-store text-3xl mb-3 block" style="color: var(--color-accent);"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">3. Économie & Commerce</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-certificate mr-2" style="color: var(--color-accent);"></i> Licences et autorisations</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-money-bill-wave mr-2" style="color: var(--color-accent);"></i> Taxes locales et marchés publics</a>
+                            <a href="#" class="submenu-link font-semibold" style="color: var(--color-accent);"><i class="fas fa-arrow-circle-right mr-2" style="color: var(--color-accent);"></i> Enregistrer une activité →</a>
+                        </div>
                     </div>
                     
-                    <div class="bg-yellow-50 border-l-4 border-yellow-600 p-4 rounded-lg shadow-md">
-                         <h2 class="text-xl font-bold text-yellow-700 mb-2"><i class="fa-solid fa-bell mr-2"></i> Dernières Annonces</h2>
-                         <ul class="space-y-1 text-sm">
-                             <li><a href="#actualites" class="text-gray-700 hover:text-yellow-800 font-semibold">Réunion publique sur l'urbanisme le 15 Nov.</a></li>
-                             <li><a href="#services" class="text-gray-700 hover:text-yellow-800 font-semibold">Nouveaux formulaires d'état civil disponibles en ligne.</a></li>
-                         </ul>
+                    <div class="p-6 bg-white shadow-lg interactive-card" style="border-top: 4px solid #14b8a6;">
+                        <i class="fas fa-trash-alt text-teal-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">4. Hygiène & Environnement</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-globe-africa text-teal-500 mr-2"></i> Gestion de la salubrité publique</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-bug text-teal-500 mr-2"></i> Lutte contre les nuisances et déchets</a>
+                            <a href="#" class="submenu-link font-semibold text-teal-600"><i class="fas fa-arrow-circle-right text-teal-600 mr-2"></i> Signaler un problème →</a>
+                        </div>
                     </div>
-                </div>
 
-            </div>
-        </section>
-        
-        <hr class="border-gray-300">
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-red-600">
+                        <i class="fas fa-shield-alt text-red-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">5. Police Administrative</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-gavel text-red-500 mr-2"></i> Application des Arrêtés</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-ban text-red-500 mr-2"></i> Contrôle illégal (constructions/commerces)</a>
+                            <a href="#" class="submenu-link font-semibold text-red-600"><i class="fas fa-arrow-circle-right text-red-600 mr-2"></i> Consulter les arrêtés →</a>
+                        </div>
+                    </div>
 
-        <section id="a_propos" class="bg-white rounded-2xl shadow-xl p-6 lg:p-10">
-            <h2 class="text-3xl font-extrabold text-primary mb-8 section-heading border-b pb-3">À Propos de la Commune</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-chart-line mr-2 text-accent"></i> Chiffres Clés & Données</h3>
-                    <ul class="space-y-2 text-lg">
-                        <li class="font-semibold">Surface : <span class="text-accent">XXX km²</span></li>
-                        <li class="font-semibold">Population Estimée : <span class="text-accent">XXX 000 habitants</span></li>
-                        <li class="font-semibold">Zones Administratives : <span class="text-accent">4 (Ex: Zone A, Zone B, etc.)</span></li>
-                    </ul>
-                    <p class="mt-6 text-gray-700">**Vision :** Être une commune modèle de propreté et de gouvernance locale.</p>
-                    <p class="text-gray-700">**Mission :** Assurer la sécurité, l'hygiène et l'administration efficace pour tous ses résidents.</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-sitemap mr-2 text-accent"></i> Organigramme Communal</h3>
-                    <p class="text-gray-700 italic">L'organigramme sera affiché ici (Image ou schéma interactif).</p>
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-pink-600">
+                        <i class="fas fa-hands-helping text-pink-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">6. Social & Culture</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-hand-holding-heart text-pink-500 mr-2"></i> Assistance aux vulnérables</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-users text-pink-500 mr-2"></i> Soutien aux associations et événements</a>
+                            <a href="#" class="submenu-link font-semibold text-pink-600"><i class="fas fa-arrow-circle-right text-pink-600 mr-2"></i> Voir les aides sociales →</a>
+                        </div>
+                    </div>
                     
-                    <p class="mt-4 text-gray-700">**Histoire :** Créée en XXXX, notre commune est le berceau historique de la région, avec un riche passé culturel et économique.</p>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-gray-300">
-
-        <section id="services" class="bg-white rounded-2xl shadow-xl p-6 lg:p-10">
-            <h2 class="text-3xl font-extrabold text-primary mb-8 section-heading border-b pb-3">Services & Formulaires</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                
-                <div class="bg-green-50 border-l-4 border-green-600 p-4 rounded-lg">
-                    <h3 class="font-bold text-lg text-green-700"><i class="fa-solid fa-file-arrow-down mr-2"></i> Téléchargement de Formulaires</h3>
-                    <ul class="mt-2 space-y-1 text-sm">
-                        <li><a href="#" class="text-gray-700 hover:text-green-800 hover:underline">Demande d'acte de naissance (PDF)</a></li>
-                        <li><a href="#" class="text-gray-700 hover:text-green-800 hover:underline">Formulaire Permis de Construire</a></li>
-                    </ul>
-                </div>
-
-                <div class="bg-sky-50 border-l-4 border-sky-600 p-4 rounded-lg">
-                    <h3 class="font-bold text-lg text-sky-700"><i class="fa-solid fa-laptop-code mr-2"></i> Dépôt et Suivi en Ligne</h3>
-                    <p class="text-sm mt-2 text-gray-700">Soumettez vos dossiers d'urbanisme ou vos déclarations d'activité commerciale directement en ligne.</p>
-                    <a href="#" class="mt-2 inline-block text-sky-600 font-semibold text-xs hover:underline">Accéder au portail e-Service →</a>
-                </div>
-
-                <div class="bg-gray-50 border-l-4 border-gray-600 p-4 rounded-lg">
-                    <h3 class="font-bold text-lg text-gray-700"><i class="fa-solid fa-handshake-angle mr-2"></i> Services Clés</h3>
-                    <p class="text-sm mt-2 text-gray-700">Hygiène & Assainissement, Affaires Sociales, État Civil, Permis & Licences...</p>
-                    <a href="#" class="mt-2 inline-block text-gray-600 font-semibold text-xs hover:underline">Voir la liste complète →</a>
-                </div>
-            </div>
-        </section>
-
-        <hr class="border-gray-300">
-
-        <section id="actualites" class="bg-white rounded-2xl shadow-xl p-6 lg:p-10">
-            <h2 class="text-3xl font-extrabold text-primary mb-8 section-heading border-b pb-3">Actualités & Événements</h2>
-            <p class="text-gray-700 mb-6 italic">Les dernières nouvelles de la commune, y compris les opérations d'assainissement et les avis publics.</p>
-            
-            <div class="grid md:grid-cols-3 gap-6">
-                
-                <article class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-md transition">
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Opération d'assainissement réussie dans le quartier X</h3>
-                    <p class="text-sm text-gray-600">L'équipe d'hygiène a complété la première phase de nettoyage des caniveaux. Le civisme est encouragé pour maintenir la propreté. *Source: topinfo.cd*</p>
-                    <a href="#" class="text-accent text-xs mt-2 inline-block font-semibold hover:underline">Lire l'article →</a>
-                </article>
-
-                <article class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-md transition">
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">Avis de recrutement pour la police administrative</h3>
-                    <p class="text-sm text-gray-600">La commune cherche à renforcer ses effectifs. Les candidatures sont ouvertes jusqu'à la fin du mois. Détails des conditions au bureau de contact.</p>
-                    <a href="#" class="text-accent text-xs mt-2 inline-block font-semibold hover:underline">Lire l'article →</a>
-                </article>
-                
-                <article class="bg-red-50 p-4 rounded-lg shadow hover:shadow-md transition">
-                    <h3 class="font-bold text-lg text-red-700 mb-2"><i class="fa-solid fa-calendar-alt mr-2"></i> Événement : Journée de la femme rurale</h3>
-                    <p class="text-sm text-red-600">**Date :** 15 Décembre. **Lieu :** Salle Communautaire. Un événement dédié à la promotion des droits et de l'autonomie des femmes.</p>
-                    <a href="#" class="text-red-700 text-xs mt-2 inline-block font-semibold hover:underline">Voir le programme →</a>
-                </article>
-            </div>
-        </section>
-
-        <hr class="border-gray-300">
-
-        <section id="projets" class="bg-white rounded-2xl shadow-xl p-6 lg:p-10">
-            <h2 class="text-3xl font-extrabold text-primary mb-8 section-heading border-b pb-3">Développement & Projets</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-location-dot mr-2 text-accent"></i> Carte des Projets en Cours</h3>
-                    <div class="bg-gray-100 h-64 rounded-lg flex items-center justify-center text-gray-500 italic border border-gray-300">
-                        
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-blue-600">
+                        <i class="fas fa-chart-line text-blue-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">7. Finances communales</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-file-invoice-dollar text-blue-500 mr-2"></i> Taxes et redevances</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-chart-pie text-blue-500 mr-2"></i> Élaboration et suivi budgétaire</a>
+                            <a href="#" class="submenu-link font-semibold text-blue-600"><i class="fas fa-arrow-circle-right text-blue-600 mr-2"></i> Accéder aux télépaiements →</a>
+                        </div>
                     </div>
-                    <p class="text-sm mt-4 text-gray-700">Visualisez l'impact de nos actions sur le territoire communal.</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-hospital mr-2 text-accent"></i> Zoom Projet : Nouveau Centre de Santé</h3>
-                    <p class="text-gray-700 mb-2">**Objectif :** Améliorer l'accès aux soins primaires pour les populations éloignées.</p>
-                    <p class="text-gray-700 mb-2">**Financement :** Partenariat Mairie / ONG Internationale (XXX).</p>
-                    <p class="text-gray-700 mb-2">**Impact Attendu :** Couverture sanitaire de 10 000 habitants.</p>
-                    <p class="text-sm text-gray-500 mt-4 italic">*Source : letonnerre.info*</p>
-                    <a href="#" class="text-accent text-sm mt-2 inline-block font-semibold hover:underline">Voir tous les projets (Plan quinquennal) →</a>
+
+                    <div class="p-6 bg-white shadow-lg interactive-card border-t-4 border-gray-600">
+                        <i class="fas fa-hard-hat text-gray-700 text-3xl mb-3 block"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">8. Technique & Infra.</h3>
+                        <div class="flex flex-col gap-1">
+                            <a href="#" class="submenu-link"><i class="fas fa-road text-gray-500 mr-2"></i> Entretien routes, ponts et marchés</a>
+                            <a href="#" class="submenu-link"><i class="fas fa-lightbulb text-gray-500 mr-2"></i> Gestion de l'éclairage public</a>
+                            <a href="#" class="submenu-link font-semibold text-gray-600"><i class="fas fa-arrow-circle-right text-gray-600 mr-2"></i> Signaler un dommage →</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <hr class="border-gray-300">
-
-        <section id="participation" class="bg-blue-50 rounded-2xl shadow-xl p-6 lg:p-10 border-t-4 border-accent">
-            <h2 class="text-3xl font-extrabold text-primary mb-8 section-heading">Participation Citoyenne</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold text-primary mb-4"><i class="fa-solid fa-comments mr-2 text-accent"></i> Soumission de Doléances</h3>
-                    <p class="text-gray-700 mb-4">Utilisez ce formulaire pour signaler un problème (nid de poule, lampe cassée, décharge illégale) ou exprimer une suggestion.</p>
-                    <form action="#" method="POST" class="space-y-3">
-                        <input type="text" placeholder="Votre nom / service" class="w-full p-2 border border-gray-300 rounded">
-                        <textarea placeholder="Votre doléance ou suggestion..." rows="3" class="w-full p-2 border border-gray-300 rounded"></textarea>
-                        <button type="submit" class="w-full primary-bg text-white font-bold py-2 rounded hover:bg-blue-900 transition">Soumettre</button>
-                    </form>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="bg-yellow-100 p-4 rounded-lg">
-                        <h3 class="font-bold text-lg text-yellow-800"><i class="fa-solid fa-chart-bar mr-2"></i> Sondages en Cours</h3>
-                        <p class="text-sm mt-2 text-gray-700">Participez à notre sondage sur l'amélioration de l'éclairage public.</p>
-                        <a href="#" class="text-yellow-800 text-xs mt-2 inline-block font-semibold hover:underline">Participer au sondage →</a>
-                    </div>
-                    <div class="bg-green-100 p-4 rounded-lg">
-                        <h3 class="font-bold text-lg text-green-800"><i class="fa-solid fa-map-marked-alt mr-2"></i> Plans d'Action Communautaire</h3>
-                        <p class="text-sm mt-2 text-gray-700">Consultez et contribuez à nos initiatives de quartier.</p>
-                        <a href="#" class="text-green-800 text-xs mt-2 inline-block font-semibold hover:underline">Voir les plans →</a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <hr class="border-gray-300">
-
-        <section id="contact" class="bg-white rounded-2xl shadow-xl p-6 lg:p-10">
-            <h2 class="text-3xl font-extrabold text-primary mb-8 section-heading border-b pb-3">Contact / Nous Rendre Visite</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-location-arrow mr-2 text-accent"></i> Nos Coordonnées</h3>
-                    <address class="space-y-3 mb-6 not-italic text-gray-700">
-                        <p class="font-semibold"><i class="fa-solid fa-map-marker-alt mr-2 text-primary"></i> **Adresse de la Mairie :** Avenue Principale, N°XX, Quartier Y.</p>
-                        <p class="font-semibold"><i class="fa-solid fa-phone mr-2 text-primary"></i> **Téléphone :** +243 XXX XXX XXX</p>
-                        <p class="font-semibold"><i class="fa-solid fa-clock mr-2 text-primary"></i> **Heures d'ouverture :** Lun - Ven, 8h00 - 15h30</p>
-                    </address>
-
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-comment-dots mr-2 text-accent"></i> Formulaire de Contact</h3>
-                    <form action="#" method="POST" class="space-y-4">
-                        <input type="text" placeholder="Votre Nom Complet" class="w-full p-3 border border-gray-300 rounded">
-                        <input type="email" placeholder="Votre Email" class="w-full p-3 border border-gray-300 rounded">
-                        <textarea placeholder="Votre Message..." rows="4" class="w-full p-3 border border-gray-300 rounded"></textarea>
-                        <button type="submit" class="w-full primary-bg text-white font-bold py-3 rounded hover:bg-blue-900 transition">Envoyer le Message</button>
-                    </form>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4"><i class="fa-solid fa-map-pin mr-2 text-accent"></i> Carte Interactive</h3>
-                    <div class="bg-gray-200 h-96 rounded-lg flex items-center justify-center text-gray-500 italic border border-gray-300">
-                        
-                    </div>
-                    <p class="text-sm mt-4 text-gray-700">Cliquez sur la carte pour lancer la navigation (Google Maps, etc.).</p>
+        <section id="galerie" class="py-16 bg-gray-100">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-gray-900 text-center">📸 Manika en Images et Projets</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <img src="https://source.unsplash.com/random/800x600/?infrastructure+rdc,manika" alt="Activité minière" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?market+commerce,manika" alt="Marché local" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?new+road+construction,manika" alt="Infrastructures routières" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?school+africa,manika" alt="Écoles à Manika" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?mayor+office,manika" alt="Bâtiment administratif" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?hospital+congo,manika" alt="Centre de santé" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?community+meeting,manika" alt="Événement communautaire" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?cityscape+sunset,manika" alt="Paysage urbain au coucher du soleil" class="w-full h-40 object-cover rounded-xl shadow-md interactive-card"/>
                 </div>
             </div>
         </section>
 
+        <hr class="border-gray-100 mx-auto max-w-6xl" />
+
+        <section id="contact" class="py-16 bg-white">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-4 text-gray-900 text-center">💬 Contactez la Commune de Manika</h2>
+                <p class="text-lg text-gray-600 mb-6 text-center">Vos questions, suggestions ou demandes sont importantes pour nous. Remplissez ce formulaire.</p>
+
+                <form id="contactForm" class="grid grid-cols-1 gap-6 p-8 rounded-xl shadow-2xl border-2" style="background-color: #fffbeb; border-color: var(--color-accent);">
+                    <input required name="nom" placeholder="Nom complet" class="p-3 border rounded-lg focus:ring-yellow-500 focus:border-yellow-500" style="border-color: #fcd34d;" type="text" aria-label="Nom complet"/>
+                    <input required name="email" type="email" placeholder="Email (pour la réponse)" class="p-3 border rounded-lg focus:ring-yellow-500 focus:border-yellow-500" style="border-color: #fcd34d;" aria-label="Votre adresse email"/>
+                    <textarea required name="message" placeholder="Votre message" rows="6" class="p-3 border rounded-lg focus:ring-yellow-500 focus:border-yellow-500" style="border-color: #fcd34d;" aria-label="Votre message"></textarea>
+                    
+                    <button type="submit" id="submitBtn" class="btn-primary px-6 py-3 rounded-lg text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
+                        Envoyer le message
+                    </button>
+                    
+                    <div id="formMsg" class="text-sm p-3 rounded-lg bg-green-100 text-green-700 border border-green-200 hidden font-medium" role="alert">
+                        ✅ Message envoyé avec succès. Nous vous répondrons dans les plus brefs délais.
+                    </div>
+                    <div id="errorMsg" class="text-sm p-3 rounded-lg bg-red-100 text-red-700 border border-red-200 hidden font-medium" role="alert">
+                        ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou vérifier votre connexion.
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="connexion" class="py-16 bg-gray-50">
+            <div class="max-w-md mx-auto px-4">
+                <h3 class="text-2xl font-bold text-gray-900 mb-5 text-center">🔒 Espace Administration Manika</h3>
+                <form onsubmit="event.preventDefault();alert('ATTENTION : Ceci est un prototype. Intégrer un système d\'authentification réel (Firebase Auth, etc.) ici.');" class="p-8 bg-white rounded-xl shadow-2xl" style="border-top: 4px solid var(--color-primary);">
+                    <input placeholder="Identifiant ou Email" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:ring-yellow-500 focus:border-yellow-500" required type="text" />
+                    <input placeholder="Mot de passe" type="password" class="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:ring-yellow-500 focus:border-yellow-500" required />
+                    <button class="btn-primary w-full px-4 py-2 rounded-lg font-semibold">
+                        Se connecter
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="py-10 border-t mt-16 bg-gray-900">
+            <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-400">
+                <p class="mb-2">Commune de Manika — Ville de Kolwezi, Province du Lualaba, RDC</p>
+                <p>© Commune de Manika. Tous droits réservés. Maquette de Présentation 2025.</p>
+            </div>
+        </footer>
     </main>
 
-    <footer class="py-10 mt-16 primary-bg">
-        <div class="max-w-7xl mx-auto px-6 text-sm text-gray-400 text-center">
-            <p>&copy; 2025 commune manika. Tous droits réservés. | Developpés par Gamaliel KALAMBO & Gabriel UMBA.</p>
-            <div class="mt-4 space-x-4">
-                <a href="#accueil" class="hover:text-accent">Plan du site</a>
-                <a href="#a_propos" class="hover:text-accent">Mentions légales</a>
-                <a href="#participation" class="hover:text-accent">Signalement</a>
-            </div>
-        </div>
-    </footer>
+    <script type="module">
+        // Import des fonctions de Firebase (si nécessaire, sinon à commenter)
+        // La configuration Firebase ci-dessous est conservée mais nécessite une intégration réelle.
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+        // VOS DONNÉES DE CONFIGURATION FIREBASE (À MODIFIER/SUPPRIMER SELON LE BESOIN)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVPiY7Mwj-BWp5MpWOrK4_xDG3LSihzvU",
+            authDomain: "projet-commune-52366.firebaseapp.com",
+            projectId: "projet-commune-52366",
+            storageBucket: "projet-commune-52366.firebasestorage.app",
+            messagingSenderId: "9615495431",
+            appId: "1:9615495431:web:fc9468c8092ddccbf8f5a2"
+        };
+
+        // Initialisation et références (commenté si non utilisé)
+        // const app = initializeApp(firebaseConfig);
+        // const db = getFirestore(app);
+        // const contactsRef = collection(db, "contacts");
+        
+        // --- LOGIQUE CARROUSEL (Identique) ---
+        const carousel = document.getElementById('hero-carousel');
+        const items = carousel ? carousel.querySelectorAll('.carousel-item') : [];
+        let currentIndex = 0;
+
+        function showNextSlide() {
+            if (items.length === 0) return;
+
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % items.length;
+            items[currentIndex].classList.add('active');
+        }
+
+        if (items.length > 1) {
+            setInterval(showNextSlide, 5000); // Change toutes les 5 secondes
+        }
+
+        // --- LOGIQUE MENU MOBILE (Identique) ---
+        const btnMenu = document.getElementById('btnMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        btnMenu.addEventListener('click', () => {
+            const isExpanded = btnMenu.getAttribute('aria-expanded') === 'true' || false;
+            btnMenu.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            btnMenu.querySelector('i').classList.toggle('fa-bars');
+            btnMenu.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // --- LOGIQUE FORMULAIRE (Conservée pour l'exemple, nécessite un backend réel) ---
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formMsg = document.getElementById('formMsg');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // contactForm.addEventListener('submit', async (e) => {
+        //     e.preventDefault();
+        //     submitBtn.disabled = true;
+        //     formMsg.classList.add('hidden');
+        //     errorMsg.classList.add('hidden');
+
+        //     const formData = new FormData(contactForm);
+        //     const data = {
+        //         nom: formData.get('nom'),
+        //         email: formData.get('email'),
+        //         message: formData.get('message'),
+        //         date: new Date()
+        //     };
+
+        //     try {
+        //         // await addDoc(contactsRef, data);
+        //         formMsg.classList.remove('hidden');
+        //         contactForm.reset();
+        //     } catch (error) {
+        //         console.error("Erreur lors de l'envoi du message: ", error);
+        //         errorMsg.classList.remove('hidden');
+        //     } finally {
+        //         submitBtn.disabled = false;
+        //     }
+        // });
+        
+        // Mettre à jour la date (conservé)
+        document.getElementById('lastUpdateDate').textContent = new Date().toLocaleDateString('fr-FR', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+    </script>
 </body>
 </html>
