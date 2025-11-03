@@ -1,356 +1,370 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mairie de Kolwezi - Portail Officiel (Maquette Pro)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Définition de la palette professionnelle */
-        :root {
-            --color-primary: #172554; /* Bleu Nuit Profond (dark blue-900) */
-            --color-accent: #3b82f6;  /* Bleu Clair Vif (blue-500) */
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* bg-slate-50 très clair */
-        }
-        h1, h2, h3 {
-            font-family: 'Oswald', sans-serif;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commune de Manika - Portail Officiel</title>
+  <style>
+    /* ===== Reset & base ===== */
+    :root{--accent:#0b5fd7;--muted:#6b7280;--bg:#f7f9fc;--card:#ffffff}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#0f1724;background:var(--bg)}
+    a{color:var(--accent);text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
 
-        /* Styles spécifiques pour le thème */
-        .primary-bg {
-            background-color: var(--color-primary);
-        }
-        .text-accent {
-            color: var(--color-accent);
-        }
-        .border-accent {
-            border-color: var(--color-accent);
-        }
-        .hero-title {
-            letter-spacing: 0.05em;
-        }
+    /* ===== Header ===== */
+    header{background:linear-gradient(90deg, rgba(11,95,215,0.06), rgba(11,95,215,0.02));backdrop-filter:blur(2px);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(15,23,36,0.04)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#6c8ef5);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    nav ul{list-style:none;display:flex;gap:14px;margin:0;padding:0}
+    nav a{padding:8px 10px;border-radius:8px;font-size:15px}
+    nav a:hover{background:rgba(11,95,215,0.08)}
+    .cta{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px}
 
-        /* Amélioration des cartes de service */
-        .service-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
-            border-left: 5px solid var(--color-accent);
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-xl */
-        }
-        
-        /* Carrousel */
-        .carousel-container {
-            height: 28rem; 
-        }
-        .dropdown-bg {
-             background-color: #ffffff;
-        }
-        .dropdown-item-hover:hover {
-            background-color: #eff6ff;
-            color: var(--color-primary);
-        }
-    </style>
-    <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    /* ===== Hero / Slider ===== */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:center;padding:28px 0}
+    .slider{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(11,95,215,0.06)}
+    .slides{display:flex;transition:transform 0.6s ease}
+    .slide{min-width:100%;height:320px;background-size:cover;background-position:center}
+    .slide .overlay{padding:20px;background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.22));height:100%;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+    .slider-controls{position:absolute;right:12px;bottom:12px;display:flex;gap:8px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.6)}
+    .dot.active{background:#fff}
+
+    .announcement-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+    .announcement-card h3{margin:0 0 8px 0}
+    .ann-list{display:flex;flex-direction:column;gap:8px}
+    .ann-item{padding:8px;border-radius:8px;background:linear-gradient(180deg,#fff,#fbfdff);display:flex;justify-content:space-between;align-items:center}
+
+    /* ===== Sections ===== */
+    section{margin:24px 0;padding:16px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+    h2{margin-top:0}
+
+    /* About */
+    .stats{display:flex;gap:12px;flex-wrap:wrap}
+    .stat{flex:1;min-width:160px;padding:14px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);text-align:center}
+    .org-chart{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .role{padding:12px;border-radius:10px;background:#fff}
+
+    /* Services */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .service{padding:14px;border-radius:10px}
+    .download{display:inline-block;margin-top:10px;padding:8px 10px;border-radius:8px;background:rgba(11,95,215,0.08)}
+
+    /* Actualités */
+    .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .news-item{padding:12px;border-radius:10px}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+    .map-frame{height:260px;border-radius:10px;border:0}
+
+    /* Forms */
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e6eef8}
+    button{padding:10px;border-radius:8px;border:0;background:var(--accent);color:#fff}
+
+    /* Footer */
+    footer{padding:24px 0;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}.projects{grid-template-columns:1fr}.nav{padding:10px}}
+  </style>
 </head>
-<body class="text-gray-800">
-
-    <header>
-        <nav class="primary-bg text-white shadow-2xl sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
-                
-                <a href="index.html" class="flex items-center text-3xl font-extrabold hero-title space-x-2">
-                    <i class="fa-solid fa-gavel text-white"></i>
-                    <span>KOLWEZI MAIRIE</span>
-                </a>
-
-                <ul class="hidden lg:flex space-x-6 font-semibold items-center text-sm">
-                    
-                    <li><a href="index.html" class="flex items-center hover:text-accent transition duration-150 py-2"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
-                    <li><a href="a_propos.html" class="flex items-center hover:text-accent transition duration-150 py-2"><i class="fa-solid fa-circle-info mr-1"></i> À Propos</a></li>
-
-                    <li class="relative">
-                        <button data-dropdown-toggle="menuCommunes" class="flex items-center hover:text-accent transition duration-150 py-2">
-                            <i class="fa-solid fa-city mr-1"></i> Communes <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-                        </button>
-                        <div id="menuCommunes" class="hidden absolute z-10 mt-2 dropdown-bg shadow-2xl rounded-lg w-40 ring-1 ring-gray-200">
-                            <ul class="py-2 text-gray-800 text-sm">
-                                <li><a href="commune_dilala.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-map-pin mr-2 text-red-600"></i> Dilala</a></li>
-                                <li><a href="commune_manika.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-map-pin mr-2 text-amber-600"></i> Manika</a></li>
-                                <li><a href="commune_luilu.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-map-pin mr-2 text-green-600"></i> Luilu</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="relative">
-                        <button data-dropdown-toggle="menuServices" class="flex items-center hover:text-accent transition duration-150 py-2">
-                            <i class="fa-solid fa-list-check mr-1"></i> Services <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-                        </button>
-                        <div id="menuServices" class="hidden absolute z-10 mt-2 dropdown-bg shadow-2xl rounded-lg w-72 ring-1 ring-gray-200 -translate-x-1/2">
-                            <ul class="py-2 text-gray-800 grid grid-cols-2 gap-1 text-xs">
-                                <li><a href="service_etat_civil.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-file-contract mr-2 text-primary"></i> État Civil</a></li>
-                                <li><a href="service_urbanisme.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-helmet-safety mr-2 text-green-600"></i> Urbanisme & Habitat</a></li>
-                                <li><a href="service_economie.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-store-alt mr-2 text-yellow-600"></i> Économie & Commerce</a></li>
-                                <li><a href="service_hygiene.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-trash-can mr-2 text-teal-600"></i> Hygiène & Env.</a></li>
-                                <li><a href="service_police.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-shield-halved mr-2 text-red-600"></i> Police Adm.</a></li>
-                                <li><a href="service_social.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-people-carry-box mr-2 text-purple-600"></i> Affaires sociales</a></li>
-                                <li><a href="service_finances.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-chart-pie mr-2 text-amber-600"></i> Finances</a></li>
-                                <li><a href="service_technique.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-wrench mr-2 text-sky-600"></i> Service Tech.</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li><a href="actualites.html" class="flex items-center hover:text-accent transition duration-150 py-2"><i class="fa-solid fa-newspaper mr-1"></i> Actualités</a></li>
-
-                    <li class="relative">
-                        <button data-dropdown-toggle="menuProjets" class="flex items-center hover:text-accent transition duration-150 py-2">
-                            <i class="fa-solid fa-road mr-1"></i> Projets <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
-                        </button>
-                        <div id="menuProjets" class="hidden absolute z-10 mt-2 dropdown-bg shadow-2xl rounded-lg w-72 ring-1 ring-gray-200">
-                            <ul class="py-2 text-gray-800 text-sm">
-                                <li><a href="projets_manika.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-city mr-2 text-amber-600"></i> Projets de la Commune de Manika</a></li>
-                                <li><a href="projets_globaux.html" class="block px-4 py-2 dropdown-item-hover"><i class="fa-solid fa-globe mr-2 text-primary"></i> Projets Urbains Globaux</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li><a href="contact.html" class="flex items-center font-bold bg-accent/90 text-white p-2 rounded-lg hover:bg-accent transition duration-150 shadow-md"><i class="fa-solid fa-envelope mr-1"></i> Contact</a></li>
-                </ul>
-
-                <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-accent rounded-lg lg:hidden hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-sky-300" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="sr-only">Ouvrir le menu principal</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main class="max-w-7xl mx-auto py-12 px-6 space-y-20">
-        
-        <section id="accueil" class="bg-white p-8 lg:p-12 rounded-2xl shadow-2xl border-t-8 border-accent grid lg:grid-cols-2 gap-10 items-center">
-            
-            <div>
-                <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 hero-title leading-tight">
-                    <span class="text-accent">BIENVENUE</span> À LA MAIRIE DE KOLWEZI
-                </h1>
-                <blockquote class="text-xl text-gray-700 border-l-4 border-blue-400 pl-4 py-3 italic mb-6 bg-blue-50/50 rounded-r-lg">
-                    "Notre mission est de **servir le citoyen**, garantir l'ordre urbain et promouvoir le développement social et économique de notre commune."
-                </blockquote>
-                <p class="mt-4 text-lg text-gray-700">
-                    Explorez ci-dessous les **huit piliers** de notre administration, conçus pour vous apporter des services de proximité efficaces et transparents au quotidien.
-                </p>
-                <a href="#services" class="mt-8 inline-block primary-bg text-white font-bold py-3 px-8 rounded-full hover:bg-blue-900 transition duration-300 shadow-lg transform hover:scale-[1.02]">
-                    Découvrir nos Services Clés <i class="fa-solid fa-arrow-down ml-2"></i>
-                </a>
-            </div>
-
-            <div id="carousel-example" class="relative w-full carousel-container rounded-xl overflow-hidden shadow-2xl" data-carousel="slide" data-carousel-interval="5000">
-                <div class="relative h-full">
-                    
-                    <div class="duration-700 ease-in-out" data-carousel-item>
-                        <img src="https://source.unsplash.com/random/800x600/?government,building,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/172554/ffffff?text=MAIRIE+COMMUNALE'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Bâtiment principal de la Mairie">
-                        <div class="absolute bottom-0 w-full p-4 bg-black/60 text-white text-center font-semibold text-sm">Le Bâtiment de l'Administration</div>
-                    </div>
-                    
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="https://source.unsplash.com/random/800x600/?road,construction,city" onerror="this.onerror=null;this.src='https://placehold.co/800x600/172554/ffffff?text=TRAVAUX+PUBLICS'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Projet de voirie ou d'infrastructure">
-                        <div class="absolute bottom-0 w-full p-4 bg-black/60 text-white text-center font-semibold text-sm">Projets d'Infrastructures en cours</div>
-                    </div>
-                    
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="https://source.unsplash.com/random/800x600/?education,community,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/172554/ffffff?text=AFFAIRES+SOCIALES'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Événement communautaire ou scolaire">
-                        <div class="absolute bottom-0 w-full p-4 bg-black/60 text-white text-center font-semibold text-sm">Action Sociale et Éducation</div>
-                    </div>
-                    
-                </div>
-                <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
-                    <button type="button" class="w-2.5 h-2.5 rounded-full bg-white opacity-70 hover:opacity-100 transition" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                    <button type="button" class="w-2.5 h-2.5 rounded-full bg-white opacity-70 hover:opacity-100 transition" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                    <button type="button" class="w-2.5 h-2.5 rounded-full bg-white opacity-70 hover:opacity-100 transition" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="p-8 bg-white rounded-2xl shadow-2xl border-t-4 border-gray-200">
-            <h2 class="text-4xl font-extrabold text-gray-900 mb-12 text-center hero-title border-b-2 border-accent/50 pb-3 inline-block mx-auto flex items-center justify-center">
-                <i class="fa-solid fa-list-ol text-accent mr-3"></i> LES 8 PILIERS DE L'ADMINISTRATION PUBLIQUE
-            </h2>
-            
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-file-contract text-3xl text-primary mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">1. État Civil</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">Le cœur administratif de la commune.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Délivrance d’actes (naissance, mariage, décès)</li>
-                        <li>Légalisation des documents administratifs</li>
-                    </ul>
-                    <a href="service_etat_civil.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-                
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-helmet-safety text-3xl text-green-600 mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">2. Urbanisme et Habitat</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">Garant de l’ordre architectural.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Délivrance des permis de construire/d’habiter</li>
-                        <li>Contrôle et inspection des chantiers</li>
-                    </ul>
-                    <a href="service_urbanisme.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-                
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-store-alt text-3xl text-yellow-600 mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">3. Économie et Commerce</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">Là où bat le cœur du marché local.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Enregistrement des établissements commerciaux</li>
-                        <li>Attribution des licences d’exploitation</li>
-                    </ul>
-                    <a href="service_economie.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-                
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-trash-can text-3xl text-teal-600 mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">4. Hygiène et Environnement</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">Pour une commune propre et saine.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Gestion de la salubrité publique</li>
-                        <li>Lutte contre l’insalubrité et les nuisances</li>
-                    </ul>
-                    <a href="service_hygiene.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-shield-halved text-3xl text-red-600 mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">5. Police administrative</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">Le bras régulateur du maire.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Application des arrêtés municipaux</li>
-                        <li>Contrôle des constructions illégales</li>
-                    </ul>
-                    <a href="service_police.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-people-carry-box text-3xl text-purple-600 mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">6. Affaires sociales</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">L’humain au centre de la cité.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Assistance aux personnes vulnérables</li>
-                        <li>Soutien aux associations locales</li>
-                    </ul>
-                    <a href="service_social.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-chart-pie text-3xl text-amber-600 mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">7. Finances communales</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">Les chiffres derrière chaque projet.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Perception des taxes et redevances</li>
-                        <li>Élaboration du budget de la commune</li>
-                    </ul>
-                    <a href="service_finances.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-
-                <div class="p-6 bg-gray-50 rounded-xl service-card">
-                    <div class="flex items-center mb-3">
-                        <i class="fa-solid fa-wrench text-3xl text-sky-600 mr-3"></i>
-                        <h3 class="text-xl font-bold text-gray-900">8. Service Technique</h3>
-                    </div>
-                    <p class="text-gray-600 text-sm italic mb-4">Ceux qui font que la ville "fonctionne".</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 ml-4">
-                        <li>Entretien des routes et ponts</li>
-                        <li>Éclairage public et gestion des équipements</li>
-                    </ul>
-                    <a href="service_technique.html" class="text-accent hover:underline text-xs mt-3 block font-semibold">En savoir plus →</a>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-    
-    <footer class="py-12 mt-16 primary-bg">
-        <div class="max-w-7xl mx-auto px-6 text-sm text-gray-400">
-            <div class="grid md:grid-cols-4 gap-10 mb-8 text-center md:text-left">
-                
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center justify-center md:justify-start hero-title">
-                        <i class="fa-solid fa-gavel mr-2 text-accent"></i> KOLWEZI
-                    </h3>
-                    <p class="text-gray-400 mb-2">
-                        <i class="fa-solid fa-location-dot mr-2 text-accent"></i> Avenue Principale, N°XX, Kolwezi, Lualaba
-                    </p>
-                    <p class="text-gray-400 mb-4">
-                        <i class="fa-solid fa-envelope mr-2 text-accent"></i> info@mairiekolwezi.cd
-                    </p>
-                    <div class="flex space-x-4 justify-center md:justify-start">
-                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-facebook-f text-lg"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-twitter text-lg"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-accent transition"><i class="fab fa-linkedin-in text-lg"></i></a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold text-white mb-4">Navigation</h4>
-                    <ul class="space-y-2">
-                        <li><a href="a_propos.html" class="hover:text-accent transition">Histoire & Organisation</a></li>
-                        <li><a href="#services" class="hover:text-accent transition">Portail des Services</a></li>
-                        <li><a href="actualites.html" class="hover:text-accent transition">Actualités & Presse</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold text-white mb-4">Services Directs</h4>
-                    <ul class="space-y-2">
-                        <li><a href="service_urbanisme.html" class="hover:text-accent transition">Permis de Construire</a></li>
-                        <li><a href="service_etat_civil.html" class="hover:text-accent transition">Actes d'État Civil</a></li>
-                        <li><a href="service_economie.html" class="hover:text-accent transition">Demande de Licence</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-lg font-semibold text-white mb-4">Urgence & Sécurité</h4>
-                    <p class="text-3xl font-extrabold text-red-500 mb-2">1XX</p>
-                    <p class="text-gray-500 mb-4">Police Administrative / Services d'urgence</p>
-                    <a href="#" class="text-accent hover:underline text-sm font-semibold">Transparence & Rapports <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                </div>
-            </div>
-
-            <hr class="border-gray-700 my-8">
-
-            <div class="text-center text-gray-500 text-xs">
-                <p>© 2024 Mairie de Kolwezi. Tous droits réservés. | Conception pour Maquette de Présentation.</p>
-            </div>
+<body>
+  <header>
+    <div class="nav container">
+      <div class="brand">
+        <div class="logo">M</div>
+        <div>
+          <div style="font-weight:700">Commune de Manika</div>
+          <div style="font-size:12px;color:var(--muted)">Portail officiel</div>
         </div>
-    </footer>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#actualites">Actualités</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#participation">Participation</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div><a class="cta" href="#participation">Soumettre une doléance</a></div>
+    </div>
+  </header>
 
+  <main class="container">
+    <!-- HERO -->
+    <section id="accueil" class="hero">
+      <div>
+        <div class="slider card" aria-label="carousel">
+          <div class="slides" id="slides">
+            <div class="slide" style="background-image:url('https://photos.radiookapi.net/picture/20221116171958079379_20221115_142518.jpg')">
+              <div class="overlay"><h2>Bienvenue à Manika</h2><p>Une commune en mouvement — services, propreté, participation citoyenne.</p></div>
+            </div>
+            <div class="slide" style="background-image:url('https://drcongo.un.org/sites/default/files/styles/featured_content/public/2025-08/phot.jpg')">
+              <div class="overlay"><h2>Projets & développement</h2><p>Cartographie des actions locales et soutien aux infrastructures.</p></div>
+            </div>
+            <div class="slide" style="background-image:url('https://www.researchgate.net/publication/382360780/figure/fig1/AS%3A11431281261057128%401721339077757/Location-map-of-the-Kolwezi-region.jpg')">
+              <div class="overlay"><h2>Zone: Kolwezi — Manika</h2><p>Territoire, population et services.</p></div>
+            </div>
+          </div>
+          <div class="slider-controls" id="dots"></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="announcement-card">
+          <h3>Message du Bourgmestre</h3>
+          <p style="margin:0 0 8px 0">Chères habitantes, chers habitants — notre priorité est la salubrité et l'accès aux services de base. Engageons-nous ensemble.</p>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:10px">— Me. Thierry Sambumba Mujinga</div>
+
+          <h4 style="margin-bottom:8px">Dernières annonces</h4>
+          <div class="ann-list" id="announcements">
+            <div class="ann-item"><div>Opération d'assainissement — Quartier Fifi</div><div style="font-size:12px;color:var(--muted)">03/06/2025</div></div>
+            <div class="ann-item"><div>Ouverture centre communautaire</div><div style="font-size:12px;color:var(--muted)">15/05/2025</div></div>
+          </div>
+          <div style="margin-top:12px">
+            <input id="annText" placeholder="Ajouter annonce rapide..." style="width:100%;padding:8px;border-radius:8px;border:1px solid #e9eefb" />
+            <button onclick="addAnnouncement()" style="margin-top:8px">Ajouter</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- A PROPOS -->
+    <section id="a-propos" class="card">
+      <h2>À propos de la Commune</h2>
+      <p>Manika — commune de la ville de Kolwezi, province du Lualaba. Portail conçu pour rapprocher l'administration et les citoyens.</p>
+
+      <div class="stats" style="margin-top:14px">
+        <div class="stat"><div style="font-size:18px;font-weight:700">59 km²</div><div style="color:var(--muted);font-size:13px">Surface (approx.)</div></div>
+        <div class="stat"><div style="font-size:18px;font-weight:700">~120 000</div><div style="color:var(--muted);font-size:13px">Population (est.)</div></div>
+        <div class="stat"><div style="font-size:18px;font-weight:700">Zones</div><div style="color:var(--muted);font-size:13px">Fifi, Lukungu, ...</div></div>
+      </div>
+
+      <h3 style="margin-top:18px">Organigramme</h3>
+      <div class="org-chart">
+        <div class="role">Bourgmestre<br><small style="color:var(--muted)">Me. Thierry S. Mujinga</small></div>
+        <div class="role">Secrétaire communal<br><small style="color:var(--muted)">Responsable administratif</small></div>
+        <div class="role">Service hygiène & assainissement</div>
+        <div class="role">Service urbanisme</div>
+      </div>
+
+      <h3 style="margin-top:18px">Vision & Mission</h3>
+      <p><strong>Vision :</strong> Une commune propre, sûre et prospère, où la participation citoyenne guide le développement. <br><strong>Mission :</strong> Fournir des services publics accessibles, promouvoir la santé publique, et piloter des projets structurants.</p>
+    </section>
+
+    <!-- SERVICES & FORMULAIRES -->
+    <section id="services" class="card">
+      <h2>Services & Formulaires</h2>
+      <p>Téléchargez les formulaires officiels ou soumettez une demande en ligne. Les envois sont simulés localement pour la maquette — à connecter à un back-end ou Firebase par la suite.</p>
+
+      <div class="services-grid" style="margin-top:12px">
+        <div class="service card">
+          <h4>Hygiène & Assainissement</h4>
+          <p>Demande d'enlèvement de déchets, signalement de dépôts sauvages.</p>
+          <a class="download" href="#" onclick="downloadSample('assainissement')">Télécharger (PDF)</a>
+        </div>
+        <div class="service card">
+          <h4>Urbanisme</h4>
+          <p>Permis de construire, demande d'alignement.</p>
+          <a class="download" href="#" onclick="downloadSample('urbanisme')">Télécharger (PDF)</a>
+        </div>
+        <div class="service card">
+          <h4>État civil</h4>
+          <p>Demande d'acte, certificats et extraits.</p>
+          <a class="download" href="#" onclick="downloadSample('etatcivil')">Télécharger (PDF)</a>
+        </div>
+      </div>
+
+      <h4 style="margin-top:16px">Dépôt en ligne (simulation)</h4>
+      <form id="uploadForm" onsubmit="return handleUpload(event)">
+        <label>Type de demande</label>
+        <select required name="type">
+          <option value="assainissement">Assainissement</option>
+          <option value="urbanisme">Urbanisme</option>
+          <option value="etatcivil">État civil</option>
+        </select>
+        <label>Nom complet</label>
+        <input required name="name" placeholder="Nom et prénom" />
+        <label>Description</label>
+        <textarea name="desc" placeholder="Détails..." rows="3"></textarea>
+        <label>Joindre un fichier (simulation)</label>
+        <input type="file" name="file" />
+        <button type="submit">Soumettre la demande</button>
+      </form>
+      <div id="uploadResult" style="margin-top:10px;color:var(--muted)"></div>
+    </section>
+
+    <!-- ACTUALITES -->
+    <section id="actualites" class="card">
+      <h2>Actualités & Événements</h2>
+      <p>Flux local et articles : opérations d'assainissement en cours — source d'information : <a href="https://topinfo.cd" target="_blank">topinfo.cd</a></p>
+
+      <div class="news-grid" style="margin-top:12px">
+        <article class="news-item card">
+          <h4>Opération d'assainissement lancée</h4>
+          <p>Le bourgmestre a lancé une vaste opération d'assainissement. <small style="color:var(--muted)">03 juin 2025</small></p>
+          <a href="https://topinfo.cd/2025/06/20/kolwezi-le-bourgmestre-de-manika-thierry-mujinga-agit-pour-une-commune-plus-propre/" target="_blank">Lire la suite</a>
+        </article>
+        <article class="news-item card">
+          <h4>Centre de santé : suivi des travaux</h4>
+          <p>Inspection des travaux du centre de santé local. <small style="color:var(--muted)">12 mai 2025</small></p>
+          <a href="https://letonnerre.info/kolwezi-commune-de-manika-me-thierry-sambumba-mujinga-a-inspecte-les-travaux-de-construction-du-centre-de-sante-fifi-masuka/" target="_blank">Lire la suite</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" class="card">
+      <h2>Développement & Projets</h2>
+      <div class="projects" style="margin-top:12px">
+        <div>
+          <p>Carte des projets en cours, financement et objectifs. Exemple : construction du centre de santé Fifi Masuka (suivi & impact social).</p>
+          <ul>
+            <li>Construction centre de santé — financement mixte</li>
+            <li>Assainissement quartier Fifi — budget communal</li>
+            <li>Réhabilitation voie urbaine — partenariat privé</li>
+          </ul>
+          <p>Article de suivi : <a href="https://letonnerre.info" target="_blank">letonnerre.info</a></p>
+        </div>
+        <div>
+          <!-- Embedded small map -->
+          <iframe class="map-frame" src="https://www.openstreetmap.org/export/embed.html?bbox=25.40%2C-10.77%2C25.53%2C-10.64&amp;layer=mapnik" aria-label="Carte de la commune de Manika"></iframe>
+          <div style="font-size:12px;color:var(--muted);margin-top:8px">Source: OpenStreetMap — zone approximative autour de Kolwezi / Manika</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTICIPATION -->
+    <section id="participation" class="card">
+      <h2>Participation citoyenne</h2>
+      <p>Soumettez une doléance, participez à un sondage ou proposez un plan d’action communautaire.</p>
+      <form id="doleanceForm" onsubmit="return submitDoleance(event)">
+        <input name="nom" placeholder="Votre nom (optionnel)" />
+        <input name="tel" placeholder="Téléphone" />
+        <select name="type">
+          <option value="insalubrite">Insalubrité</option>
+          <option value="eau">Eau / Assainissement</option>
+          <option value="securite">Sécurité</option>
+          <option value="autre">Autre</option>
+        </select>
+        <textarea name="message" placeholder="Votre doléance" required rows="4"></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+      <div id="doleanceResult" style="margin-top:10px;color:var(--muted)"></div>
+
+      <h4 style="margin-top:14px">Sondage rapide</h4>
+      <div>
+        <label>Êtes-vous satisfait de la propreté du quartier ?</label>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button onclick="recordPoll('oui')">Oui</button>
+          <button onclick="recordPoll('non')">Non</button>
+          <button onclick="recordPoll('moyen')">Moyen</button>
+        </div>
+        <div id="pollResult" style="margin-top:8px;color:var(--muted)"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Adresse mairie : Rue Principale, Commune de Manika — Kolwezi<br>Téléphone : +243 99 722 7819<br>Email : contact@manika.cd (exemple)</p>
+
+      <h4>Écrivez-nous</h4>
+      <form id="contactForm" onsubmit="return submitContact(event)">
+        <input name="nom" placeholder="Nom" required />
+        <input name="email" placeholder="Adresse email" required />
+        <textarea name="msg" placeholder="Message" required rows="4"></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+
+      <div style="margin-top:12px">
+        <iframe class="map-frame" src="https://www.openstreetmap.org/export/embed.html?bbox=25.40%2C-10.77%2C25.53%2C-10.64&amp;layer=mapnik" aria-label="Localisation mairie"></iframe>
+      </div>
+    </section>
+
+    <footer style="text-align:center;margin-top:18px">
+      <div style="color:var(--muted)">© Commune de Manika — Portail de service public. Conçu pour être connecté à un CMS / Firebase.</div>
+    </footer>
+  </main>
+
+  <script>
+    // ===== Slider =====
+    const slidesEl = document.getElementById('slides');
+    const dotsEl = document.getElementById('dots');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let idx = 0;
+    function renderDots(){
+      dotsEl.innerHTML = '';
+      slides.forEach((s,i)=>{const d=document.createElement('div');d.className='dot'+(i===idx?' active':'');d.onclick=()=>{idx=i;update();};dotsEl.appendChild(d)});
+    }
+    function update(){
+      slidesEl.style.transform = `translateX(-${idx*100}% )`;
+      document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+    }
+    renderDots(); update();
+    setInterval(()=>{idx=(idx+1)%slides.length;update()},5000);
+
+    // ===== Announcements (local simulation) =====
+    function loadAnnouncements(){
+      const key='manika.ann';
+      const data=JSON.parse(localStorage.getItem(key)||'[]');
+      const el=document.getElementById('announcements');
+      el.innerHTML='';
+      data.reverse().forEach(a=>{const div=document.createElement('div');div.className='ann-item';div.innerHTML=`<div>${a.text}</div><div style="font-size:12px;color:var(--muted)">${a.date}</div>`;el.appendChild(div)});
+    }
+    function addAnnouncement(){
+      const txt=document.getElementById('annText'); if(!txt.value.trim())return alert('Écrit quelque chose.');
+      const key='manika.ann'; const list=JSON.parse(localStorage.getItem(key)||'[]'); list.push({text:txt.value,date:new Date().toLocaleDateString('fr-FR')}); localStorage.setItem(key,JSON.stringify(list)); txt.value=''; loadAnnouncements();
+    }
+    loadAnnouncements();
+
+    // ===== Sample downloads =====
+    function downloadSample(type){
+      alert('Téléchargement simulé. Remplacez le lien par votre PDF officiel dans le code. (type='+type+')');
+    }
+
+    // ===== Upload simulation =====
+    function handleUpload(e){
+      e.preventDefault(); const f=new FormData(e.target); const out={type:f.get('type'),name:f.get('name'),desc:f.get('desc'),date:new Date().toISOString()};
+      const key='manika.uploads'; const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.push(out); localStorage.setItem(key,JSON.stringify(arr));
+      document.getElementById('uploadResult').textContent='Demande soumise (simulation). Vous pouvez connecter ce formulaire à Firebase ou un back-end.';
+      e.target.reset(); return false;
+    }
+
+    // ===== Doleance form =====
+    function submitDoleance(e){
+      e.preventDefault(); const f=new FormData(e.target); const rec={nom:f.get('nom'),tel:f.get('tel'),type:f.get('type'),message:f.get('message'),date:new Date().toISOString()};
+      const key='manika.doleances'; const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.push(rec); localStorage.setItem(key,JSON.stringify(arr));
+      document.getElementById('doleanceResult').textContent='Merci, doléance reçue (simulation).'; e.target.reset(); return false;
+    }
+
+    // ===== Poll =====
+    function recordPoll(v){
+      const key='manika.poll'; const p=JSON.parse(localStorage.getItem(key)||'{}'); p[v]=(p[v]||0)+1; localStorage.setItem(key,JSON.stringify(p)); renderPoll();
+    }
+    function renderPoll(){
+      const p=JSON.parse(localStorage.getItem('manika.poll')||'{}'); const total=Object.values(p).reduce((a,b)=>a+b,0) || 0; const el=document.getElementById('pollResult'); if(total===0){el.textContent='Pas encore de votes.';return;} el.innerHTML=Object.entries(p).map(([k,v])=>`${k}: ${v} (${Math.round((v/total)*100)}%)`).join(' | ');
+    }
+    renderPoll();
+
+    // ===== Contact =====
+    function submitContact(e){
+      e.preventDefault(); const f=new FormData(e.target); const obj={nom:f.get('nom'),email:f.get('email'),msg:f.get('msg'),date:new Date().toISOString()};
+      const key='manika.contact'; const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.push(obj); localStorage.setItem(key,JSON.stringify(arr));
+      document.getElementById('contactForm').reset(); alert('Message reçu (simulation). Pour production, connectez ce formulaire à un serveur ou Firebase.'); return false;
+    }
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){e.preventDefault();const id=this.getAttribute('href').slice(1);document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});}))
+  </script>
 </body>
 </html>
