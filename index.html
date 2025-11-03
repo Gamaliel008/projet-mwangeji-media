@@ -7,16 +7,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <style>
-        /* Personnalisation */
+        /* Styles personnalisés (au-delà de Tailwind) */
         body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-        /* Couleurs thématiques Kolwezi - Indigo et un léger Bleu/Violet */
-        .hero-bg { background: linear-gradient(90deg, rgba(99,102,241,0.07), rgba(167,139,250,0.05)); }
+        
+        /* Couleur thématique Kolwezi - Indigo et un léger Bleu/Violet */
+        .hero-bg { 
+            /* Arrière-plan dégradé doux pour la section Hero */
+            background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(167,139,250,0.08), rgba(255, 255, 255, 1)); 
+        }
+        
         /* Effet Glassmorphism pour la barre de navigation */
-        .glass { backdrop-filter: blur(8px); background: rgba(255,255,255,0.7); }
+        .glass { 
+            backdrop-filter: blur(8px); 
+            background: rgba(255,255,255,0.85); /* Plus opaque pour plus de lisibilité */
+        }
+        
+        /* Animation subtile de chargement des services */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="antialiased text-gray-800">
-    <header class="fixed top-0 left-0 right-0 z-50 shadow-md bg-white/70 glass">
+    <header class="fixed top-0 left-0 right-0 z-50 shadow-lg bg-white/85 glass">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="#home" class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1">
@@ -31,7 +47,7 @@
                     <a href="#home" class="hover:text-indigo-600 transition duration-150">Accueil</a>
                     <a href="#a-propos" class="hover:text-indigo-600 transition duration-150">À propos</a>
                     <a href="#communes" class="hover:text-indigo-600 transition duration-150">Communes</a>
-                    <a href="#services" class="hover:text-indigo-600 transition duration-150">Services</a>
+                    <a href="#services" class="text-indigo-600 font-bold border-b-2 border-indigo-600">Services</a>
                     <a href="#galerie" class="hover:text-indigo-600 transition duration-150">Galerie</a>
                     <a href="#contact" class="hover:text-indigo-600 transition duration-150">Contact</a>
                 </nav>
@@ -47,222 +63,212 @@
             </div>
         </div>
 
-        <nav id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/90">
+        <nav id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95">
             <div class="px-4 py-4 flex flex-col gap-3 font-medium">
                 <a href="#home" class="p-2 rounded-md hover:bg-gray-50">Accueil</a>
                 <a href="#a-propos" class="p-2 rounded-md hover:bg-gray-50">À propos</a>
                 <a href="#communes" class="p-2 rounded-md hover:bg-gray-50">Communes</a>
-                <a href="#services" class="p-2 rounded-md hover:bg-gray-50">Services</a>
+                <a href="#services" class="p-2 rounded-md bg-indigo-50 text-indigo-600">Services</a>
                 <a href="#galerie" class="p-2 rounded-md hover:bg-gray-50">Galerie</a>
                 <a href="#contact" class="p-2 rounded-md hover:bg-gray-50">Contact</a>
             </div>
         </nav>
     </header>
 
-    <main class="pt-24">
+    <main class="pt-16">
         <section id="home" class="hero-bg py-24 sm:py-32">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight text-gray-900">Kolwezi — <span class="text-indigo-600">Service public, services transparents</span></h1>
-                        <p class="mt-5 text-lg text-gray-600">Un portail pour rapprocher la mairie, les citoyens et les acteurs économiques. Infos, démarches, actualités et formulaires — tout au même endroit.</p>
+                        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight text-gray-900">Kolwezi — <span class="text-indigo-600">Service public, services transparents</span></h1>
+                        <p class="mt-5 text-lg text-gray-600">Le portail officiel pour **simplifier vos démarches**, accéder aux informations et interagir avec votre administration municipale.</p>
 
                         <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                            <a href="#communes" class="px-6 py-3 rounded-xl bg-indigo-600 text-white text-base font-semibold hover:bg-indigo-700 shadow-lg transition duration-150 ease-in-out">Découvrir les communes</a>
-                            <a href="#services" class="px-6 py-3 rounded-xl border border-gray-300 text-base hover:bg-gray-50 transition duration-150 ease-in-out">Nos services</a>
+                            <a href="#services" class="px-7 py-3 rounded-full bg-indigo-600 text-white text-base font-semibold hover:bg-indigo-700 shadow-xl transition duration-150 ease-in-out transform hover:scale-[1.02]">Accéder aux 8 Services Clés</a>
+                            <a href="#contact" class="px-7 py-3 rounded-full border-2 border-gray-300 text-base font-medium text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out">Nous Contacter</a>
                         </div>
 
                         <div class="mt-8 text-sm text-gray-500">Dernière mise à jour : <span id="lastUpdateDate">03 novembre 2025</span></div>
                     </div>
 
-                    <div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-8 border border-gray-100">
-                        <img src="https://source.unsplash.com/collection/190727/800x600?city" alt="Vue aérienne de Kolwezi" class="w-full h-60 object-cover rounded-xl shadow-inner mb-6" />
+                    <div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-6 md:p-8 border border-gray-100">
+                        
+                        <img src="https://source.unsplash.com/random/800x600/?african+city+hall" alt="Vue aérienne de Kolwezi ou Mairie" class="w-full h-60 object-cover rounded-xl shadow-inner mb-6" />
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 border border-indigo-200 rounded-lg bg-indigo-50">
+                            <div class="p-4 rounded-lg bg-indigo-50 border border-indigo-200">
                                 <div class="text-base font-semibold text-indigo-700">Population estimée</div>
-                                <div class="text-2xl font-bold mt-1 text-gray-900">~ 500 000</div>
+                                <div class="text-2xl font-bold mt-1 text-gray-900">~ 1 Million</div>
                             </div>
-                            <div class="p-4 border border-purple-200 rounded-lg bg-purple-50">
-                                <div class="text-base font-semibold text-purple-700">Économie principale</div>
-                                <div class="text-2xl font-bold mt-1 text-gray-900">Mine & Services</div>
+                            <div class="p-4 rounded-lg bg-purple-50 border border-purple-200">
+                                <div class="text-base font-semibold text-purple-700">Communes</div>
+                                <div class="text-2xl font-bold mt-1 text-gray-900">2 (bientôt 6)</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        
+        <hr class="border-gray-200" />
 
         <section id="a-propos" class="py-16">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold text-gray-900">Notre Mission</h2>
-                <p class="mt-4 text-lg text-gray-600">En tant que portail officiel de la mairie de Kolwezi, notre mission est de **simplifier les démarches administratives**, d'assurer la **transparence** et de faciliter l'accès aux **informations municipales** pour tous les citoyens et partenaires économiques.</p>
+                <h2 class="text-3xl font-bold text-gray-900">Notre Engagement Citoyen</h2>
+                <p class="mt-4 text-lg text-gray-600">L'administration de Kolwezi est dédiée à la **modernisation des services**, à la promotion de l'**équité sociale** et à la garantie d'un **cadre de vie sain** pour tous les Lualabais.</p>
             </div>
         </section>
+        
+        <hr class="border-gray-200" />
 
         <section id="communes" class="py-16 bg-gray-50">
             <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-gray-900 text-center">Les communes administratives</h2>
+                <h2 class="text-3xl font-bold mb-10 text-gray-900 text-center">Les Entités Administratives</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <article class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <h3 class="text-xl font-bold text-indigo-700">Commune de Dilala</h3>
-                        <p class="mt-3 text-gray-600 text-sm">Centre historique et administratif de la ville. Forte densité de commerces et de services publics.</p>
+                    <article class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl service-card border-t-4 border-indigo-600">
+                        <h3 class="text-xl font-bold text-indigo-700">📍 Commune de Dilala</h3>
+                        <p class="mt-3 text-gray-600 text-sm">Cœur historique et administratif, abritant la plupart des institutions clés et un fort pôle commercial.</p>
                         <ul class="mt-4 text-sm text-gray-600 space-y-2">
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Quartiers : Kasulo, Kapata, Golf</li>
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Services : État civil, Urbanisme</li>
+                            <li class="flex items-center text-sm font-medium text-gray-700"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2h2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2h2zM7 7a3 3 0 016 0v2H7V7z" clip-rule="evenodd"></path></svg> Services Centraux</li>
+                            <li class="flex items-center text-sm font-medium text-gray-700"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clip-rule="evenodd"></path></svg> Heures d'ouverture étendues</li>
                         </ul>
-                        <div class="mt-5">
-                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 transition duration-150">Voir les démarches spécifiques →</a>
-                        </div>
                     </article>
 
-                    <article class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <h3 class="text-xl font-bold text-indigo-700">Commune de Manika</h3>
-                        <p class="mt-3 text-gray-600 text-sm">Zone en forte **expansion démographique**, porte d'entrée de l'activité minière et industrielle.</p>
+                    <article class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl service-card border-t-4 border-yellow-600">
+                        <h3 class="text-xl font-bold text-yellow-700">🏗️ Commune de Manika</h3>
+                        <p class="mt-3 text-gray-600 text-sm">Zone d'expansion rapide, centrée sur l'activité minière et le développement de nouvelles infrastructures urbaines.</p>
                         <ul class="mt-4 text-sm text-gray-600 space-y-2">
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Zone industrielle et minière</li>
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Services : Inspection, Permis d'exploitation</li>
+                            <li class="flex items-center text-sm font-medium text-gray-700"><svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM6 10a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zM4 13a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM6 16a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z"></path></svg> Guichet Unique pour le commerce</li>
+                            <li class="flex items-center text-sm font-medium text-gray-700"><svg class="w-4 h-4 mr-2 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg> Projets d'infrastructures majeurs</li>
                         </ul>
-                        <div class="mt-5">
-                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800 transition duration-150">Voir les démarches spécifiques →</a>
-                        </div>
                     </article>
 
-                    <article class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-gray-400">
-                        <h3 class="text-xl font-bold text-gray-700">Commune de Luilu</h3>
-                        <p class="mt-3 text-gray-600 text-sm">Couvre les nouvelles zones de développement et les quartiers périphériques. Services de proximité.</p>
+                    <article class="p-6 bg-white rounded-2xl shadow-xl hover:shadow-2xl service-card border-t-4 border-gray-400 opacity-80">
+                        <h3 class="text-xl font-bold text-gray-700">🔜 Commune de Luilu</h3>
+                        <p class="mt-3 text-gray-600 text-sm">En phase de démembrement (avec Musompo, Kasulo, etc.). Future entité axée sur la décentralisation des services.</p>
                         <ul class="mt-4 text-sm text-gray-600 space-y-2">
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>En cours de décentralisation</li>
-                            <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>Services : Projets sociaux, Taxes locales</li>
+                            <li class="flex items-center text-sm font-medium text-gray-700"><svg class="w-4 h-4 mr-2 text-gray-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-7-9a7 7 0 1114 0c0 1.258-.293 2.443-.804 3.524l-3.327-3.327a4 4 0 00-5.346 0l-3.327 3.327C3.293 11.443 3 10.258 3 9z" clip-rule="evenodd"></path></svg> Plan Local d'Aménagement en cours</li>
+                            <li class="flex items-center text-sm font-medium text-gray-700"><svg class="w-4 h-4 mr-2 text-gray-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 10a5 5 0 1110 0 5 5 0 01-10 0zM10 3a7 7 0 100 14 7 7 0 000-14z" clip-rule="evenodd"></path></svg> Prochain centre de services de proximité</li>
                         </ul>
-                        <div class="mt-5">
-                            <a href="#" class="text-gray-600 text-sm font-semibold hover:text-gray-800 transition duration-150">En savoir plus →</a>
-                        </div>
                     </article>
                 </div>
             </div>
         </section>
+        
+        <hr class="border-gray-200" />
 
         <section id="services" class="py-16 bg-white">
             <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-3xl font-extrabold mb-8 text-gray-900 text-center">Nos Services Communaux Détaillés</h2>
-                <p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">Explorez la liste complète des services offerts par la Mairie de Kolwezi, avec des liens directs vers les démarches en ligne et les informations clés.</p>
+                <h2 class="text-3xl font-extrabold mb-8 text-gray-900 text-center">🧾 Nos Services Communaux Détaillés (8 Piliers)</h2>
+                <p class="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto">Chaque service est un engagement pour l'amélioration de votre quotidien. Cliquez pour accéder aux informations et aux démarches en ligne.</p>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-indigo-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <h3 class="text-lg font-bold text-indigo-700">1. État Civil</h3>
+                            <svg class="w-8 h-8 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">1. État Civil</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Actes de naissance, mariage, décès</li>
-                            <li>Légalisation des documents</li>
-                            <li>Tenue des registres</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>**Actes de:** Naissance, Mariage, Décès</li>
+                            <li>Légalisation de documents administratifs</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800">Accéder aux formulaires →</a>
+                            <a href="#" class="text-indigo-600 text-sm font-semibold hover:text-indigo-800">Démarches en ligne →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-green-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-green-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0v1.5M7 7a2 2 0 002 2h6a2 2 0 002-2"></path></svg>
-                            <h3 class="text-lg font-bold text-green-700">2. Urbanisme & Habitat</h3>
+                            <svg class="w-8 h-8 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0v1.5M7 7a2 2 0 002 2h6a2 2 0 002-2"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">2. Urbanisme & Habitat</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Permis de construire et d’habiter</li>
-                            <li>Contrôle des chantiers</li>
-                            <li>Attribution des parcelles</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>**Délivrance des:** Permis de construire/habiter</li>
+                            <li>Gestion des alignements et des parcelles</li>
                         </ul>
                         <div class="mt-4">
                             <a href="#" class="text-green-600 text-sm font-semibold hover:text-green-800">Soumettre un dossier →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-yellow-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-yellow-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                            <h3 class="text-lg font-bold text-yellow-700">3. Économie & Commerce</h3>
+                            <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">3. Économie & Commerce</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Licences d'exploitation (PME)</li>
-                            <li>Suivi des marchés publics</li>
-                            <li>Gestion des taxes (étals)</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>**Attribution des:** Licences et autorisations</li>
+                            <li>Gestion des taxes locales et marchés publics</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="#" class="text-yellow-600 text-sm font-semibold hover:text-yellow-800">Créer mon entreprise →</a>
+                            <a href="#" class="text-yellow-600 text-sm font-semibold hover:text-yellow-800">Enregistrer une activité →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-teal-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-teal-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0 0l-2.432 1.216a.7.7 0 00-.515.024L5 11.5zM17 11.5V14m0 0l2.432 1.216a.7.7 0 00.515.024L19 11.5zM11 9.778c0 .544.175.879.432 1.136l.704.704M12 21h2.5M10 21h.5"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18h4m-2 3v-3"></path><path d="M12 21a2 2 0 100-4 2 2 0 000 4z"></path></svg>
-                            <h3 class="text-lg font-bold text-teal-700">4. Hygiène & Environnement</h3>
+                            <svg class="w-8 h-8 text-teal-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0 0l-2.432 1.216a.7.7 0 00-.515.024L5 11.5zM17 11.5V14m0 0l2.432 1.216a.7.7 0 00.515.024L19 11.5zM11 9.778c0 .544.175.879.432 1.136l.704.704M12 21h2.5M10 21h.5"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18h4m-2 3v-3"></path><path d="M12 21a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">4. Hygiène & Environnement</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Gestion de la salubrité publique</li>
-                            <li>Campagnes d'assainissement</li>
-                            <li>Suivi des déchets (Ramassage)</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>Gestion de la **salubrité publique**</li>
+                            <li>Lutte contre les nuisances et déchets</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="#" class="text-teal-600 text-sm font-semibold hover:text-teal-800">Signaler une insalubrité →</a>
+                            <a href="#" class="text-teal-600 text-sm font-semibold hover:text-teal-800">Signaler un problème →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-red-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-red-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.618a8.6 8.6 0 00-12.77 0l-1.06 1.06a12 12 0 0014.897 0l-1.06-1.06zM9 12L7 10M17 12l2-2"></path></svg>
-                            <h3 class="text-lg font-bold text-red-700">5. Police Administrative</h3>
+                            <svg class="w-8 h-8 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.618a8.6 8.6 0 00-12.77 0l-1.06 1.06a12 12 0 0014.897 0l-1.06-1.06zM9 12L7 10M17 12l2-2"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">5. Police Administrative</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Application des arrêtés</li>
-                            <li>Contrôle des constructions illégales</li>
-                            <li>Surveillance publique</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>**Application des** Arrêtés municipaux</li>
+                            <li>Contrôle des constructions/commerces illégaux</li>
                         </ul>
                         <div class="mt-4">
                             <a href="#" class="text-red-600 text-sm font-semibold hover:text-red-800">Consulter les arrêtés →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-pink-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-pink-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-3m0 0l-1.5-1.5m1.5 1.5l-1.5 1.5M4 20h5V4H4v16z"></path></svg>
-                            <h3 class="text-lg font-bold text-pink-700">6. Social & Culture</h3>
+                            <svg class="w-8 h-8 text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-3m0 0l-1.5-1.5m1.5 1.5l-1.5 1.5M4 20h5V4H4v16z"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">6. Social & Culture</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Assistance aux vulnérables</li>
-                            <li>Soutien aux associations</li>
-                            <li>Événements culturels/sportifs</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>**Assistance aux** personnes vulnérables</li>
+                            <li>Soutien aux associations et événements</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="#" class="text-pink-600 text-sm font-semibold hover:text-pink-800">Voir les aides disponibles →</a>
+                            <a href="#" class="text-pink-600 text-sm font-semibold hover:text-pink-800">Voir les aides sociales →</a>
                         </div>
                     </div>
                     
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-blue-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-blue-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V9a1 1 0 001-1h1a1 1 0 001-1V5a1 1 0 00-1-1h-1a1 1 0 00-1 1v1m0 0a2 2 0 11-4 0m0 0a2 2 0 11-4 0"></path></svg>
-                            <h3 class="text-lg font-bold text-blue-700">7. Finances communales</h3>
+                            <svg class="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V9a1 1 0 001-1h1a1 1 0 001-1V5a1 1 0 00-1-1h-1a1 1 0 00-1 1v1m0 0a2 2 0 11-4 0m0 0a2 2 0 11-4 0"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">7. Finances communales</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Paiement des taxes et redevances</li>
-                            <li>Élaboration du budget</li>
-                            <li>Gestion du patrimoine</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>Perception des **taxes et redevances**</li>
+                            <li>Élaboration et suivi budgétaire</li>
                         </ul>
                         <div class="mt-4">
                             <a href="#" class="text-blue-600 text-sm font-semibold hover:text-blue-800">Accéder aux télépaiements →</a>
                         </div>
                     </div>
 
-                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-gray-500 hover:shadow-2xl transition duration-300">
+                    <div class="p-6 bg-white rounded-xl shadow-lg border-t-4 border-gray-600 service-card">
                         <div class="flex items-center gap-3 mb-3">
-                            <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.945 3.31.83 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.945 1.543-.83 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.945-3.31-.83-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.945-1.543.83-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <h3 class="text-lg font-bold text-gray-700">8. Technique & Infrastructures</h3>
+                            <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.945 3.31.83 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.945 1.543-.83 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.945-3.31-.83-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.945-1.543.83-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <h3 class="text-lg font-bold text-gray-900">8. Technique & Infra.</h3>
                         </div>
-                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside">
-                            <li>Entretien routes, ponts, marchés</li>
-                            <li>Gestion éclairage public</li>
-                            <li>Suivi des travaux locaux</li>
+                        <ul class="mt-2 text-sm text-gray-600 space-y-1 list-disc list-inside ml-2">
+                            <li>Entretien des **routes et ponts**</li>
+                            <li>Gestion de l'éclairage public et des marchés</li>
                         </ul>
                         <div class="mt-4">
                             <a href="#" class="text-gray-600 text-sm font-semibold hover:text-gray-800">Signaler un dommage →</a>
@@ -273,52 +279,57 @@
             </div>
         </section>
 
+        <hr class="border-gray-200" />
+        
         <section id="galerie" class="py-16 bg-gray-100">
             <div class="max-w-6xl mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-gray-900 text-center">Kolwezi en images</h2>
+                <h2 class="text-3xl font-bold mb-8 text-gray-900 text-center">🖼️ Kolwezi en Images et Projets</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-                    <img src="https://source.unsplash.com/featured/?city,dr-congo" alt="Vue de la ville de Kolwezi" class="w-full h-36 object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300"/>
-                    <img src="https://source.unsplash.com/featured/?mining" alt="Activité minière" class="w-full h-36 object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300"/>
-                    <img src="https://source.unsplash.com/featured/?market,africa" alt="Marché local" class="w-full h-36 object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300"/>
-                    <img src="https://source.unsplash.com/featured/?road,africa" alt="Infrastructures routières" class="w-full h-36 object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300"/>
-                    <img src="https://source.unsplash.com/featured/?school,africa" alt="Écoles à Kolwezi" class="w-full h-36 object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300"/>
-                    <img src="https://source.unsplash.com/featured/?government" alt="Bâtiment administratif" class="w-full h-36 object-cover rounded-lg shadow-md hover:scale-[1.03] transition duration-300"/>
+                    <img src="https://source.unsplash.com/random/800x600/?mining+congo" alt="Activité minière" class="w-full h-36 object-cover rounded-lg shadow-md service-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?market+africa" alt="Marché local" class="w-full h-36 object-cover rounded-lg shadow-md service-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?infrastructure+rdc" alt="Infrastructures routières" class="w-full h-36 object-cover rounded-lg shadow-md service-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?education+congo" alt="Écoles à Kolwezi" class="w-full h-36 object-cover rounded-lg shadow-md service-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?mayor+office" alt="Bâtiment administratif" class="w-full h-36 object-cover rounded-lg shadow-md service-card"/>
+                    <img src="https://source.unsplash.com/random/800x600/?hospital+africa" alt="Centre de santé" class="w-full h-36 object-cover rounded-lg shadow-md service-card"/>
                 </div>
             </div>
         </section>
 
+        <hr class="border-gray-200" />
+
         <section id="contact" class="py-16">
             <div class="max-w-3xl mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-4 text-gray-900 text-center">Contactez la mairie</h2>
-                <p class="text-lg text-gray-600 mb-6 text-center">Utilisez ce formulaire pour vos questions urgentes, demandes de rendez-vous ou signalements. (Propulsé par Firebase)</p>
+                <h2 class="text-3xl font-bold mb-4 text-gray-900 text-center">💬 Contactez la Mairie (Formulaire Sécurisé)</h2>
+                <p class="text-lg text-gray-600 mb-6 text-center">Vos questions, signalements ou demandes de rendez-vous sont traités par l'administration municipale. (Propulsé par Firebase)</p>
 
-                <form id="contactForm" class="grid grid-cols-1 gap-6 p-8 bg-gray-50 rounded-xl shadow-lg border border-gray-200">
-                    <input required name="nom" placeholder="Nom complet" class="p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" type="text" aria-label="Nom complet"/>
-                    <input required name="email" type="email" placeholder="Email (pour la réponse)" class="p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" aria-label="Votre adresse email"/>
-                    <textarea required name="message" placeholder="Votre message" rows="6" class="p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" aria-label="Votre message"></textarea>
-                    <div class="flex items-center gap-4">
-                        <button type="submit" id="submitBtn" class="px-6 py-3 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-150 ease-in-out disabled:opacity-50" disabled>
+                <form id="contactForm" class="grid grid-cols-1 gap-6 p-8 bg-indigo-50 rounded-xl shadow-2xl border-2 border-indigo-200">
+                    <input required name="nom" placeholder="Nom complet" class="p-3 border border-indigo-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" type="text" aria-label="Nom complet"/>
+                    <input required name="email" type="email" placeholder="Email (pour la réponse)" class="p-3 border border-indigo-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" aria-label="Votre adresse email"/>
+                    <textarea required name="message" placeholder="Votre message" rows="6" class="p-3 border border-indigo-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" aria-label="Votre message"></textarea>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button type="submit" id="submitBtn" class="flex-1 px-6 py-3 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                             Envoyer le message
                         </button>
-                        <button type="reset" class="px-6 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out">
+                        <button type="reset" class="px-6 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-white transition duration-150 ease-in-out">
                             Réinitialiser
                         </button>
                     </div>
-                    <div id="formMsg" class="text-sm p-3 rounded-lg bg-green-100 text-green-700 border border-green-200 hidden" role="alert">
+                    <div id="formMsg" class="text-sm p-3 rounded-lg bg-green-100 text-green-700 border border-green-200 hidden font-medium" role="alert">
                         ✅ Message envoyé avec succès. Nous vous répondrons dans les plus brefs délais.
                     </div>
-                    <div id="errorMsg" class="text-sm p-3 rounded-lg bg-red-100 text-red-700 border border-red-200 hidden" role="alert">
+                    <div id="errorMsg" class="text-sm p-3 rounded-lg bg-red-100 text-red-700 border border-red-200 hidden font-medium" role="alert">
                         ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou vérifier votre connexion.
                     </div>
                 </form>
             </div>
         </section>
 
-        <section id="connexion" class="py-16 bg-gray-50 border-t">
+        <hr class="border-gray-200" />
+
+        <section id="connexion" class="py-16 bg-gray-50">
             <div class="max-w-md mx-auto px-4">
-                <h3 class="text-2xl font-bold text-gray-900 mb-5 text-center">Espace Administration</h3>
-                <p class="text-sm text-gray-600 mb-4 text-center">Authentification réservée aux agents municipaux. Gérez les contenus, les demandes et les actualités.</p>
-                <form onsubmit="event.preventDefault();alert('ATTENTION : Ceci est un prototype. Intégrer un système d\'authentification réel (Firebase Auth, etc.) ici.');" class="p-6 bg-white rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold text-gray-900 mb-5 text-center">🔒 Espace Administration</h3>
+                <form onsubmit="event.preventDefault();alert('ATTENTION : Ceci est un prototype. Intégrer un système d\'authentification réel (Firebase Auth, etc.) ici.');" class="p-8 bg-white rounded-xl shadow-2xl border-t-4 border-indigo-500">
                     <input placeholder="Identifiant ou Email" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:ring-indigo-500 focus:border-indigo-500" required type="text" />
                     <input placeholder="Mot de passe" type="password" class="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:ring-indigo-500 focus:border-indigo-500" required />
                     <div class="flex flex-col sm:flex-row gap-3">
@@ -331,10 +342,10 @@
             </div>
         </section>
 
-        <footer class="py-10 border-t mt-16 bg-gray-800">
+        <footer class="py-10 border-t mt-16 bg-gray-900">
             <div class="max-w-6xl mx-auto px-4 text-center text-sm text-gray-400">
                 <p class="mb-2">Mairie de Kolwezi — Province du Lualaba, RDC</p>
-                <p>© Mairie de Kolwezi — Tous droits réservés. Prototype institutionnel.</p>
+                <p>© Mairie de Kolwezi. Tous droits réservés. Prototype institutionnel 2025.</p>
             </div>
         </footer>
     </main>
@@ -345,6 +356,7 @@
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         // VOS DONNÉES DE CONFIGURATION FIREBASE
+        // (Veuillez remplacer ces valeurs par les vôtres pour une connexion réelle)
         const firebaseConfig = {
             apiKey: "AIzaSyCVPiY7Mwj-BWp5MpWOrK4_xDG3LSihzvU",
             authDomain: "projet-commune-52366.firebaseapp.com",
@@ -370,7 +382,7 @@
             const inputs = form.querySelectorAll('input[required], textarea[required]');
             let allValid = true;
             inputs.forEach(input => {
-                if (!input.value.trim()) {
+                if (!input.value.trim() || (input.type === 'email' && !input.checkValidity())) {
                     allValid = false;
                 }
             });
@@ -381,7 +393,7 @@
 
         form?.addEventListener('submit', async (e) => {
             e.preventDefault();
-            submitBtn.disabled = true; // Désactiver pour éviter les doubles envois
+            submitBtn.disabled = true; 
             formMsg.classList.add('hidden');
             errorMsg.classList.add('hidden');
 
@@ -400,15 +412,15 @@
                 form.reset();
                 formMsg.classList.remove('hidden');
                 setTimeout(() => formMsg.classList.add('hidden'), 5000);
-                validateForm(); // Réactiver la validation
+                validateForm();
             } catch (error) {
                 console.error("Erreur lors de l'envoi du message à Firebase :", error);
                 errorMsg.classList.remove('hidden');
-                submitBtn.disabled = false; // Réactiver le bouton en cas d'erreur
+                submitBtn.disabled = false; 
             }
         });
 
-        // Toggle du menu mobile et gestion de l'accessibilité
+        // Toggle du menu mobile
         const btn = document.getElementById('btnMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         btn?.addEventListener('click', () => {
