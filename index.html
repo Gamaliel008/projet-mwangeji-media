@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commune de Manika - Portail Officiel</title>
+    <title>Eneleve CA : Kolwezi en Images et Projets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -12,51 +12,33 @@
             background-color: #f9fafb; /* bg-gray-50 */
         }
 
-        /* Styles de la barre de navigation adaptés à Manika */
+        /* Styles de la barre de navigation adaptés à Kolwezi (Bleu Cyan) */
         .nav-bg {
-            background-color: #d97706; /* bg-amber-600 */
+            background-color: #0891b2; /* bg-cyan-600 */
         }
 
-        /* Couleur principale pour les accents Manika (Yellow/Amber) */
-        .text-manika {
-            color: #fbbf24; /* amber-400 */
+        /* Couleur principale pour les accents Kolwezi (Cyan) */
+        .text-kolwezi {
+            color: #22d3ee; /* cyan-400 */
         }
-        .border-manika {
-            border-color: #f59e0b; /* amber-500 */
+        .border-kolwezi {
+            border-color: #06b6d4; /* cyan-500 */
         }
-        .hover\:text-manika:hover {
-            color: #fcd34d; /* amber-300 */
+        .hover\:text-kolwezi:hover {
+            color: #67e8f9; /* cyan-300 */
         }
 
         /* Styles personnalisés pour les liens de navigation */
         .dropdown-item-hover:hover {
-            background-color: #fef3c7; /* amber-100 */
-            color: #b45309; /* amber-700 */
+            background-color: #cfdef1; /* cyan-100 */
+            color: #0e7490; /* cyan-700 */
         }
-
-        /* Styles pour le carrousel de texte */
-        .text-carousel-item {
-            transition: opacity 0.8s ease-in-out;
-            opacity: 0;
-            position: absolute;
-            width: 90%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            visibility: hidden; 
-            pointer-events: none;
-        }
-
-        .text-carousel-item.active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .text-carousel-container {
-            height: 24rem; /* h-96 */
-            position: relative; 
+        
+        .hero-bg {
+            background-image: url('https://source.unsplash.com/random/1600x600/?city,africa,skyline');
+            background-size: cover;
+            background-position: center;
+            height: 30rem;
         }
     </style>
     <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
@@ -67,41 +49,30 @@
     <nav class="nav-bg text-white shadow sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
             <a href="index.html" class="flex items-center text-2xl font-extrabold space-x-2">
-                <i class="fa-solid fa-warehouse text-manika"></i>
-                <span>Commune de Manika</span>
+                <i class="fa-solid fa-camera text-kolwezi"></i>
+                <span>Eneleve CA : Kolwezi en Images et Projets</span>
             </a>
 
             <ul class="hidden md:flex space-x-6 font-medium">
-                <li><a href="index.html" class="flex items-center hover:text-manika transition duration-150"><i class="fa-solid fa-arrow-left mr-1"></i> Mairie Centrale</a></li>
-                <li><a href="#accueil" class="flex items-center hover:text-manika transition duration-150"><i class="fa-solid fa-house mr-1"></i> Accueil Manika</a></li>
+                <li><a href="#accueil" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
+                <li><a href="#images" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-image mr-1"></i> Images</a></li>
                 
                 <li class="relative">
-                    <button data-dropdown-toggle="menuServices" class="flex items-center hover:text-manika transition duration-150"><i class="fa-solid fa-city mr-1"></i> Services Cité<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button>
-                    <div id="menuServices" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-64 ring-1 ring-black ring-opacity-5">
+                    <button data-dropdown-toggle="menuProjets" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-city mr-1"></i> Projets<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button>
+                    <div id="menuProjets" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-52 ring-1 ring-black ring-opacity-5">
                         <ul class="py-2">
-                            <li><a href="#services" class="block px-4 py-2 hover:bg-amber-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-id-card mr-2 text-amber-600"></i> État civil Manika</a></li>
-                            <li><a href="#services" class="block px-4 py-2 hover:bg-amber-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-industry mr-2 text-amber-600"></i> Licences Commerciales</a></li>
-                            <li><a href="#services" class="block px-4 py-2 hover:bg-amber-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-hands-helping mr-2 text-amber-600"></i> Affaires Sociales</a></li>
-                            <li><a href="#services" class="block px-4 py-2 hover:bg-amber-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-money-bill-transfer mr-2 text-amber-600"></i> Guichet Impôts Locaux</a></li>
+                            <li><a href="#projets" class="block px-4 py-2 hover:bg-cyan-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-road mr-2 text-cyan-600"></i> Infrastructures</a></li>
+                            <li><a href="#projets" class="block px-4 py-2 hover:bg-cyan-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-school mr-2 text-cyan-600"></i> Social & Éducation</a></li>
                         </ul>
                     </div>
                 </li>
                 
-                <li class="relative">
-                    <button data-dropdown-toggle="menuProjets" class="flex items-center hover:text-manika transition duration-150"><i class="fa-solid fa-road mr-1"></i> Projets Urbains<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button>
-                    <div id="menuProjets" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-60 ring-1 ring-black ring-opacity-5">
-                        <ul class="py-2">
-                            <li><a href="#projets" class="block px-4 py-2 hover:bg-amber-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-truck-moving mr-2 text-amber-600"></i> Réhabilitation des Routes</a></li>
-                            <li><a href="#projets" class="block px-4 py-2 hover:bg-amber-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> Éclairage Public</a></li>
-                        </ul>
-                    </div>
-                </li>
+                <li><a href="#contact-footer" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-envelope mr-1"></i> Contactez-nous</a></li>
                 
-                <li><a href="#actualites" class="flex items-center hover:text-manika transition duration-150"><i class="fa-solid fa-newspaper mr-1"></i> Actualités</a></li>
-                <li><a href="#contact-footer" class="flex items-center hover:text-manika transition duration-150"><i class="fa-solid fa-envelope mr-1"></i> Contact</a></li>
+                <li><a href="#administration" class="flex items-center font-bold text-kolwezi bg-cyan-800/50 p-2 rounded-lg hover:bg-cyan-700 transition duration-150"><i class="fa-solid fa-lock mr-1"></i> Espace Administration</a></li>
             </ul>
 
-            <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-manika rounded-lg md:hidden hover:bg-amber-800 focus:outline-none focus:ring-2 focus:ring-manika" aria-controls="mobile-menu" aria-expanded="false">
+            <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-kolwezi rounded-lg md:hidden hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-kolwezi" aria-controls="mobile-menu" aria-expanded="false">
                 <span class="sr-only">Ouvrir le menu principal</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
             </button>
@@ -109,186 +80,162 @@
 
         <div class="hidden md:hidden" id="mobile-menu">
             <ul class="flex flex-col space-y-2 p-4 text-sm font-medium">
-                <li><a href="index.html" class="block py-2 px-3 rounded hover:bg-amber-800 transition"><i class="fa-solid fa-arrow-left mr-2"></i> Mairie Centrale</a></li>
-                <li><a href="#accueil" class="block py-2 px-3 rounded hover:bg-amber-800 transition"><i class="fa-solid fa-house mr-2"></i> Accueil Manika</a></li>
-                <li>
-                    <a href="#" class="block py-2 px-3 rounded hover:bg-amber-800 transition font-bold"><i class="fa-solid fa-city mr-2"></i> Services Cité</a>
-                    <ul class="ml-4 border-l border-amber-700 py-1 space-y-1">
-                        <li><a href="#services" class="block py-2 px-3 rounded hover:bg-amber-700 transition"><i class="fa-solid fa-id-card mr-2 text-manika"></i> État civil Manika</a></li>
-                        <li><a href="#services" class="block py-2 px-3 rounded hover:bg-amber-700 transition"><i class="fa-solid fa-industry mr-2 text-manika"></i> Licences Commerciales</a></li>
-                    </ul>
-                </li>
-                <li><a href="#projets" class="block py-2 px-3 rounded hover:bg-amber-800 transition"><i class="fa-solid fa-road mr-2"></i> Projets Urbains</a></li>
-                <li><a href="#actualites" class="block py-2 px-3 rounded hover:bg-amber-800 transition"><i class="fa-solid fa-newspaper mr-2"></i> Actualités</a></li>
-                <li><a href="#contact-footer" class="block py-2 px-3 rounded hover:bg-amber-800 transition"><i class="fa-solid fa-envelope mr-2"></i> Contact</a></li>
+                <li><a href="#accueil" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-house mr-2"></i> Accueil</a></li>
+                <li><a href="#images" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-image mr-2"></i> Images</a></li>
+                <li><a href="#projets" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-city mr-2"></i> Projets</a></li>
+                <li><a href="#contact-footer" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-envelope mr-2"></i> Contactez-nous</a></li>
+                <li><a href="#administration" class="block py-2 px-3 rounded font-bold bg-cyan-700 hover:bg-cyan-600 transition"><i class="fa-solid fa-lock mr-2"></i> Espace Administration</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
         
-        <section id="accueil" class="grid lg:grid-cols-2 gap-8 bg-white p-6 rounded-xl shadow-2xl border-t-4 border-manika">
-            
-            <div>
-                <h2 class="text-3xl font-extrabold text-amber-700 mb-4 border-b pb-2 flex items-center">
-                    <i class="fa-solid fa-warehouse text-manika mr-3"></i> Manika en Action
-                </h2>
-                <div id="carousel-manika-images" class="relative w-full" data-carousel="slide" data-carousel-interval="7000">
-                    <div class="relative h-96 overflow-hidden rounded-lg shadow-lg">
-                        
-                        <div class="duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://source.unsplash.com/random/800x600/?mining,lualaba" onerror="this.onerror=null;this.src='https://placehold.co/800x600/f59e0b/ffffff?text=MANIKA+MINES'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Vue d'un site minier à Manika, soulignant l'importance économique.">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://source.unsplash.com/random/800x600/?urban+development,congo" onerror="this.onerror=null;this.src='https://placehold.co/800x600/f59e0b/ffffff?text=MANIKA+URBANISME'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Nouveau quartier en construction ou route réhabilitée à Manika.">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://source.unsplash.com/random/800x600/?mayor,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/f59e0b/ffffff?text=MAIRE+COMMUNAL'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Photo du Bourgmestre de Manika lors d'un événement.">
-                        </div>
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://source.unsplash.com/random/800x600/?market,africa" onerror="this.onerror=null;this.src='https://placehold.co/800x600/f59e0b/ffffff?text=MANIKA+MARCHE'" class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" alt="Un marché typique de Manika, reflet de l'activité commerciale.">
-                        </div>
-                    </div>
-                    
-                    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-600/30 group-hover:bg-amber-600/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/></svg><span class="sr-only">Previous</span></span>
-                    </button>
-                    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-600/30 group-hover:bg-amber-600/50 transition duration-150"><svg class="w-4 h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/></svg><span class="sr-only">Next</span></span>
-                    </button>
-                    <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2" data-carousel-indicators>
-                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-amber-500" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-amber-500" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-amber-500" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                        <button type="button" class="w-3 h-3 rounded-full bg-white ring-2 ring-amber-500" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h2 class="text-3xl font-extrabold text-amber-700 mb-4 border-b pb-2 flex items-center">
-                    <i class="fa-solid fa-user-tie text-manika mr-3"></i> Mot du Bourgmestre
-                </h2>
-                <div id="carousel-bourgmestre-text" class="relative w-full text-carousel-container bg-amber-50 rounded-xl p-6 shadow-inner flex items-center justify-center overflow-hidden border-2 border-manika">
-                    
-                    <div class="text-carousel-item active p-4">
-                        <p class="text-lg text-gray-700 mb-3 leading-relaxed font-medium">
-                            Chers habitants de **Manika**, notre commune est le moteur de la croissance de Kolwezi, notamment grâce à son **dynamisme industriel** et son expansion rapide.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed italic">
-                            Ma priorité est d'assurer que notre croissance s'accompagne de services publics de qualité, d'une infrastructure routière solide et d'un **cadre de vie propre et sécurisé** pour tous.
-                        </p>
-                        <p class="text-right mt-4 pt-4 border-t border-amber-300">
-                           <span class="block text-xl font-bold text-gray-800">M. [Nom du Bourgmestre]</span>
-                           <span class="block text-sm text-gray-800">Bourgmestre de la Commune de Manika</span>
-                        </p>
-                    </div>
-
-                    <div class="text-carousel-item p-4">
-                        <p class="text-lg text-gray-700 mb-3 leading-relaxed font-medium">
-                            Nous mettons en place un **Guichet Unique** pour simplifier les démarches de nos entrepreneurs et commerçants, encourageant ainsi l'investissement et la création d'emplois locaux.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed italic">
-                            La participation citoyenne est essentielle : nous vous invitons à signaler tout problème d'urbanisme ou d'environnement pour que nous agissions rapidement. Manika est l'affaire de tous.
-                        </p>
-                        <p class="text-right mt-4 pt-4 border-t border-amber-300">
-                           <span class="block text-xl font-bold text-gray-800">M. [Nom du Bourgmestre]</span>
-                           <span class="block text-sm text-gray-800">Bourgmestre de la Commune de Manika</span>
-                        </p>
-                    </div>
-                    
-                </div>
+        <section id="accueil" class="hero-bg relative rounded-xl shadow-2xl overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
+            <div class="relative z-10 text-center p-8">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg">
+                    Kolwezi : Vision, Projets et Réalités
+                </h1>
+                <p class="text-xl text-kolwezi font-medium drop-shadow-md">
+                    Découvrez les réalisations et les chantiers qui transforment notre ville.
+                </p>
+                <a href="#projets" class="mt-8 inline-block bg-kolwezi text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-cyan-300 transition duration-300 transform hover:scale-105">
+                    Voir nos Projets Clés <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
             </div>
         </section>
 
-        <hr class="border-gray-300 my-16">
+        <hr class="border-gray-300 my-12">
 
-        <section id="services" class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-amber-700">
-            <h2 class="text-3xl font-extrabold text-amber-700 mb-8 border-b pb-2 flex items-center">
-                <i class="fa-solid fa-list-check text-manika mr-3"></i> Services de Proximité Manika
+        <section id="images" class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-kolwezi">
+            <h2 class="text-3xl font-extrabold text-cyan-700 mb-8 border-b pb-2 flex items-center">
+                <i class="fa-solid fa-images text-kolwezi mr-3"></i> Kolwezi en Images
             </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 
-                <div class="p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-green-500">
-                    <i class="fa-solid fa-drafting-compass text-3xl text-green-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Urbanisme & Occupation des sols</h3>
-                    <p class="text-gray-600 text-sm mb-3">Dépôt et suivi des dossiers de permis de construire, d'habiter et d'urbanisation.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                        <li><a href="#" class="text-amber-700 hover:underline">Demande de permis</a></li>
-                        <li><a href="#" class="text-amber-700 hover:underline">Planification urbaine (Nouvelles cités)</a></li>
-                    </ul>
+                <div class="relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://source.unsplash.com/random/400x300/?kolwezi,mine" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=MINE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Site minier à Kolwezi">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
+                        <p class="text-white font-semibold text-sm">Vue de la croissance minière</p>
+                    </div>
                 </div>
                 
-                <div class="p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-blue-500">
-                    <i class="fa-solid fa-store-alt text-3xl text-blue-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Développement Économique</h3>
-                    <p class="text-gray-600 text-sm mb-3">Traitement rapide des licences pour les nouvelles entreprises et les marchés.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                        <li><a href="#" class="text-amber-700 hover:underline">Obtenir une licence</a></li>
-                        <li><a href="#" class="text-amber-700 hover:underline">Inspection et conformité</a></li>
-                    </ul>
+                <div class="relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://source.unsplash.com/random/400x300/?road,africa" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=ROUTE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Nouvelle route réhabilitée">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
+                        <p class="text-white font-semibold text-sm">Projet d'infrastructure routière</p>
+                    </div>
                 </div>
                 
-                <div class="p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-red-500">
-                    <i class="fa-solid fa-id-card-clip text-3xl text-red-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">État Civil</h3>
-                    <p class="text-gray-600 text-sm mb-3">Délivrance des actes de naissance, mariage et décès.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                        <li><a href="#" class="text-amber-700 hover:underline">Demande d'acte en ligne</a></li>
-                        <li><a href="#" class="text-amber-700 hover:underline">Célébration de mariage</a></li>
-                    </ul>
+                <div class="relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://source.unsplash.com/random/400x300/?market,congo" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=MARCHE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Marché local animé">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
+                        <p class="text-white font-semibold text-sm">Dynamisme commercial local</p>
+                    </div>
+                </div>
+                
+                <div class="relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://source.unsplash.com/random/400x300/?school,africa" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=ECOLE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Bâtiment scolaire rénové">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
+                        <p class="text-white font-semibold text-sm">Projet social: Éducation</p>
+                    </div>
                 </div>
 
-                <div class="p-5 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-gray-500">
-                    <i class="fa-solid fa-trowel-bricks text-3xl text-gray-600 mb-3"></i>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Travaux Publics & Voirie</h3>
-                    <p class="text-gray-600 text-sm mb-3">Entretien des routes, gestion des eaux pluviales et éclairage public.</p>
-                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-                        <li><a href="#" class="text-amber-700 hover:underline">Signaler une dégradation</a></li>
-                        <li><a href="#" class="text-amber-700 hover:underline">Plan des travaux en cours</a></li>
-                    </ul>
-                </div>
             </div>
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block text-cyan-700 font-semibold hover:underline flex items-center justify-center">Voir toute la galerie <i class="fa-solid fa-arrow-right ml-2 text-kolwezi"></i></a>
+            </div>
+        </section>
+
+        <hr class="border-gray-300 my-12">
+
+        <section id="projets" class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-cyan-700">
+            <h2 class="text-3xl font-extrabold text-cyan-700 mb-8 border-b pb-2 flex items-center">
+                <i class="fa-solid fa-chart-line text-kolwezi mr-3"></i> Projets et Avancement
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center"><i class="fa-solid fa-road mr-2 text-green-600"></i> Réhabilitation de l'Axe Central</h3>
+                    <p class="text-gray-600 mb-4">Programme de réfection complète des principales artères des communes de Manika et Dilala.</p>
+                    <div class="w-full bg-gray-200 rounded-full h-3.5 mb-4">
+                        <div class="bg-green-600 h-3.5 rounded-full" style="width: 85%"></div>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Statut: **85% achevé** - Fin prévue: Q4 2024</p>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-lg shadow-md border-l-4 border-yellow-500 hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center"><i class="fa-solid fa-lightbulb mr-2 text-yellow-600"></i> Éclairage Solaire de Quartiers</h3>
+                    <p class="text-gray-600 mb-4">Installation de lampadaires solaires pour améliorer la sécurité et l'accès à l'énergie.</p>
+                    <div class="w-full bg-gray-200 rounded-full h-3.5 mb-4">
+                        <div class="bg-yellow-500 h-3.5 rounded-full" style="width: 55%"></div>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700">Statut: **55% en cours** - Fin prévue: Q2 2025</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="administration" class="bg-cyan-50 p-6 rounded-xl shadow-lg border-2 border-kolwezi text-center">
+            <h2 class="text-2xl font-bold text-cyan-700 mb-3 flex items-center justify-center">
+                <i class="fa-solid fa-user-shield mr-3 text-cyan-600"></i> Espace Administration
+            </h2>
+            <p class="text-gray-700">
+                Cette section est réservée aux administrateurs pour la gestion des contenus, des projets et des rapports.
+            </p>
+            <button class="mt-4 bg-cyan-600 text-white py-2 px-6 rounded-lg hover:bg-cyan-700 transition font-medium">
+                Accéder à la Connexion
+            </button>
         </section>
 
     </main>
     
     <footer id="contact-footer" class="py-10 mt-16 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
-            <h3 class="text-xl font-bold text-manika mb-4">Commune de Manika</h3>
-            <p class="mb-2">Adresse: Av. de la Cité n°XX, Manika | Tél: +243 970 000 XXX</p>
-            <p class="mb-4">Email: contact.manika@mairiekolwezi.cd</p>
-            <hr class="border-gray-700 mb-4">
-            <p>© 2024 Commune de Manika. Tous droits réservés. Intégration Flowbite & Tailwind CSS.</p>
+        <div class="max-w-7xl mx-auto px-4 text-sm text-gray-400">
+            <div class="grid md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
+                
+                <div>
+                    <h3 class="text-xl font-bold text-kolwezi mb-3 flex items-center justify-center md:justify-start"><i class="fa-solid fa-camera mr-2"></i> Eneleve CA</h3>
+                    <p class="text-gray-500">
+                        Votre portail sur l'évolution de Kolwezi à travers ses projets et ses paysages.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="hover:text-kolwezi transition">Accueil</a></li>
+                        <li><a href="#images" class="hover:text-kolwezi transition">Images & Galerie</a></li>
+                        <li><a href="#projets" class="hover:text-kolwezi transition">Projets en cours</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Contactez-nous</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center justify-center md:justify-start"><i class="fa-solid fa-location-dot mr-2 text-kolwezi"></i> Kolwezi, Lualaba, RDC</li>
+                        <li class="flex items-center justify-center md:justify-start"><i class="fa-solid fa-phone mr-2 text-kolwezi"></i> +243 8X XXX XX XX</li>
+                        <li class="flex items-center justify-center md:justify-start"><i class="fa-solid fa-envelope mr-2 text-kolwezi"></i> info@eneleve-kolwezi.cd</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Services Pro</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#administration" class="hover:text-kolwezi transition font-bold">Espace Administration</a></li>
+                        <li><a href="#" class="hover:text-kolwezi transition">Termes & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-gray-700 my-6">
+
+            <div class="text-center">
+                <p>© 2024 Eneleve CA. Tous droits réservés. Design par Kolwezi Digital.</p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        function startTextCarousel(carouselId) {
-            const container = document.getElementById(carouselId);
-            if (!container) return;
-
-            const items = container.querySelectorAll('.text-carousel-item');
-            let currentIndex = 0;
-
-            function showNextSlide() {
-                if (items.length === 0) return;
-
-                items.forEach(item => item.classList.remove('active'));
-                
-                currentIndex = (currentIndex + 1) % items.length;
-                items[currentIndex].classList.add('active');
-            }
-
-            if (items.length > 1) {
-                items[0].classList.add('active'); 
-                setInterval(showNextSlide, 8000); // Fait défiler toutes les 8 secondes
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            startTextCarousel('carousel-bourgmestre-text');
-        });
-    </script>
 </body>
 </html>
