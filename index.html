@@ -1,241 +1,114 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eneleve CA : Kolwezi en Images et Projets</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb; /* bg-gray-50 */
-        }
-
-        /* Styles de la barre de navigation adaptés à Kolwezi (Bleu Cyan) */
-        .nav-bg {
-            background-color: #0891b2; /* bg-cyan-600 */
-        }
-
-        /* Couleur principale pour les accents Kolwezi (Cyan) */
-        .text-kolwezi {
-            color: #22d3ee; /* cyan-400 */
-        }
-        .border-kolwezi {
-            border-color: #06b6d4; /* cyan-500 */
-        }
-        .hover\:text-kolwezi:hover {
-            color: #67e8f9; /* cyan-300 */
-        }
-
-        /* Styles personnalisés pour les liens de navigation */
-        .dropdown-item-hover:hover {
-            background-color: #cfdef1; /* cyan-100 */
-            color: #0e7490; /* cyan-700 */
-        }
-        
-        .hero-bg {
-            background-image: url('https://source.unsplash.com/random/1600x600/?city,africa,skyline');
-            background-size: cover;
-            background-position: center;
-            height: 30rem;
-        }
-    </style>
-    <script src="https://unpkg.com/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Services Communaux — Mairie de Kolwezi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
+  <!-- HEADER -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-lg font-bold text-indigo-700">Mairie de Kolwezi</h1>
+      <nav class="space-x-6 text-sm font-medium">
+        <a href="index.html" class="hover:text-indigo-600">Accueil</a>
+        <a href="#" class="text-indigo-600 border-b-2 border-indigo-600 pb-1">Services</a>
+        <a href="contact.html" class="hover:text-indigo-600">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav class="nav-bg text-white shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4">
-            <a href="index.html" class="flex items-center text-2xl font-extrabold space-x-2">
-                <i class="fa-solid fa-camera text-kolwezi"></i>
-                <span>Eneleve CA : Kolwezi en Images et Projets</span>
-            </a>
+  <!-- HERO -->
+  <section class="text-center py-16 bg-indigo-600 text-white">
+    <h2 class="text-3xl font-extrabold mb-2">Services Communaux</h2>
+    <p class="text-sm max-w-2xl mx-auto">Découvrez l’ensemble des services proposés par les communes de Dilala et Manika : démarches administratives, autorisations, assistance sociale et plus encore.</p>
+  </section>
 
-            <ul class="hidden md:flex space-x-6 font-medium">
-                <li><a href="#accueil" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-house mr-1"></i> Accueil</a></li>
-                <li><a href="#images" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-image mr-1"></i> Images</a></li>
-                
-                <li class="relative">
-                    <button data-dropdown-toggle="menuProjets" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-city mr-1"></i> Projets<i class="fa-solid fa-chevron-down ml-2 text-xs"></i></button>
-                    <div id="menuProjets" class="hidden absolute z-10 mt-2 bg-white text-gray-800 shadow-xl rounded-lg w-52 ring-1 ring-black ring-opacity-5">
-                        <ul class="py-2">
-                            <li><a href="#projets" class="block px-4 py-2 hover:bg-cyan-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-road mr-2 text-cyan-600"></i> Infrastructures</a></li>
-                            <li><a href="#projets" class="block px-4 py-2 hover:bg-cyan-100 rounded-md dropdown-item-hover"><i class="fa-solid fa-school mr-2 text-cyan-600"></i> Social & Éducation</a></li>
-                        </ul>
-                    </div>
-                </li>
-                
-                <li><a href="#contact-footer" class="flex items-center hover:text-kolwezi transition duration-150"><i class="fa-solid fa-envelope mr-1"></i> Contactez-nous</a></li>
-                
-                <li><a href="#administration" class="flex items-center font-bold text-kolwezi bg-cyan-800/50 p-2 rounded-lg hover:bg-cyan-700 transition duration-150"><i class="fa-solid fa-lock mr-1"></i> Espace Administration</a></li>
-            </ul>
+  <!-- SERVICES GRID -->
+  <main class="max-w-6xl mx-auto px-4 py-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
-            <button data-collapse-toggle="mobile-menu" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-kolwezi rounded-lg md:hidden hover:bg-cyan-800 focus:outline-none focus:ring-2 focus:ring-kolwezi" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="sr-only">Ouvrir le menu principal</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
-            </button>
-        </div>
+    <!-- État Civil -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <div class="flex items-center gap-3 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <h3 class="text-lg font-semibold">État Civil</h3>
+      </div>
+      <p class="text-sm text-gray-600">Actes de naissance, mariage, décès, légalisations et registres de population.</p>
+      <a href="#form-etatcivil" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Remplir une demande →</a>
+    </div>
 
-        <div class="hidden md:hidden" id="mobile-menu">
-            <ul class="flex flex-col space-y-2 p-4 text-sm font-medium">
-                <li><a href="#accueil" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-house mr-2"></i> Accueil</a></li>
-                <li><a href="#images" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-image mr-2"></i> Images</a></li>
-                <li><a href="#projets" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-city mr-2"></i> Projets</a></li>
-                <li><a href="#contact-footer" class="block py-2 px-3 rounded hover:bg-cyan-800 transition"><i class="fa-solid fa-envelope mr-2"></i> Contactez-nous</a></li>
-                <li><a href="#administration" class="block py-2 px-3 rounded font-bold bg-cyan-700 hover:bg-cyan-600 transition"><i class="fa-solid fa-lock mr-2"></i> Espace Administration</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Urbanisme et Habitat -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <div class="flex items-center gap-3 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V10z"/></svg>
+        <h3 class="text-lg font-semibold">Urbanisme & Habitat</h3>
+      </div>
+      <p class="text-sm text-gray-600">Permis de construire, alignements, plans d’urbanisme et attribution de terrains.</p>
+      <a href="#form-urbanisme" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Faire une demande →</a>
+    </div>
 
-    <main class="max-w-7xl mx-auto py-12 px-6 space-y-16">
-        
-        <section id="accueil" class="hero-bg relative rounded-xl shadow-2xl overflow-hidden flex items-center justify-center">
-            <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
-            <div class="relative z-10 text-center p-8">
-                <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight drop-shadow-lg">
-                    Kolwezi : Vision, Projets et Réalités
-                </h1>
-                <p class="text-xl text-kolwezi font-medium drop-shadow-md">
-                    Découvrez les réalisations et les chantiers qui transforment notre ville.
-                </p>
-                <a href="#projets" class="mt-8 inline-block bg-kolwezi text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-cyan-300 transition duration-300 transform hover:scale-105">
-                    Voir nos Projets Clés <i class="fa-solid fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </section>
+    <!-- Commerce & Économie Locale -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <div class="flex items-center gap-3 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-2.28 0-4.167 1.72-4.167 3.833S9.72 15.667 12 15.667s4.167-1.72 4.167-3.834S14.28 8 12 8zm0-6a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>
+        <h3 class="text-lg font-semibold">Économie & Commerce</h3>
+      </div>
+      <p class="text-sm text-gray-600">Enregistrement d’entreprises, licences, marchés publics et taxes locales.</p>
+      <a href="#form-commerce" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Accéder au formulaire →</a>
+    </div>
 
-        <hr class="border-gray-300 my-12">
+    <!-- Hygiène et Environnement -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <div class="flex items-center gap-3 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <h3 class="text-lg font-semibold">Hygiène & Environnement</h3>
+      </div>
+      <p class="text-sm text-gray-600">Salubrité publique, collecte des déchets, environnement et campagnes d’assainissement.</p>
+      <a href="#form-hygiene" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Soumettre un signalement →</a>
+    </div>
 
-        <section id="images" class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-kolwezi">
-            <h2 class="text-3xl font-extrabold text-cyan-700 mb-8 border-b pb-2 flex items-center">
-                <i class="fa-solid fa-images text-kolwezi mr-3"></i> Kolwezi en Images
-            </h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                
-                <div class="relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://source.unsplash.com/random/400x300/?kolwezi,mine" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=MINE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Site minier à Kolwezi">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
-                        <p class="text-white font-semibold text-sm">Vue de la croissance minière</p>
-                    </div>
-                </div>
-                
-                <div class="relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://source.unsplash.com/random/400x300/?road,africa" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=ROUTE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Nouvelle route réhabilitée">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
-                        <p class="text-white font-semibold text-sm">Projet d'infrastructure routière</p>
-                    </div>
-                </div>
-                
-                <div class="relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://source.unsplash.com/random/400x300/?market,congo" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=MARCHE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Marché local animé">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
-                        <p class="text-white font-semibold text-sm">Dynamisme commercial local</p>
-                    </div>
-                </div>
-                
-                <div class="relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://source.unsplash.com/random/400x300/?school,africa" onerror="this.onerror=null;this.src='https://placehold.co/400x300/06b6d4/ffffff?text=ECOLE'" class="w-full h-48 object-cover transition duration-300 group-hover:scale-110" alt="Bâtiment scolaire rénové">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-3 transition duration-300 opacity-0 group-hover:opacity-100">
-                        <p class="text-white font-semibold text-sm">Projet social: Éducation</p>
-                    </div>
-                </div>
+    <!-- Affaires Sociales -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <div class="flex items-center gap-3 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c2.21 0 4-1.79 4-4S14.21 0 12 0 8 1.79 8 4s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <h3 class="text-lg font-semibold">Affaires Sociales</h3>
+      </div>
+      <p class="text-sm text-gray-600">Aide sociale, associations, activités culturelles et soutien aux personnes vulnérables.</p>
+      <a href="#form-social" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Faire une requête →</a>
+    </div>
 
-            </div>
-            <div class="text-center mt-8">
-                <a href="#" class="inline-block text-cyan-700 font-semibold hover:underline flex items-center justify-center">Voir toute la galerie <i class="fa-solid fa-arrow-right ml-2 text-kolwezi"></i></a>
-            </div>
-        </section>
+    <!-- Finances Communales -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <div class="flex items-center gap-3 mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-2.28 0-4.167 1.72-4.167 3.833S9.72 15.667 12 15.667s4.167-1.72 4.167-3.834S14.28 8 12 8zm0-6a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg>
+        <h3 class="text-lg font-semibold">Finances Communales</h3>
+      </div>
+      <p class="text-sm text-gray-600">Perception des taxes, gestion du budget communal et suivi financier.</p>
+      <a href="#form-finance" class="inline-block mt-4 text-sm text-indigo-600 font-medium">Consulter les taxes →</a>
+    </div>
 
-        <hr class="border-gray-300 my-12">
+  </main>
 
-        <section id="projets" class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-cyan-700">
-            <h2 class="text-3xl font-extrabold text-cyan-700 mb-8 border-b pb-2 flex items-center">
-                <i class="fa-solid fa-chart-line text-kolwezi mr-3"></i> Projets et Avancement
-            </h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <div class="p-6 bg-gray-50 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-xl transition duration-300">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center"><i class="fa-solid fa-road mr-2 text-green-600"></i> Réhabilitation de l'Axe Central</h3>
-                    <p class="text-gray-600 mb-4">Programme de réfection complète des principales artères des communes de Manika et Dilala.</p>
-                    <div class="w-full bg-gray-200 rounded-full h-3.5 mb-4">
-                        <div class="bg-green-600 h-3.5 rounded-full" style="width: 85%"></div>
-                    </div>
-                    <p class="text-sm font-semibold text-gray-700">Statut: **85% achevé** - Fin prévue: Q4 2024</p>
-                </div>
-                
-                <div class="p-6 bg-gray-50 rounded-lg shadow-md border-l-4 border-yellow-500 hover:shadow-xl transition duration-300">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center"><i class="fa-solid fa-lightbulb mr-2 text-yellow-600"></i> Éclairage Solaire de Quartiers</h3>
-                    <p class="text-gray-600 mb-4">Installation de lampadaires solaires pour améliorer la sécurité et l'accès à l'énergie.</p>
-                    <div class="w-full bg-gray-200 rounded-full h-3.5 mb-4">
-                        <div class="bg-yellow-500 h-3.5 rounded-full" style="width: 55%"></div>
-                    </div>
-                    <p class="text-sm font-semibold text-gray-700">Statut: **55% en cours** - Fin prévue: Q2 2025</p>
-                </div>
+  <!-- FORM PLACEHOLDER -->
+  <section id="form-etatcivil" class="max-w-4xl mx-auto py-16 px-4 border-t">
+    <h3 class="text-xl font-bold mb-3">Formulaire de demande — État civil</h3>
+    <form class="grid gap-4">
+      <input type="text" placeholder="Nom complet" class="p-3 border rounded-md" required />
+      <input type="email" placeholder="Email" class="p-3 border rounded-md" required />
+      <select class="p-3 border rounded-md">
+        <option>Demande d'acte de naissance</option>
+        <option>Demande d'acte de mariage</option>
+        <option>Demande d'acte de décès</option>
+      </select>
+      <textarea rows="4" placeholder="Détails ou message" class="p-3 border rounded-md"></textarea>
+      <button class="bg-indigo-600 text-white px-4 py-2 rounded-md">Soumettre</button>
+    </form>
+  </section>
 
-            </div>
-        </section>
-
-        <section id="administration" class="bg-cyan-50 p-6 rounded-xl shadow-lg border-2 border-kolwezi text-center">
-            <h2 class="text-2xl font-bold text-cyan-700 mb-3 flex items-center justify-center">
-                <i class="fa-solid fa-user-shield mr-3 text-cyan-600"></i> Espace Administration
-            </h2>
-            <p class="text-gray-700">
-                Cette section est réservée aux administrateurs pour la gestion des contenus, des projets et des rapports.
-            </p>
-            <button class="mt-4 bg-cyan-600 text-white py-2 px-6 rounded-lg hover:bg-cyan-700 transition font-medium">
-                Accéder à la Connexion
-            </button>
-        </section>
-
-    </main>
-    
-    <footer id="contact-footer" class="py-10 mt-16 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 text-sm text-gray-400">
-            <div class="grid md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
-                
-                <div>
-                    <h3 class="text-xl font-bold text-kolwezi mb-3 flex items-center justify-center md:justify-start"><i class="fa-solid fa-camera mr-2"></i> Eneleve CA</h3>
-                    <p class="text-gray-500">
-                        Votre portail sur l'évolution de Kolwezi à travers ses projets et ses paysages.
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold text-white mb-3">Navigation</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#accueil" class="hover:text-kolwezi transition">Accueil</a></li>
-                        <li><a href="#images" class="hover:text-kolwezi transition">Images & Galerie</a></li>
-                        <li><a href="#projets" class="hover:text-kolwezi transition">Projets en cours</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold text-white mb-3">Contactez-nous</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center justify-center md:justify-start"><i class="fa-solid fa-location-dot mr-2 text-kolwezi"></i> Kolwezi, Lualaba, RDC</li>
-                        <li class="flex items-center justify-center md:justify-start"><i class="fa-solid fa-phone mr-2 text-kolwezi"></i> +243 8X XXX XX XX</li>
-                        <li class="flex items-center justify-center md:justify-start"><i class="fa-solid fa-envelope mr-2 text-kolwezi"></i> info@eneleve-kolwezi.cd</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-lg font-semibold text-white mb-3">Services Pro</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#administration" class="hover:text-kolwezi transition font-bold">Espace Administration</a></li>
-                        <li><a href="#" class="hover:text-kolwezi transition">Termes & Conditions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="border-gray-700 my-6">
-
-            <div class="text-center">
-                <p>© 2024 Eneleve CA. Tous droits réservés. Design par Kolwezi Digital.</p>
-            </div>
-        </div>
-    </footer>
-
+  <footer class="text-center text-sm text-gray-500 py-8 border-t mt-12">© Commune de Kolwezi — Tous droits réservés</footer>
 </body>
 </html>
