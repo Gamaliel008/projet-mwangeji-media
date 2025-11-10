@@ -139,6 +139,15 @@
             animation-delay: 2s;
         }
         
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: #10b981;
+            top: 60%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+        
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
@@ -554,37 +563,37 @@
             transform: translateY(0);
         }
 
-        .service-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        .service-card:hover::before {
-            transform: scaleX(1);
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
         }
 
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .rubrique-grid {
@@ -625,6 +634,89 @@
         .rubrique-card:hover .rubrique-icon {
             transform: scale(1.1) rotate(5deg);
         }
+
+        /* Styles améliorés pour le formulaire de contact */
+        .contact-form {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            color: #64748b;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background: white;
+            padding: 0 0.5rem;
+        }
+
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: -0.5rem;
+            left: 1rem;
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+        }
         
         @media (max-width: 768px) {
             .hero-title {
@@ -651,6 +743,14 @@
 
             .carousel-arrow.next {
                 right: 15px;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .contact-info-card {
+                padding: 2rem;
             }
         }
     </style>
@@ -687,7 +787,6 @@
                     <a href="#accueil" class="nav-link text-gray-700 hover:text-indigo-700">Accueil</a>
                     <a href="#rubriques" class="nav-link text-gray-700 hover:text-indigo-700">Rubriques</a>
                     <a href="#apropos" class="nav-link text-gray-700 hover:text-indigo-700">À Propos</a>
-                    <a href="#services" class="nav-link text-gray-700 hover:text-indigo-700">Services</a>
                     <a href="#contact" class="btn-primary ml-4">Contact</a>
                 </nav>
 
@@ -706,7 +805,6 @@
                 <a href="#accueil" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">Accueil</a>
                 <a href="#rubriques" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">Rubriques</a>
                 <a href="#apropos" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">À Propos</a>
-                <a href="#services" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">Services</a>
                 <a href="#contact" class="block py-2 btn-primary text-center mt-4">Contact</a>
             </div>
         </div>
@@ -716,6 +814,7 @@
     <section id="accueil" class="hero-gradient text-white py-20 relative overflow-hidden">
         <div class="floating-shape shape-1"></div>
         <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="carousel-container">
@@ -831,12 +930,12 @@
     <!-- Section Éditorial du Jour -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-8 shadow-lg">
+            <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="flex items-start space-x-4">
-                    <div class="bg-indigo-600 text-white p-4 rounded-xl">
+                    <div class="bg-indigo-600 text-white p-4 rounded-xl shadow-lg">
                         <i class="fas fa-feather-alt text-2xl"></i>
                     </div>
-                    <div>
+                    <div class="flex-1">
                         <h2 class="text-2xl font-bold text-gray-800 mb-4">Éditorial du Jour</h2>
                         <h3 class="text-xl font-semibold text-indigo-700 mb-3">Le Lualaba à l'aube d'une nouvelle ère économique</h3>
                         <p class="text-gray-600 mb-4">
@@ -844,7 +943,7 @@
                             Comment transformer cette manne minière en opportunités durables pour les populations locales ? Notre rédacteur en chef 
                             analyse les défis et perspectives de la province la plus stratégique de la RDC.
                         </p>
-                        <a href="#" class="text-indigo-600 font-medium flex items-center group">
+                        <a href="#" class="text-indigo-600 font-medium flex items-center group hover:text-indigo-700 transition-colors duration-300">
                             Lire l'éditorial complet
                             <i class="ml-1 fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
                         </a>
@@ -1028,7 +1127,7 @@
     <section id="apropos" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
+                <div class="slide-in-left">
                     <h2 class="section-title text-3xl font-bold text-gray-800">Notre Mission</h2>
                     <p class="text-lg text-gray-600 mb-6">
                         Lualaba Vision est né de la conviction que l'information de qualité est le pilier du développement. 
@@ -1036,62 +1135,62 @@
                         province du Lualaba et de la RDC dans son ensemble.
                     </p>
                     <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <div class="bg-indigo-100 p-2 rounded-lg">
+                        <div class="flex items-start space-x-3 group">
+                            <div class="bg-indigo-100 p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
                                 <i class="fas fa-eye text-indigo-600"></i>
                             </div>
-                            <div>
+                            <div class="group-hover:translate-x-1 transition-transform duration-300">
                                 <h4 class="font-bold text-gray-800">Notre Vision</h4>
                                 <p class="text-gray-600">Devenir la référence médiatique pour l'information sur le Lualaba, en promouvant le développement et la bonne gouvernance.</p>
                             </div>
                         </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="bg-indigo-100 p-2 rounded-lg">
+                        <div class="flex items-start space-x-3 group">
+                            <div class="bg-indigo-100 p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
                                 <i class="fas fa-bullseye text-indigo-600"></i>
                             </div>
-                            <div>
+                            <div class="group-hover:translate-x-1 transition-transform duration-300">
                                 <h4 class="font-bold text-gray-800">Nos Objectifs</h4>
                                 <p class="text-gray-600">Informer, éduquer, promouvoir le débat démocratique et contribuer au développement économique et social.</p>
                             </div>
                         </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="bg-indigo-100 p-2 rounded-lg">
+                        <div class="flex items-start space-x-3 group">
+                            <div class="bg-indigo-100 p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
                                 <i class="fas fa-shield-alt text-indigo-600"></i>
                             </div>
-                            <div>
+                            <div class="group-hover:translate-x-1 transition-transform duration-300">
                                 <h4 class="font-bold text-gray-800">Charte Éthique</h4>
                                 <p class="text-gray-600">Transparence, indépendance, rigueur journalistique et respect de la déontologie sont au cœur de notre action.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="fade-in">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <div class="slide-in-right">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                         <h3 class="text-2xl font-bold text-gray-800 mb-6">Notre Équipe</h3>
                         <div class="space-y-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold">
+                            <div class="flex items-center space-x-4 group hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
+                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
                                     JK
                                 </div>
-                                <div>
+                                <div class="group-hover:translate-x-1 transition-transform duration-300">
                                     <h4 class="font-bold text-gray-800">Jean Kabasele</h4>
                                     <p class="text-gray-600">Rédacteur en Chef - 15 ans d'expérience</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold">
+                            <div class="flex items-center space-x-4 group hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
+                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
                                     ML
                                 </div>
-                                <div>
+                                <div class="group-hover:translate-x-1 transition-transform duration-300">
                                     <h4 class="font-bold text-gray-800">Marie Lukunku</h4>
                                     <p class="text-gray-600">Éditrice Économie - Spécialiste mines</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold">
+                            <div class="flex items-center space-x-4 group hover:bg-gray-50 p-3 rounded-lg transition-all duration-300">
+                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform duration-300">
                                     DM
                                 </div>
-                                <div>
+                                <div class="group-hover:translate-x-1 transition-transform duration-300">
                                     <h4 class="font-bold text-gray-800">David Mutombo</h4>
                                     <p class="text-gray-600">Photojournaliste - Reportages terrain</p>
                                 </div>
@@ -1103,170 +1202,95 @@
         </div>
     </section>
 
-    <!-- Section Services (Attaché de Presse) -->
-    <section id="services" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="section-title text-3xl font-bold text-gray-800">Services d'Attaché de Presse</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mb-12">Nous mettons notre expertise médiatique au service des structures et personnalités pour une communication efficace et stratégique.</p>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="service-card fade-in">
-                    <div class="feature-icon mx-auto">
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Rédaction de Communiqués</h3>
-                    <p class="text-gray-600 mb-6">Rédaction professionnelle de communiqués de presse pour une diffusion optimale auprès des médias.</p>
-                    <ul class="text-gray-600 space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Format adapté aux médias</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Angles médiatiques pertinents</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Diffusion ciblée</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn-primary w-full">Demander un devis</a>
-                </div>
-                
-                <div class="service-card fade-in">
-                    <div class="feature-icon mx-auto">
-                        <i class="fas fa-microphone"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Relations Presse</h3>
-                    <p class="text-gray-600 mb-6">Gestion des relations avec les médias et organisation d'événements presse pour maximiser votre visibilité.</p>
-                    <ul class="text-gray-600 space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Base de données médias étendue</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Organisation de conférences</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Suivi des retombées presse</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn-primary w-full">Demander un devis</a>
-                </div>
-                
-                <div class="service-card fade-in">
-                    <div class="feature-icon mx-auto">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Stratégie de Communication</h3>
-                    <p class="text-gray-600 mb-6">Élaboration de stratégies de communication sur mesure pour renforcer votre image et votre notoriété.</p>
-                    <ul class="text-gray-600 space-y-2 mb-6">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Audit de communication</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Plan média personnalisé</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Conseil en image</span>
-                        </li>
-                    </ul>
-                    <a href="#contact" class="btn-primary w-full">Demander un devis</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Contact -->
-    <section id="contact" class="py-16 bg-gray-50">
+    <!-- Section Contact Améliorée -->
+    <section id="contact" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="section-title text-3xl font-bold text-gray-800">Contactez-nous</h2>
             
             <div class="grid lg:grid-cols-2 gap-12 mt-12">
-                <div class="fade-in">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">Travaillons ensemble</h3>
-                    <p class="text-gray-600 mb-8">Vous avez un projet, une suggestion ou souhaitez collaborer avec notre équipe ? N'hésitez pas à nous contacter.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start group">
-                            <div class="feature-icon group-hover:scale-110">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="ml-4 group-hover:translate-x-1 transition-transform duration-300">
-                                <h4 class="font-bold text-gray-800">Email</h4>
-                                <p class="text-gray-600">info@lualabavision.cd</p>
-                            </div>
-                        </div>
+                <div class="slide-in-left">
+                    <div class="contact-info-card">
+                        <h3 class="text-2xl font-bold text-white mb-6">Travaillons ensemble</h3>
+                        <p class="text-white/90 mb-8 text-lg">Vous avez un projet, une suggestion ou souhaitez collaborer avec notre équipe ? N'hésitez pas à nous contacter.</p>
                         
-                        <div class="flex items-start group">
-                            <div class="feature-icon group-hover:scale-110">
-                                <i class="fas fa-phone"></i>
+                        <div class="space-y-6">
+                            <div class="flex items-start group">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-envelope text-white text-xl"></i>
+                                </div>
+                                <div class="group-hover:translate-x-1 transition-transform duration-300">
+                                    <h4 class="font-bold text-white text-lg">Email</h4>
+                                    <p class="text-white/80">info@lualabavision.cd</p>
+                                </div>
                             </div>
-                            <div class="ml-4 group-hover:translate-x-1 transition-transform duration-300">
-                                <h4 class="font-bold text-gray-800">Téléphone</h4>
-                                <p class="text-gray-600">+243 97 000 0000</p>
+                            
+                            <div class="flex items-start group">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-phone text-white text-xl"></i>
+                                </div>
+                                <div class="group-hover:translate-x-1 transition-transform duration-300">
+                                    <h4 class="font-bold text-white text-lg">Téléphone</h4>
+                                    <p class="text-white/80">+243 97 000 0000</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start group">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                                </div>
+                                <div class="group-hover:translate-x-1 transition-transform duration-300">
+                                    <h4 class="font-bold text-white text-lg">Adresse</h4>
+                                    <p class="text-white/80">Kolwezi, Lualaba, RDC</p>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="flex items-start group">
-                            <div class="feature-icon group-hover:scale-110">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="ml-4 group-hover:translate-x-1 transition-transform duration-300">
-                                <h4 class="font-bold text-gray-800">Adresse</h4>
-                                <p class="text-gray-600">Kolwezi, Lualaba, RDC</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="mt-8">
-                        <h4 class="font-bold text-gray-800 mb-4">Suivez-nous sur les réseaux sociaux</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white hover:bg-indigo-700 transition-all duration-300 hover:scale-110">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white hover:bg-indigo-700 transition-all duration-300 hover:scale-110">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white hover:bg-indigo-700 transition-all duration-300 hover:scale-110">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white hover:bg-indigo-700 transition-all duration-300 hover:scale-110">
-                                <i class="fab fa-instagram"></i>
-                            </a>
+                        <div class="mt-8">
+                            <h4 class="font-bold text-white text-lg mb-4">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 backdrop-blur-sm">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 backdrop-blur-sm">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 backdrop-blur-sm">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 backdrop-blur-sm">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="fade-in">
-                    <form class="bg-white p-8 rounded-2xl shadow-lg">
+                <div class="slide-in-right">
+                    <form class="contact-form">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Envoyez-nous un message</h3>
+                        
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-input" placeholder=" " required>
+                                <label for="name" class="form-label">Nom complet</label>
                             </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300">
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-input" placeholder=" " required>
+                                <label for="email" class="form-label">Email</label>
                             </div>
                         </div>
                         
-                        <div class="mb-6">
-                            <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300">
+                        <div class="form-group mb-6">
+                            <input type="text" id="subject" class="form-input" placeholder=" " required>
+                            <label for="subject" class="form-label">Sujet</label>
                         </div>
                         
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300"></textarea>
+                        <div class="form-group mb-6">
+                            <textarea id="message" rows="5" class="form-input" placeholder=" " required></textarea>
+                            <label for="message" class="form-label">Message</label>
                         </div>
                         
-                        <button type="submit" class="btn-primary w-full group">
+                        <button type="submit" class="btn-primary w-full group text-lg py-4">
                             Envoyer le message
                             <i class="ml-2 fas fa-paper-plane transition-transform duration-300 group-hover:translate-x-1"></i>
                         </button>
@@ -1276,56 +1300,79 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <!-- Footer Amélioré -->
+    <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="fade-in">
-                    <div class="flex items-center space-x-2 mb-4 group">
-                        <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                            <span class="text-white font-bold">LV</span>
+                    <div class="flex items-center space-x-3 mb-6 group">
+                        <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
+                            <span class="text-white font-bold text-xl">LV</span>
                         </div>
                         <div class="transition-all duration-300 group-hover:translate-x-1">
-                            <span class="text-xl font-extrabold">Lualaba</span>
-                            <span class="text-xl font-light">Vision</span>
+                            <span class="text-2xl font-extrabold text-white">Lualaba</span>
+                            <span class="text-2xl font-light text-gray-300">Vision</span>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-sm">Votre source d'information indépendante pour la RDC et le Lualaba. Transparence et objectivité au cœur de notre mission.</p>
-                </div>
-                
-                <div class="fade-in">
-                    <h4 class="text-lg font-semibold mb-4">Navigation</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#accueil" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">Accueil</a></li>
-                        <li><a href="#rubriques" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">Rubriques</a></li>
-                        <li><a href="#apropos" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">À Propos</a></li>
-                        <li><a href="#services" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">Services</a></li>
-                    </ul>
-                </div>
-                
-                <div class="fade-in">
-                    <h4 class="text-lg font-semibold mb-4">Légal</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">Mentions légales</a></li>
-                        <li><a href="#" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">Politique de confidentialité</a></li>
-                        <li><a href="#" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">Conditions d'utilisation</a></li>
-                        <li><a href="#" class="hover:text-white transition-all duration-300 hover:translate-x-1 block">Charte éditoriale</a></li>
-                    </ul>
-                </div>
-                
-                <div class="fade-in">
-                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
-                    <p class="text-gray-400 text-sm mb-4">Inscrivez-vous pour recevoir nos dernières actualités</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Votre email" class="flex-1 px-4 py-2 rounded-l-lg text-gray-800 focus:outline-none">
-                        <button class="bg-indigo-600 px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition-colors duration-300">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
+                    <p class="text-gray-400 text-lg mb-6">Votre source d'information indépendante pour la RDC et le Lualaba. Transparence et objectivité au cœur de notre mission.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
+                
+                <div class="fade-in">
+                    <h4 class="text-xl font-semibold mb-6 text-white">Navigation Rapide</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#accueil" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Accueil</a></li>
+                        <li><a href="#rubriques" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Rubriques</a></li>
+                        <li><a href="#apropos" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">À Propos</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="fade-in">
+                    <h4 class="text-xl font-semibold mb-6 text-white">Rubriques</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#politique" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Politique</a></li>
+                        <li><a href="#mines" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Mines & Économie</a></li>
+                        <li><a href="#agriculture" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Agriculture</a></li>
+                        <li><a href="#culture" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Culture & Tourisme</a></li>
+                    </ul>
+                </div>
+                
+                <div class="fade-in">
+                    <h4 class="text-xl font-semibold mb-6 text-white">Newsletter</h4>
+                    <p class="text-gray-400 text-lg mb-4">Restez informé de nos dernières actualités</p>
+                    <div class="flex mb-4">
+                        <input type="email" placeholder="Votre email" class="flex-1 px-4 py-3 rounded-l-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <button class="bg-indigo-600 px-6 py-3 rounded-r-lg hover:bg-indigo-700 transition-colors duration-300 font-semibold">
+                            S'abonner
+                        </button>
+                    </div>
+                    <p class="text-gray-500 text-sm">En vous abonnant, vous acceptez notre politique de confidentialité</p>
+                </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
-                <p>© 2023 Lualaba Vision. Tous droits réservés.</p>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-lg mb-4 md:mb-0">© 2023 Lualaba Vision. Tous droits réservés.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Mentions légales</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Confidentialité</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Cookies</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -1377,7 +1424,7 @@
         }, observerOptions);
         
         // Observer les éléments à animer
-        document.querySelectorAll('.fade-in').forEach(el => {
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
             observer.observe(el);
         });
 
@@ -1442,12 +1489,36 @@
 
         // Animation des éléments de la première slide
         setTimeout(() => {
-            document.querySelectorAll('.fade-in').forEach(el => {
+            document.querySelectorAll('.fade-in, .zoom-in').forEach(el => {
                 if (el.closest('.carousel-slide.active')) {
                     el.classList.add('visible');
                 }
             });
         }, 300);
+
+        // Animation des labels du formulaire
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+
+        // Effet de saisie en temps réel
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value) {
+                    this.parentElement.classList.add('has-value');
+                } else {
+                    this.parentElement.classList.remove('has-value');
+                }
+            });
+        });
     </script>
 </body>
 </html>
