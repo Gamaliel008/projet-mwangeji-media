@@ -11,7 +11,17 @@
     <style>
         :root {
             --primary: #1e3a8a;
+            --primary-light: #3b82f6;
             --accent: #f59e0b;
+            --accent-light: #fbbf24;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
         }
         
         .nav-link {
@@ -31,6 +41,7 @@
             background: var(--accent);
             transition: all 0.3s ease;
             transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .nav-link:hover::after {
@@ -44,29 +55,353 @@
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
+            transition: all 0.3s ease;
         }
         
-        .category-agriculture { background: #dcfce7; color: #166534; }
+        .article-category:hover {
+            transform: scale(1.05);
+        }
+        
+        .category-agriculture { 
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0); 
+            color: #166534; 
+            box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+        }
+        
+        .category-innovation { 
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe); 
+            color: #1e40af; 
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+        }
+        
+        .category-development { 
+            background: linear-gradient(135deg, #fef3c7, #fde68a); 
+            color: #92400e; 
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+        }
         
         .card-hover {
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+        }
+        
+        .card-hover:hover::before {
+            left: 100%;
         }
         
         .card-hover:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon:hover {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3);
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.4);
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn-accent:hover::before {
+            left: 100%;
+        }
+        
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.4);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: var(--accent);
+            bottom: 10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: #10b981;
+            top: 60%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+        
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.4);
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .floating-action:hover {
+            transform: scale(1.1) rotate(5deg);
+            animation: none;
+        }
+        
+        .back-to-top {
+            display: none;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0f9ff 100%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.4s ease;
+        }
+        
+        .stat-card:hover .stat-number {
+            transform: scale(1.1);
+        }
+        
+        .newsletter-card {
+            background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
         }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white shadow-lg">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-indigo-700 to-indigo-500 rounded-xl flex items-center justify-center">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-indigo-700 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
                         <span class="text-white font-bold text-xl">LV</span>
                     </div>
-                    <div>
+                    <div class="transition-all duration-300 group-hover:translate-x-1">
                         <span class="text-2xl font-extrabold text-indigo-700">Lualaba</span>
                         <span class="text-2xl font-light text-gray-800">Vision</span>
                     </div>
@@ -77,8 +412,26 @@
                     <a href="rubriques.html" class="nav-link text-gray-700 hover:text-indigo-700">Rubriques</a>
                     <a href="apropos.html" class="nav-link text-gray-700 hover:text-indigo-700">À Propos</a>
                     <a href="services.html" class="nav-link text-gray-700 hover:text-indigo-700">Services</a>
-                    <a href="contact.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Contact</a>
+                    <a href="contact.html" class="btn-primary ml-4">Contact</a>
                 </nav>
+
+                <!-- Bouton Menu Mobile -->
+                <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 py-4 transition-all duration-300">
+            <div class="px-4 space-y-3">
+                <a href="index.html" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">Accueil</a>
+                <a href="rubriques.html" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">Rubriques</a>
+                <a href="apropos.html" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">À Propos</a>
+                <a href="services.html" class="block py-2 text-gray-700 hover:text-indigo-700 font-medium transition-all duration-300 hover:translate-x-2">Services</a>
+                <a href="contact.html" class="block py-2 btn-primary text-center mt-4">Contact</a>
             </div>
         </div>
     </header>
@@ -86,150 +439,379 @@
     <!-- Page Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Breadcrumb -->
-        <nav class="mb-8">
+        <nav class="mb-8 fade-in">
             <ol class="flex items-center space-x-2 text-sm text-gray-600">
-                <li><a href="index.html" class="hover:text-indigo-600">Accueil</a></li>
+                <li><a href="index.html" class="hover:text-indigo-600 transition-colors duration-300 flex items-center group">
+                    <i class="fas fa-home mr-1 group-hover:scale-110 transition-transform duration-300"></i>
+                    Accueil
+                </a></li>
                 <li><i class="fas fa-chevron-right text-xs"></i></li>
-                <li><a href="rubriques.html" class="hover:text-indigo-600">Rubriques</a></li>
+                <li><a href="rubriques.html" class="hover:text-indigo-600 transition-colors duration-300 flex items-center group">
+                    <i class="fas fa-th-large mr-1 group-hover:scale-110 transition-transform duration-300"></i>
+                    Rubriques
+                </a></li>
                 <li><i class="fas fa-chevron-right text-xs"></i></li>
-                <li class="text-indigo-600 font-medium">Agriculture & Développement</li>
+                <li class="text-indigo-600 font-medium flex items-center">
+                    <i class="fas fa-tractor mr-2"></i>
+                    Agriculture & Développement
+                </li>
             </ol>
         </nav>
 
         <!-- Page Header -->
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Agriculture & Développement</h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Sécurité alimentaire, projets agricoles innovants et initiatives de développement rural durable
-            </p>
-        </div>
-
-        <!-- Featured Article -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-12 card-hover">
-            <div class="md:flex">
-                <div class="md:w-2/3 p-8">
-                    <span class="article-category category-agriculture mb-4">À la une</span>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Révolution agricole dans le Lualaba</h2>
-                    <p class="text-gray-600 mb-6">
-                        Reportage exclusif sur les nouvelles techniques agricoles qui transforment l'agriculture traditionnelle 
-                        dans le Lualaba. Irrigation moderne, cultures maraîchères et projets agro-industriels redessinent 
-                        le paysage agricole de la province.
-                    </p>
-                    <div class="flex items-center text-gray-500 mb-4">
-                        <span class="flex items-center mr-6">
-                            <i class="fas fa-user mr-2"></i>
-                            David Mutombo
-                        </span>
-                        <span class="flex items-center">
-                            <i class="fas fa-clock mr-2"></i>
-                            10 Novembre 2023
-                        </span>
-                    </div>
-                    <a href="article-detail.html" class="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-700">
-                        Lire l'article complet
-                        <i class="ml-2 fas fa-arrow-right"></i>
+        <div class="text-center mb-16 relative overflow-hidden rounded-2xl gradient-bg py-16 px-8 fade-in">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            
+            <div class="relative z-10">
+                <h1 class="text-5xl font-bold text-gray-800 mb-6">Agriculture & Développement</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Sécurité alimentaire, projets agricoles innovants et initiatives de développement rural durable
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="index.html" class="btn-accent group">
+                        <i class="fas fa-home mr-2 transition-transform duration-300 group-hover:scale-110"></i>
+                        Retour à l'Accueil
                     </a>
-                </div>
-                <div class="md:w-1/3 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center p-8">
-                    <i class="fas fa-tractor text-white text-6xl"></i>
+                    <a href="#projects" class="btn-primary group">
+                        <i class="fas fa-seedling mr-2 transition-transform duration-300 group-hover:scale-110"></i>
+                        Découvrir les Projets
+                    </a>
                 </div>
             </div>
         </div>
 
+        <!-- Featured Article -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-16 card-hover fade-in">
+            <div class="md:flex">
+                <div class="md:w-2/3 p-8 lg:p-12">
+                    <span class="article-category category-agriculture mb-4 pulse-animation">🌟 À la une</span>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">Révolution agricole dans le Lualaba</h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        Reportage exclusif sur les nouvelles techniques agricoles qui transforment l'agriculture traditionnelle 
+                        dans le Lualaba. Irrigation moderne, cultures maraîchères et projets agro-industriels redessinent 
+                        le paysage agricole de la province.
+                    </p>
+                    <div class="flex items-center text-gray-500 mb-6">
+                        <span class="flex items-center mr-6 group">
+                            <i class="fas fa-user mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                            David Mutombo
+                        </span>
+                        <span class="flex items-center mr-6 group">
+                            <i class="fas fa-clock mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                            10 Novembre 2023
+                        </span>
+                        <span class="flex items-center group">
+                            <i class="fas fa-eye mr-2 group-hover:scale-110 transition-transform duration-300"></i>
+                            2.4K vues
+                        </span>
+                    </div>
+                    <a href="article-detail.html" class="inline-flex items-center text-indigo-600 font-medium hover:text-indigo-700 group text-lg">
+                        Lire l'article complet
+                        <i class="ml-3 fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-2"></i>
+                    </a>
+                </div>
+                <div class="md:w-1/3 bg-gradient-to-br from-green-500 via-emerald-600 to-teal-500 flex items-center justify-center p-8 lg:p-12 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="relative z-10 text-center">
+                        <i class="fas fa-tractor text-white text-8xl mb-4 transform hover:scale-110 transition-transform duration-300"></i>
+                        <p class="text-white font-semibold text-lg">Innovation Agricole</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="stat-card fade-in">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-number">+45%</div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Croissance Agricole</h3>
+                <p class="text-gray-600">Augmentation de la production depuis 2020</p>
+            </div>
+            
+            <div class="stat-card fade-in">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number">5,000+</div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Agriculteurs Formés</h3>
+                <p class="text-gray-600">Aux techniques agricoles modernes</p>
+            </div>
+            
+            <div class="stat-card fade-in">
+                <div class="feature-icon mx-auto">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="stat-number">12,500</div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Hectares Irrigués</h3>
+                <p class="text-gray-600">Grâce aux nouveaux systèmes d'irrigation</p>
+            </div>
+        </div>
+
         <!-- Articles Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center fade-in">Dernières Actualités Agricoles</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <!-- Article 1 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                <div class="h-48 bg-gradient-to-r from-green-400 to-green-600 relative">
-                    <span class="absolute top-4 left-4 article-category category-agriculture">Innovation</span>
+            <article class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover fade-in">
+                <div class="h-48 bg-gradient-to-r from-green-400 to-green-600 relative overflow-hidden">
+                    <span class="absolute top-4 left-4 article-category category-innovation">Innovation</span>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <span class="bg-black/30 px-3 py-1 rounded-lg text-sm backdrop-blur-sm">Lecture 8 min</span>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white">
+                        <i class="fas fa-tint text-2xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Systèmes d'irrigation modernes</h3>
-                    <p class="text-gray-600 mb-4">Nouveaux projets d'irrigation pour booster la production agricole.</p>
+                    <p class="text-gray-600 mb-4">Nouveaux projets d'irrigation pour booster la production agricole dans la région.</p>
                     <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>8 Nov 2023</span>
-                        <a href="article-detail.html" class="text-indigo-600 hover:text-indigo-700">Lire →</a>
+                        <span class="flex items-center">
+                            <i class="far fa-clock mr-1"></i>
+                            8 Nov 2023
+                        </span>
+                        <a href="article-detail.html" class="text-indigo-600 hover:text-indigo-700 font-medium flex items-center group">
+                            Lire l'article
+                            <i class="ml-1 fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
                     </div>
                 </div>
             </article>
 
             <!-- Article 2 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                <div class="h-48 bg-gradient-to-r from-emerald-400 to-emerald-600 relative">
+            <article class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover fade-in">
+                <div class="h-48 bg-gradient-to-r from-emerald-400 to-emerald-600 relative overflow-hidden">
                     <span class="absolute top-4 left-4 article-category category-agriculture">Sécurité alimentaire</span>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <span class="bg-black/30 px-3 py-1 rounded-lg text-sm backdrop-blur-sm">Lecture 6 min</span>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white">
+                        <i class="fas fa-wheat-alt text-2xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Autosuffisance alimentaire</h3>
-                    <p class="text-gray-600 mb-4">Le Lualaba vise l'autosuffisance en maïs et manioc d'ici 2025.</p>
+                    <p class="text-gray-600 mb-4">Le Lualaba vise l'autosuffisance en maïs et manioc d'ici 2025 grâce à de nouveaux programmes.</p>
                     <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>5 Nov 2023</span>
-                        <a href="article-detail.html" class="text-indigo-600 hover:text-indigo-700">Lire →</a>
+                        <span class="flex items-center">
+                            <i class="far fa-clock mr-1"></i>
+                            5 Nov 2023
+                        </span>
+                        <a href="article-detail.html" class="text-indigo-600 hover:text-indigo-700 font-medium flex items-center group">
+                            Lire l'article
+                            <i class="ml-1 fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
                     </div>
                 </div>
             </article>
 
             <!-- Article 3 -->
-            <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                <div class="h-48 bg-gradient-to-r from-lime-400 to-lime-600 relative">
-                    <span class="absolute top-4 left-4 article-category category-agriculture">Développement</span>
+            <article class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover fade-in">
+                <div class="h-48 bg-gradient-to-r from-lime-400 to-lime-600 relative overflow-hidden">
+                    <span class="absolute top-4 left-4 article-category category-development">Développement</span>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <span class="bg-black/30 px-3 py-1 rounded-lg text-sm backdrop-blur-sm">Lecture 10 min</span>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white">
+                        <i class="fas fa-user-graduate text-2xl"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Jeunes entrepreneurs agricoles</h3>
-                    <p class="text-gray-600 mb-4">Programme de formation et d'incubation pour les jeunes agriculteurs.</p>
+                    <p class="text-gray-600 mb-4">Programme de formation et d'incubation pour les jeunes agriculteurs de la province.</p>
                     <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>3 Nov 2023</span>
-                        <a href="article-detail.html" class="text-indigo-600 hover:text-indigo-700">Lire →</a>
+                        <span class="flex items-center">
+                            <i class="far fa-clock mr-1"></i>
+                            3 Nov 2023
+                        </span>
+                        <a href="article-detail.html" class="text-indigo-600 hover:text-indigo-700 font-medium flex items-center group">
+                            Lire l'article
+                            <i class="ml-1 fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
                     </div>
                 </div>
             </article>
         </div>
 
         <!-- Projects Section -->
-        <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Projets Agricoles en Cours</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="text-center p-4">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-seedling text-green-600 text-2xl"></i>
+        <div id="projects" class="bg-white rounded-2xl shadow-xl p-8 lg:p-12 mb-16 fade-in">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Projets Agricoles en Cours</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center p-6 card-hover rounded-xl">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-industry"></i>
                     </div>
-                    <h3 class="font-bold text-gray-800 mb-2">Pôle Agro-industriel</h3>
-                    <p class="text-gray-600 text-sm">Transformation des produits agricoles locaux</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Pôle Agro-industriel</h3>
+                    <p class="text-gray-600 mb-4">Transformation des produits agricoles locaux pour une meilleure valeur ajoutée</p>
+                    <div class="flex justify-center items-center text-sm text-green-600 font-medium">
+                        <i class="fas fa-circle mr-2 text-xs"></i>
+                        En cours
+                    </div>
                 </div>
-                <div class="text-center p-4">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-tint text-green-600 text-2xl"></i>
+                
+                <div class="text-center p-6 card-hover rounded-xl">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-tint"></i>
                     </div>
-                    <h3 class="font-bold text-gray-800 mb-2">Irrigation Moderne</h3>
-                    <p class="text-gray-600 text-sm">Systèmes d'irrigation pour 5000 hectares</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Irrigation Moderne</h3>
+                    <p class="text-gray-600 mb-4">Systèmes d'irrigation modernes pour 5000 hectares de terres agricoles</p>
+                    <div class="flex justify-center items-center text-sm text-green-600 font-medium">
+                        <i class="fas fa-circle mr-2 text-xs"></i>
+                        En cours
+                    </div>
                 </div>
-                <div class="text-center p-4">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-graduation-cap text-green-600 text-2xl"></i>
+                
+                <div class="text-center p-6 card-hover rounded-xl">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 class="font-bold text-gray-800 mb-2">Formation</h3>
-                    <p class="text-gray-600 text-sm">Centre de formation aux techniques modernes</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Formation Agricole</h3>
+                    <p class="text-gray-600 mb-4">Centre de formation aux techniques agricoles modernes et durables</p>
+                    <div class="flex justify-center items-center text-sm text-green-600 font-medium">
+                        <i class="fas fa-circle mr-2 text-xs"></i>
+                        En cours
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Newsletter -->
-        <div class="bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl p-8 text-white text-center">
-            <h3 class="text-2xl font-bold mb-4">Restez informé</h3>
-            <p class="mb-6 opacity-90">Recevez nos dernières actualités agricoles et de développement rural</p>
-            <div class="max-w-md mx-auto flex">
-                <input type="email" placeholder="Votre email" class="flex-1 px-4 py-3 rounded-l-lg text-gray-800">
-                <button class="bg-orange-500 px-6 py-3 rounded-r-lg font-semibold hover:bg-orange-600 transition">
-                    S'abonner
-                </button>
+        <div class="newsletter-card rounded-2xl p-8 lg:p-12 text-white text-center relative overflow-hidden fade-in">
+            <div class="relative z-10">
+                <h3 class="text-3xl font-bold mb-4">🌱 Restez informé</h3>
+                <p class="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+                    Recevez nos dernières actualités agricoles, conseils de culture et opportunités de développement rural
+                </p>
+                <div class="max-w-md mx-auto flex bg-white rounded-lg overflow-hidden shadow-lg">
+                    <input type="email" placeholder="Votre adresse email" class="flex-1 px-4 py-4 text-gray-800 focus:outline-none">
+                    <button class="bg-orange-500 px-6 py-4 font-semibold hover:bg-orange-600 transition-colors duration-300 flex items-center">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        S'abonner
+                    </button>
+                </div>
+                <p class="text-sm opacity-75 mt-4">En vous abonnant, vous acceptez notre politique de confidentialité</p>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2023 Lualaba Vision. Tous droits réservés.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <p class="text-gray-400">&copy; 2023 Lualaba Vision. Tous droits réservés.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Bouton retour en haut -->
+    <div class="floating-action back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Retour en haut
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'flex';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animation au défilement
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observer les éléments à animer
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animation des icônes au survol
+        document.querySelectorAll('.feature-icon, .article-category').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'rotate(5deg) scale(1.1)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'rotate(0deg) scale(1)';
+            });
+        });
+
+        // Effet de saisie pour la newsletter
+        const newsletterInput = document.querySelector('input[type="email"]');
+        if (newsletterInput) {
+            newsletterInput.addEventListener('focus', function() {
+                this.parentElement.classList.add('ring-2', 'ring-orange-500');
+            });
+            
+            newsletterInput.addEventListener('blur', function() {
+                this.parentElement.classList.remove('ring-2', 'ring-orange-500');
+            });
+        }
+
+        // Confirmation d'abonnement
+        const newsletterForm = document.querySelector('.newsletter-card form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                if (email) {
+                    alert(`Merci ! Vous êtes maintenant abonné à notre newsletter avec l'adresse : ${email}`);
+                    this.reset();
+                }
+            });
+        }
+
+        console.log('Bienvenue sur la page Agriculture & Développement de Lualaba Vision ! 🌱');
+    </script>
 </body>
 </html>
