@@ -1,263 +1,334 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agriculture & Développement - Lualaba Vision</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-      color: #1e293b;
-      scroll-behavior: smooth;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture & Développement - Mwangeji Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Styles de base et typographie */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc; /* Couleur de fond très claire */
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
 
-    header {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.85);
-      transition: all 0.3s ease-in-out;
-    }
+        /* En-tête avec effet de transparence */
+        header {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s ease-in-out;
+            border-bottom: 1px solid #f1f5f9;
+        }
 
-    .nav-link {
-      position: relative;
-      padding: 0.75rem 1.25rem;
-      font-weight: 600;
-      color: #334155;
-      transition: 0.3s;
-    }
+        /* Liens de navigation */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 600;
+            color: #334155;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: #16a34a; /* Vert plus vibrant */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; /* Ligne sous le texte */
+            left: 50%;
+            width: 0%;
+            height: 3px;
+            background-color: #16a34a;
+            transition: 0.3s;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-    .nav-link:hover {
-      color: #1e40af;
-    }
+        /* Section Héro - Gradient */
+        .hero {
+            /* Un gradient plus doux et terreux */
+            background: linear-gradient(135deg, #059669 0%, #34d399 100%); 
+            color: white;
+            text-align: center;
+            padding: 8rem 1.5rem 6rem; /* Plus d'espace en haut */
+            position: relative;
+            overflow: hidden;
+        }
 
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0%;
-      height: 3px;
-      background-color: #3b82f6;
-      transition: 0.3s;
-      transform: translateX(-50%);
-    }
+        /* Titre Héro */
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease;
+        }
 
-    .nav-link:hover::after {
-      width: 100%;
-    }
+        /* Bouton Primaire */
+        .btn-primary {
+            background: #1e40af; /* Bleu profond */
+            color: #fff;
+            padding: 0.75rem 1.75rem;
+            border-radius: 9999px; /* Forme pilule */
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(30,64,175,0.3);
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(30,64,175,0.4);
+        }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(120deg, #1e3a8a, #3b82f6, #10b981);
-      color: white;
-      text-align: center;
-      padding: 6rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
+        /* Titres de Section */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #059669; /* Vert de l'Héro */
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            width: 80px;
+            height: 4px;
+            background-color: #34d399;
+            border-radius: 2px;
+            transform: translateX(-50%);
+        }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50px;
-      left: -50px;
-      width: 150%;
-      height: 150%;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: rotateGlow 20s linear infinite;
-    }
+        /* Carte des Initiatives */
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08); /* Ombre plus marquée */
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet d'élasticité */
+            border: 1px solid #f1f5f9;
+        }
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+        }
+        .card i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #34d399;
+            transition: 0.5s;
+        }
+        .card:hover i {
+            transform: rotate(360deg) scale(1.05); /* Rotation */
+            color: #059669;
+        }
 
-    @keyframes rotateGlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      animation: fadeInUp 1s ease;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      margin-top: 1rem;
-      opacity: 0.9;
-      animation: fadeInUp 1.5s ease;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.75rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(37,99,235,0.3);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(37,99,235,0.5);
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1e3a8a;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    }
-
-    .card i {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #10b981;
-      transition: 0.3s;
-    }
-
-    .card:hover i {
-      transform: rotate(10deg) scale(1.1);
-      color: #16a34a;
-    }
-
-    /* Floating Button */
-    .floating-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      color: #fff;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: 0 8px 15px rgba(37,99,235,0.5);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 100;
-      animation: bounce 2s infinite;
-    }
-
-    .floating-btn:hover {
-      transform: scale(1.1) rotate(10deg);
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    /* Scroll Animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+        /* Menu Mobile */
+        .mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .mobile-menu.open {
+            max-height: 200px; /* Taille approximative */
+            opacity: 1;
+        }
+        
+        /* Animation Scroll JS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transition plus lisse */
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="fixed w-full top-0 shadow-sm z-50">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="flex items-center space-x-3">
-        <i class="fa-solid fa-leaf text-2xl text-green-600"></i>
-        <span class="text-xl font-bold text-gray-800">Lualaba Vision</span>
-      </a>
-      <nav class="hidden md:flex space-x-6">
-        <a href="index.html" class="nav-link">Accueil</a>
-        <a href="#agriculture" class="nav-link">Agriculture</a>
-      </nav>
-    </div>
-  </header>
+    <header class="fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3 group">
+                <i class="fa-solid fa-cloud-arrow-up text-3xl text-blue-600 transition-transform group-hover:rotate-12"></i>
+                <span class="text-2xl font-extrabold text-gray-900">MWANGEJI <span class="text-green-600">MEDIA</span></span>
+            </a>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link">Accueil</a>
+                <a href="#agriculture" class="nav-link">Agriculture</a>
+                <a href="#projets" class="nav-link">Projets</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
 
-  <!-- HERO -->
-  <section class="hero mt-20">
-    <h1><i class="fa-solid fa-tractor mr-3"></i>Agriculture & Développement</h1>
-    <p>Vers une agriculture durable, innovante et respectueuse de la nature.</p>
-    <div class="mt-6 space-x-4">
-      <a href="#agriculture" class="btn-primary">
-        <i class="fa-solid fa-seedling mr-2"></i>Découvrir les projets
-      </a>
-    </div>
-  </section>
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-full text-gray-700 hover:bg-gray-100 transition duration-200">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
 
-  <!-- AGRICULTURE SECTION -->
-  <section id="agriculture" class="py-16 max-w-6xl mx-auto px-6">
-    <h2 class="section-title"><i class="fa-solid fa-wheat-awn mr-2"></i>Initiatives Agricoles</h2>
-    <div class="grid md:grid-cols-3 gap-10">
-      <div class="card fade-in">
-        <i class="fa-solid fa-water"></i>
-        <h3 class="text-lg font-semibold mb-2">Systèmes d’irrigation intelligents</h3>
-        <p class="text-gray-600">Modernisation de l’irrigation pour maximiser la productivité tout en réduisant le gaspillage d’eau.</p>
-      </div>
-      <div class="card fade-in">
-        <i class="fa-solid fa-hand-holding-seedling"></i>
-        <h3 class="text-lg font-semibold mb-2">Formations des agriculteurs</h3>
-        <p class="text-gray-600">Programme de formation en agroécologie et pratiques agricoles durables.</p>
-      </div>
-      <div class="card fade-in">
-        <i class="fa-solid fa-warehouse"></i>
-        <h3 class="text-lg font-semibold mb-2">Centres de collecte et de stockage</h3>
-        <p class="text-gray-600">Création d’infrastructures modernes pour réduire les pertes post-récolte.</p>
-      </div>
-    </div>
-  </section>
+        <nav id="mobile-menu" class="mobile-menu md:hidden bg-white shadow-lg border-t border-gray-100">
+            <a href="#" class="block px-6 py-3 text-gray-700 hover:bg-green-50 font-semibold border-b">Accueil</a>
+            <a href="#agriculture" class="block px-6 py-3 text-gray-700 hover:bg-green-50 font-semibold border-b">Agriculture</a>
+            <a href="#projets" class="block px-6 py-3 text-gray-700 hover:bg-green-50 font-semibold border-b">Projets</a>
+            <a href="#" class="block px-6 py-3 text-gray-700 hover:bg-green-50 font-semibold">Contact</a>
+        </nav>
+    </header>
 
-  <!-- FLOATING HOME BUTTON -->
-  <a href="index.html" class="floating-btn" title="Retour à l'accueil">
-    <i class="fa-solid fa-house"></i>
-  </a>
+    <section class="hero">
+        <div class="max-w-4xl mx-auto z-10 relative">
+            <h1><i class="fa-solid fa-tree mr-3 text-4xl"></i>Une Vision Verte pour le Développement</h1>
+            <p class="text-xl mt-4 font-light max-w-2xl mx-auto opacity-90">
+                Mwangeji Media s'engage pour une agriculture durable, innovante et respectueuse de l'environnement, au service des communautés.
+            </p>
+            <div class="mt-8">
+                <a href="#agriculture" class="btn-primary hover:bg-green-700">
+                    <i class="fa-solid fa-arrow-down-long mr-2"></i>Explorer nos Initiatives
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="agriculture" class="py-20 max-w-7xl mx-auto px-6">
+        <h2 class="section-title"><i class="fa-solid fa-leaf mr-2"></i>Nos Piliers Agricoles</h2>
+        <div class="grid lg:grid-cols-3 gap-10 mt-16">
+            <div class="card fade-in">
+                <i class="fa-solid fa-droplet text-green-500"></i>
+                <h3 class="text-xl font-bold mt-4 mb-2 text-gray-800">Gestion de l'Eau</h3>
+                <p class="text-gray-600">Mise en place de systèmes d’irrigation modernes et de techniques de conservation de l'eau pour les cultures.</p>
+            </div>
+            <div class="card fade-in" style="transition-delay: 0.1s;">
+                <i class="fa-solid fa-user-graduate text-green-500"></i>
+                <h3 class="text-xl font-bold mt-4 mb-2 text-gray-800">Formation & Agroécologie</h3>
+                <p class="text-gray-600">Programmes de mentorat pour les agriculteurs sur les pratiques agroécologiques et la résilience climatique.</p>
+            </div>
+            <div class="card fade-in" style="transition-delay: 0.2s;">
+                <i class="fa-solid fa-truck-fast text-green-500"></i>
+                <h3 class="text-xl font-bold mt-4 mb-2 text-gray-800">Logistique Post-Récolte</h3>
+                <p class="text-gray-600">Création de chaînes de valeur efficaces et de centres de stockage pour minimiser les pertes après la récolte.</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="text-center py-6 text-sm text-gray-500">
-    © 2025 Lualaba Vision — Agriculture & Développement
-  </footer>
+    <hr class="max-w-6xl mx-auto my-12 border-gray-200">
 
-  <!-- JS ANIMATION SCROLL -->
-  <script>
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    });
-    fadeEls.forEach(el => observer.observe(el));
-  </script>
+    <section id="projets" class="py-20 max-w-7xl mx-auto px-6">
+        <h2 class="section-title"><i class="fa-solid fa-chart-line mr-2"></i>Projets et Impact</h2>
+        <div class="bg-white p-10 rounded-2xl shadow-xl fade-in" style="transition-delay: 0.3s;">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Projet "Champ d'Avenir"</h3>
+            <p class="text-gray-600 mb-6">Un projet pilote visant à équiper 50 petites exploitations agricoles en technologies de pointe (capteurs de sol, drones légers) pour optimiser les rendements et l'utilisation des ressources.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4 bg-green-50 rounded-lg">
+                    <span class="text-3xl font-bold text-green-600">50</span>
+                    <p class="text-sm text-gray-500">Exploitations</p>
+                </div>
+                <div class="p-4 bg-blue-50 rounded-lg">
+                    <span class="text-3xl font-bold text-blue-600">+30%</span>
+                    <p class="text-sm text-gray-500">Augmentation Rendement</p>
+                </div>
+                <div class="p-4 bg-yellow-50 rounded-lg">
+                    <span class="text-3xl font-bold text-yellow-600">20%</span>
+                    <p class="text-sm text-gray-500">Économie d'Eau</p>
+                </div>
+                <div class="p-4 bg-red-50 rounded-lg">
+                    <span class="text-3xl font-bold text-red-600">150</span>
+                    <p class="text-sm text-gray-500">Agriculteurs Formés</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="#" class="floating-btn" title="Retour à l'accueil">
+        <i class="fa-solid fa-circle-up"></i> </a>
+    
+    <footer class="bg-gray-800 text-center py-8 text-gray-300">
+        <p class="text-lg font-semibold mb-2">Mwangeji Media</p>
+        <p class="text-sm">Agriculture & Développement — Innover pour la sécurité alimentaire.</p>
+        <div class="flex justify-center space-x-5 mt-4">
+            <a href="#" class="hover:text-green-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-green-400 transition"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="hover:text-green-400 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <p class="mt-4 text-xs text-gray-500">© 2025 Mwangeji Media. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // --- 1. Animation au Scroll (Fade-In) ---
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optionnel: Arrêter l'observation après la première apparition
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.2 // Déclenche quand 20% de l'élément est visible
+        });
+        fadeEls.forEach(el => observer.observe(el));
+
+        // --- 2. Menu Mobile Toggle ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            // Changer l'icône du bouton
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fermer le menu après un clic sur un lien mobile
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-xmark');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // --- 3. Bouton Flottant (Scroll to Top) ---
+        const floatingBtn = document.querySelector('.floating-btn');
+        
+        // Afficher le bouton après avoir scrollé un peu
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                floatingBtn.style.opacity = '1';
+                floatingBtn.style.transform = 'scale(1)';
+            } else {
+                floatingBtn.style.opacity = '0';
+                floatingBtn.style.transform = 'scale(0)';
+            }
+        });
+
+        // Revenir en haut lors du clic
+        floatingBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
