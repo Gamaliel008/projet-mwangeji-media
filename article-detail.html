@@ -3,248 +3,758 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article - Lualaba Vision</title>
+    <title>Article - Mwangeji Media</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styles */
+        header {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: #334155;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(59, 130, 246, 0.1));
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Article Styles */
+        .article-header {
+            background: var(--gradient);
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotateGlow 20s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .article-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .prose {
+            max-width: none;
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        .prose h2 {
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #10b981;
+            padding-left: 1rem;
+        }
+
+        .prose p {
+            margin-bottom: 1.5rem;
+        }
+
+        .prose blockquote {
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-style: italic;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .prose blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: #3b82f6;
+            opacity: 0.2;
+            position: absolute;
+            top: -1rem;
+            left: 0.5rem;
+        }
+
+        .prose ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .prose li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .prose li::before {
+            content: '▸';
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Floating Buttons */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient);
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            animation: floatBtn 3s ease-in-out infinite;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.15) rotate(15deg);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.6);
+            animation: none;
+        }
+
+        @keyframes floatBtn {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        /* Interactive Elements */
+        .interactive-btn {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: #475569;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .tag:hover {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Author Card */
+        .author-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+        }
+
+        .author-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Related Articles */
+        .article-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.7s;
+        }
+
+        .article-card:hover::before {
+            left: 100%;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+        }
+
+        .article-image {
+            height: 200px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .article-card:hover .article-image::after {
+            transform: translateX(100%);
+        }
+
+        @media (max-width: 768px) {
+            .article-header {
+                padding: 4rem 0;
+            }
+            
+            .article-content {
+                margin-top: -60px;
+            }
+            
+            .floating-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
+<body class="antialiased">
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white shadow-lg">
+    <header class="sticky top-0 z-50" id="header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-indigo-700 to-indigo-500 rounded-xl flex items-center justify-center">
-                        <span class="text-white font-bold text-xl">LV</span>
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-indigo-600 to-green-500 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
+                        <span class="text-white font-bold text-xl">MM</span>
                     </div>
-                    <div>
-                        <span class="text-2xl font-extrabold text-indigo-700">Lualaba</span>
-                        <span class="text-2xl font-light text-gray-800">Vision</span>
+                    <div class="transition-all duration-300 group-hover:translate-x-1">
+                        <span class="text-2xl font-extrabold text-indigo-700">Mwangeji</span>
+                        <span class="text-2xl font-light text-gray-800">Media</span>
                     </div>
                 </a>
 
-                <nav class="hidden lg:flex items-center space-x-1">
-                    <a href="index.html" class="nav-link text-gray-700 hover:text-indigo-700">Accueil</a>
-                    <a href="rubriques.html" class="nav-link text-gray-700 hover:text-indigo-700">Rubriques</a>
-                    <a href="apropos.html" class="nav-link text-gray-700 hover:text-indigo-700">À Propos</a>
-                    <a href="services.html" class="nav-link text-gray-700 hover:text-indigo-700">Services</a>
-                    <a href="contact.html" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">Contact</a>
+                <nav class="hidden lg:flex items-center space-x-2">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home mr-2"></i>Accueil
+                    </a>
+                    <a href="rubriques.html" class="nav-link">
+                        <i class="fas fa-newspaper mr-2"></i>Rubriques
+                    </a>
+                    <a href="apropos.html" class="nav-link">
+                        <i class="fas fa-info-circle mr-2"></i>À Propos
+                    </a>
+                    <a href="services.html" class="nav-link">
+                        <i class="fas fa-concierge-bell mr-2"></i>Services
+                    </a>
+                    <a href="contact.html" class="bg-gradient-to-r from-indigo-600 to-green-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <i class="fas fa-envelope mr-2"></i>Contact
+                    </a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Page Content -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <!-- Breadcrumb -->
-        <nav class="mb-8">
-            <ol class="flex items-center space-x-2 text-sm text-gray-600">
-                <li><a href="index.html" class="hover:text-indigo-600">Accueil</a></li>
-                <li><i class="fas fa-chevron-right text-xs"></i></li>
-                <li><a href="politique.html" class="hover:text-indigo-600">Politique</a></li>
-                <li><i class="fas fa-chevron-right text-xs"></i></li>
-                <li class="text-indigo-600 font-medium">Article</li>
-            </ol>
-        </nav>
-
-        <!-- Article Header -->
-        <article class="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <div class="p-8">
-                <span class="inline-block px-4 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
-                    Politique
+    <!-- Article Header -->
+    <section class="article-header">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="fade-in">
+                <span class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white font-semibold mb-6 border border-white/30">
+                    <i class="fas fa-landmark mr-2"></i>Politique
                 </span>
-                <h1 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+                <h1 class="text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
                     Réforme institutionnelle : Les nouvelles compétences des provinces
                 </h1>
                 
-                <div class="flex flex-wrap items-center text-gray-600 mb-6">
-                    <div class="flex items-center mr-6 mb-2">
-                        <i class="fas fa-user mr-2"></i>
+                <div class="flex flex-wrap justify-center items-center text-white/90 gap-6 mb-8">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-user text-sm"></i>
+                        </div>
                         <span>Jean Kabasele</span>
                     </div>
-                    <div class="flex items-center mr-6 mb-2">
-                        <i class="fas fa-clock mr-2"></i>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-clock text-sm"></i>
+                        </div>
                         <span>15 Novembre 2023</span>
                     </div>
-                    <div class="flex items-center mb-2">
-                        <i class="fas fa-eye mr-2"></i>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-eye text-sm"></i>
+                        </div>
                         <span>2,458 vues</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Image d'en-tête -->
-                <div class="bg-gradient-to-br from-blue-500 to-indigo-600 h-64 rounded-lg mb-8 flex items-center justify-center">
-                    <i class="fas fa-landmark text-white text-6xl"></i>
+    <!-- Article Content -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 fade-in">
+            <ol class="flex items-center space-x-3 text-sm text-gray-600">
+                <li>
+                    <a href="index.html" class="flex items-center hover:text-indigo-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Accueil
+                    </a>
+                </li>
+                <li><i class="fas fa-chevron-right text-xs"></i></li>
+                <li>
+                    <a href="politique.html" class="flex items-center hover:text-indigo-600 transition-colors">
+                        <i class="fas fa-landmark mr-2"></i>Politique
+                    </a>
+                </li>
+                <li><i class="fas fa-chevron-right text-xs"></i></li>
+                <li class="text-indigo-600 font-semibold flex items-center">
+                    <i class="fas fa-file-alt mr-2"></i>Article
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Main Article -->
+        <div class="article-content p-8 lg:p-12 fade-in">
+            <!-- Featured Image -->
+            <div class="bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 h-80 rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden">
+                <div class="text-white text-center relative z-10">
+                    <i class="fas fa-landmark text-6xl mb-4 opacity-90"></i>
+                    <p class="text-lg opacity-90">Réforme institutionnelle en RDC</p>
                 </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            </div>
 
-                <!-- Contenu de l'article -->
-                <div class="prose prose-lg max-w-none">
-                    <p class="lead text-xl text-gray-700 mb-6">
-                        Le transfert de compétences de l'État vers les provinces représente une révolution 
-                        silencieuse dans la gouvernance congolaise. Analyse des implications pour le Lualaba.
-                    </p>
+            <!-- Article Content -->
+            <div class="prose prose-lg max-w-none">
+                <p class="lead text-xl text-gray-700 font-medium mb-8 border-l-4 border-green-500 pl-4 bg-green-50 py-2 rounded-r-lg">
+                    Le transfert de compétences de l'État vers les provinces représente une révolution 
+                    silencieuse dans la gouvernance congolaise. Analyse des implications pour le Lualaba.
+                </p>
 
-                    <h2>Un changement de paradigme</h2>
-                    <p>
-                        La réforme institutionnelle en cours en République Démocratique du Congo marque un 
-                        tournant historique dans les relations entre l'État central et les provinces. 
-                        Après des décennies de centralisation excessive, le gouvernement a initié un 
-                        processus de transfert progressif de compétences visant à rapprocher la prise 
-                        de décision des populations concernées.
-                    </p>
+                <h2>Un changement de paradigme</h2>
+                <p>
+                    La réforme institutionnelle en cours en République Démocratique du Congo marque un 
+                    tournant historique dans les relations entre l'État central et les provinces. 
+                    Après des décennies de centralisation excessive, le gouvernement a initié un 
+                    processus de transfert progressif de compétences visant à rapprocher la prise 
+                    de décision des populations concernées.
+                </p>
 
-                    <p>
-                        Pour le Lualaba, province stratégique tant sur le plan économique que géopolitique, 
-                        cette réforme ouvre de nouvelles perspectives de développement mais présente 
-                        également des défis importants en matière de capacités administratives et techniques.
-                    </p>
+                <p>
+                    Pour le Lualaba, province stratégique tant sur le plan économique que géopolitique, 
+                    cette réforme ouvre de nouvelles perspectives de développement mais présente 
+                    également des défis importants en matière de capacités administratives et techniques.
+                </p>
 
-                    <h2>Les compétences transférées</h2>
-                    <p>
-                        Le premier volet de la réforme concerne le transfert de compétences dans 
-                        plusieurs domaines clés :
-                    </p>
+                <h2>Les compétences transférées</h2>
+                <p>
+                    Le premier volet de la réforme concerne le transfert de compétences dans 
+                    plusieurs domaines clés :
+                </p>
 
-                    <ul>
-                        <li><strong>Gestion des ressources naturelles</strong> : Les provinces obtiennent 
-                        une plus grande autonomie dans la gestion des ressources minières et forestières</li>
-                        <li><strong>Développement économique local</strong> : Création d'incubateurs 
-                        d'entreprises et soutien aux PME locales</li>
-                        <li><strong>Éducation et formation</strong> : Adaptation des programmes 
-                        éducatifs aux spécificités régionales</li>
-                        <li><strong>Santé publique</strong> : Gestion des hôpitaux et centres de santé de référence</li>
-                    </ul>
+                <ul>
+                    <li><strong>Gestion des ressources naturelles</strong> : Les provinces obtiennent 
+                    une plus grande autonomie dans la gestion des ressources minières et forestières</li>
+                    <li><strong>Développement économique local</strong> : Création d'incubateurs 
+                    d'entreprises et soutien aux PME locales</li>
+                    <li><strong>Éducation et formation</strong> : Adaptation des programmes 
+                    éducatifs aux spécificités régionales</li>
+                    <li><strong>Santé publique</strong> : Gestion des hôpitaux et centres de santé de référence</li>
+                </ul>
 
-                    <h2>Implications pour le Lualaba</h2>
-                    <p>
-                        En tant que principal producteur de cobalt au monde, le Lualaba se trouve 
-                        dans une position particulière. Le transfert des compétences minières 
-                        pourrait permettre à la province de mieux négocier les termes des 
-                        partenariats avec les entreprises extractives et d'augmenter les 
-                        retombées locales des activités minières.
-                    </p>
+                <h2>Implications pour le Lualaba</h2>
+                <p>
+                    En tant que principal producteur de cobalt au monde, le Lualaba se trouve 
+                    dans une position particulière. Le transfert des compétences minières 
+                    pourrait permettre à la province de mieux négocier les termes des 
+                    partenariats avec les entreprises extractives et d'augmenter les 
+                    retombées locales des activités minières.
+                </p>
 
-                    <blockquote>
-                        "Cette réforme représente une opportunité unique pour le Lualaba de 
-                        prendre en main son destin économique. Cependant, elle nécessite 
-                        une préparation rigoureuse et le développement de compétences techniques 
-                        spécifiques." - Expert en gouvernance locale
-                    </blockquote>
+                <blockquote>
+                    "Cette réforme représente une opportunité unique pour le Lualaba de 
+                    prendre en main son destin économique. Cependant, elle nécessite 
+                    une préparation rigoureuse et le développement de compétences techniques 
+                    spécifiques." - Expert en gouvernance locale
+                </blockquote>
 
-                    <h2>Défis à relever</h2>
-                    <p>
-                        Le succès de cette réforme dépendra de plusieurs facteurs :
-                    </p>
+                <h2>Défis à relever</h2>
+                <p>
+                    Le succès de cette réforme dépendra de plusieurs facteurs :
+                </p>
 
-                    <ul>
-                        <li>Renforcement des capacités administratives provinciales</li>
-                        <li>Formation des cadres techniques</li>
-                        <li>Mise en place de systèmes de contrôle et de redevabilité</li>
-                        <li>Coordination avec l'État central</li>
-                    </ul>
+                <ul>
+                    <li>Renforcement des capacités administratives provinciales</li>
+                    <li>Formation des cadres techniques</li>
+                    <li>Mise en place de systèmes de contrôle et de redevabilité</li>
+                    <li>Coordination avec l'État central</li>
+                </ul>
 
-                    <p>
-                        La province du Lualaba a déjà initié plusieurs programmes de formation 
-                        en partenariat avec des universités locales et internationales pour 
-                        préparer ses cadres à ces nouvelles responsabilités.
-                    </p>
-                </div>
+                <p>
+                    La province du Lualaba a déjà initié plusieurs programmes de formation 
+                    en partenariat avec des universités locales et internationales pour 
+                    préparer ses cadres à ces nouvelles responsabilités.
+                </p>
+            </div>
 
-                <!-- Tags -->
-                <div class="mt-8 pt-6 border-t border-gray-200">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                            #RéformeInstitutionnelle
-                        </span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                            #Gouvernance
-                        </span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                            #Décentralisation
-                        </span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                            #Lualaba
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="mt-6 flex flex-wrap gap-4">
-                    <button class="flex items-center text-gray-600 hover:text-blue-600">
-                        <i class="far fa-thumbs-up mr-2"></i>
-                        <span>J'aime (245)</span>
-                    </button>
-                    <button class="flex items-center text-gray-600 hover:text-green-600">
-                        <i class="far fa-share-square mr-2"></i>
-                        <span>Partager</span>
-                    </button>
-                    <button class="flex items-center text-gray-600 hover:text-red-600">
-                        <i class="far fa-bookmark mr-2"></i>
-                        <span>Sauvegarder</span>
-                    </button>
+            <!-- Tags -->
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Mots-clés</h3>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#" class="tag group">
+                        <i class="fas fa-hashtag mr-1 group-hover:text-white"></i>
+                        #RéformeInstitutionnelle
+                    </a>
+                    <a href="#" class="tag group">
+                        <i class="fas fa-hashtag mr-1 group-hover:text-white"></i>
+                        #Gouvernance
+                    </a>
+                    <a href="#" class="tag group">
+                        <i class="fas fa-hashtag mr-1 group-hover:text-white"></i>
+                        #Décentralisation
+                    </a>
+                    <a href="#" class="tag group">
+                        <i class="fas fa-hashtag mr-1 group-hover:text-white"></i>
+                        #Lualaba
+                    </a>
                 </div>
             </div>
-        </article>
 
-        <!-- Auteur -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 mt-8">
-            <div class="flex items-center">
-                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+            <!-- Actions -->
+            <div class="mt-8 flex flex-wrap gap-4">
+                <button class="interactive-btn group text-blue-600 hover:text-blue-700">
+                    <i class="far fa-thumbs-up mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span>J'aime (245)</span>
+                </button>
+                <button class="interactive-btn group text-green-600 hover:text-green-700">
+                    <i class="far fa-share-square mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span>Partager</span>
+                </button>
+                <button class="interactive-btn group text-purple-600 hover:text-purple-700">
+                    <i class="far fa-bookmark mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span>Sauvegarder</span>
+                </button>
+                <button class="interactive-btn group text-red-600 hover:text-red-700">
+                    <i class="fas fa-print mr-2 group-hover:scale-110 transition-transform"></i>
+                    <span>Imprimer</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Author -->
+        <div class="author-card p-8 mt-8 fade-in">
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-6">
+                <div class="w-24 h-24 bg-gradient-to-br from-indigo-500 to-green-500 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg">
                     JK
                 </div>
-                <div>
-                    <h3 class="text-xl font-bold text-gray-800">Jean Kabasele</h3>
-                    <p class="text-indigo-600 font-semibold mb-2">Rédacteur en Chef</p>
-                    <p class="text-gray-600">
-                        Journaliste politique avec 15 ans d'expérience. Spécialiste des questions 
-                        institutionnelles et de la décentralisation en RDC.
+                <div class="flex-1 text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Jean Kabasele</h3>
+                    <p class="text-indigo-600 font-semibold mb-4 flex items-center justify-center md:justify-start">
+                        <i class="fas fa-star mr-2"></i>
+                        Rédacteur en Chef & Expert Politique
                     </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Journaliste politique avec 15 ans d'expérience couvrant les institutions congolaises. 
+                        Spécialiste reconnu des questions de décentralisation et de gouvernance locale. 
+                        Ancien conseiller au ministère de l'Intérieur et formateur en administration publique.
+                    </p>
+                    <div class="mt-4 flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-800 transition-colors">
+                            <i class="fab fa-linkedin text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-700 transition-colors">
+                            <i class="fas fa-envelope text-lg"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Articles similaires -->
-        <div class="mt-12">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Articles similaires</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Related Articles -->
+        <div class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center slide-in-left">
+                <i class="fas fa-newspaper mr-3 text-indigo-600"></i>
+                Articles similaires
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Article 1 -->
-                <a href="#" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                    <div class="h-40 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-gray-800 mb-2">Nouveau gouverneur : Premières mesures</h3>
-                        <p class="text-gray-600 text-sm mb-2">Les 100 premiers jours du nouveau gouverneur du Lualaba</p>
-                        <span class="text-indigo-600 text-sm">Lire l'article →</span>
+                <a href="#" class="article-card group">
+                    <div class="article-image flex items-center justify-center">
+                        <i class="fas fa-user-tie text-white text-4xl opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-800 mb-3 group-hover:text-indigo-600 transition-colors">
+                            Nouveau gouverneur : Premières mesures
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Analyse des 100 premiers jours du nouveau gouverneur du Lualaba et bilan des réformes engagées.
+                        </p>
+                        <div class="flex items-center text-indigo-600 font-semibold">
+                            <span>Lire l'article</span>
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </div>
                     </div>
                 </a>
 
                 <!-- Article 2 -->
-                <a href="#" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                    <div class="h-40 bg-gradient-to-r from-indigo-400 to-indigo-600"></div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-gray-800 mb-2">Préparatifs des élections locales</h3>
-                        <p class="text-gray-600 text-sm mb-2">État des lieux des préparatifs électoraux</p>
-                        <span class="text-indigo-600 text-sm">Lire l'article →</span>
+                <a href="#" class="article-card group">
+                    <div class="article-image flex items-center justify-center" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-vote-yea text-white text-4xl opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-800 mb-3 group-hover:text-indigo-600 transition-colors">
+                            Préparatifs des élections locales
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            État des lieux complet des préparatifs électoraux pour les prochaines échéances locales.
+                        </p>
+                        <div class="flex items-center text-indigo-600 font-semibold">
+                            <span>Lire l'article</span>
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </div>
                     </div>
                 </a>
 
                 <!-- Article 3 -->
-                <a href="#" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-                    <div class="h-40 bg-gradient-to-r from-purple-400 to-purple-600"></div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-gray-800 mb-2">Coopération décentralisée</h3>
-                        <p class="text-gray-600 text-sm mb-2">Nouveaux accords de coopération internationale</p>
-                        <span class="text-indigo-600 text-sm">Lire l'article →</span>
+                <a href="#" class="article-card group">
+                    <div class="article-image flex items-center justify-center" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+                        <i class="fas fa-handshake text-white text-4xl opacity-90"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-800 mb-3 group-hover:text-indigo-600 transition-colors">
+                            Coopération décentralisée
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Nouveaux accords de coopération internationale signés par la province du Lualaba.
+                        </p>
+                        <div class="flex items-center text-indigo-600 font-semibold">
+                            <span>Lire l'article</span>
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </div>
                     </div>
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Floating Action Button -->
+    <a href="index.html" class="floating-btn" title="Retour à l'accueil">
+        <i class="fas fa-home"></i>
+    </a>
+
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2023 Lualaba Vision. Tous droits réservés.</p>
+    <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-indigo-900 text-white py-16 mt-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <div class="w-12 h-12 bg-gradient-to-br from-indigo-600 to-green-500 rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-xl">MM</span>
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold text-white">Mwangeji</span>
+                    <span class="text-2xl font-light text-gray-300">Media</span>
+                </div>
+            </div>
+            <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                Votre source d'information premium pour la RDC et le Lualaba. 
+                <span class="text-green-400 font-semibold">Excellence journalistique et innovation digitale</span>.
+            </p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Mentions légales</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Confidentialité</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Cookies</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Contact</a>
+            </div>
+            <p class="text-gray-500">&copy; 2024 Mwangeji Media. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Interactive buttons functionality
+        document.querySelectorAll('.interactive-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
 </body>
 </html>
