@@ -1,78 +1,449 @@
-<footer class="bg-gray-900 text-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-4 gap-8">
+<footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-indigo-900 text-white py-20 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-indigo-600 rounded-full opacity-10 blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-green-600 rounded-full opacity-10 blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white rounded-full opacity-5 blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+            <!-- Brand Column -->
             <div class="fade-in">
-                <div class="flex items-center space-x-3 mb-6 group">
-                    <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
-                        <span class="text-white font-bold text-xl">LV</span>
+                <div class="flex items-center space-x-3 mb-6 group cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-green-500 rounded-xl flex items-center justify-center shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
+                        <span class="text-white font-bold text-xl">MM</span>
                     </div>
-                    <div class="transition-all duration-300 group-hover:translate-x-1">
-                        <span class="text-2xl font-extrabold text-white">Lualaba</span>
-                        <span class="text-2xl font-light text-gray-300">Vision</span>
+                    <div class="transition-all duration-500 group-hover:translate-x-2">
+                        <span class="text-3xl font-black text-white bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Mwangeji</span>
+                        <span class="text-3xl font-light text-gray-300">Media</span>
                     </div>
                 </div>
-                <p class="text-gray-400 text-lg mb-6">Votre source d'information indépendante pour la RDC et le Lualaba. Transparence et objectivité au cœur de notre mission.</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                    Votre source d'information premium pour la RDC et le Lualaba. 
+                    <span class="text-green-400 font-semibold">Transparence et innovation</span> au cœur de notre mission.
+                </p>
+                <div class="flex space-x-3">
+                    <a href="#" class="social-icon group">
                         <i class="fab fa-facebook-f"></i>
+                        <div class="social-tooltip">Facebook</div>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                    <a href="#" class="social-icon group">
                         <i class="fab fa-twitter"></i>
+                        <div class="social-tooltip">Twitter</div>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                    <a href="#" class="social-icon group">
                         <i class="fab fa-linkedin-in"></i>
+                        <div class="social-tooltip">LinkedIn</div>
                     </a>
-                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-all duration-300 hover:scale-110">
+                    <a href="#" class="social-icon group">
                         <i class="fab fa-instagram"></i>
+                        <div class="social-tooltip">Instagram</div>
+                    </a>
+                    <a href="#" class="social-icon group">
+                        <i class="fab fa-youtube"></i>
+                        <div class="social-tooltip">YouTube</div>
                     </a>
                 </div>
             </div>
             
+            <!-- Navigation Column -->
             <div class="fade-in">
-                <h4 class="text-xl font-semibold mb-6 text-white">Navigation Rapide</h4>
-                <ul class="space-y-3 text-gray-400">
-                    <li><a href="index.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Accueil</a></li>
-                    <li><a href="rubriques.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Rubriques</a></li>
-                    <li><a href="apropos.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">À Propos</a></li>
-                    <li><a href="services.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Services</a></li>
-                    <li><a href="contact.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Contact</a></li>
+                <h4 class="text-2xl font-bold mb-6 text-white relative inline-block">
+                    Navigation
+                    <div class="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-indigo-500 to-green-500 rounded-full"></div>
+                </h4>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="index.html" class="footer-link group">
+                            <i class="fas fa-home mr-3 text-indigo-400 group-hover:text-green-400 transition-colors duration-300"></i>
+                            Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="rubriques.html" class="footer-link group">
+                            <i class="fas fa-newspaper mr-3 text-indigo-400 group-hover:text-green-400 transition-colors duration-300"></i>
+                            Rubriques
+                        </a>
+                    </li>
+                    <li>
+                        <a href="apropos.html" class="footer-link group">
+                            <i class="fas fa-info-circle mr-3 text-indigo-400 group-hover:text-green-400 transition-colors duration-300"></i>
+                            À Propos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="services.html" class="footer-link group">
+                            <i class="fas fa-concierge-bell mr-3 text-indigo-400 group-hover:text-green-400 transition-colors duration-300"></i>
+                            Services
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="footer-link group">
+                            <i class="fas fa-envelope mr-3 text-indigo-400 group-hover:text-green-400 transition-colors duration-300"></i>
+                            Contact
+                        </a>
+                    </li>
                 </ul>
             </div>
             
+            <!-- Rubriques Column -->
             <div class="fade-in">
-                <h4 class="text-xl font-semibold mb-6 text-white">Rubriques</h4>
-                <ul class="space-y-3 text-gray-400">
-                    <li><a href="politique.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Politique</a></li>
-                    <li><a href="mines-economie.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Mines & Économie</a></li>
-                    <li><a href="agriculture.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Agriculture</a></li>
-                    <li><a href="societe.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Société</a></li>
-                    <li><a href="culture-tourisme.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Culture & Tourisme</a></li>
-                    <li><a href="sports.html" class="hover:text-white transition-all duration-300 hover:translate-x-2 block text-lg">Sports</a></li>
+                <h4 class="text-2xl font-bold mb-6 text-white relative inline-block">
+                    Rubriques
+                    <div class="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full"></div>
+                </h4>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="politique.html" class="footer-link group">
+                            <i class="fas fa-landmark mr-3 text-green-400 group-hover:text-yellow-400 transition-colors duration-300"></i>
+                            Politique
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mines-economie.html" class="footer-link group">
+                            <i class="fas fa-industry mr-3 text-green-400 group-hover:text-yellow-400 transition-colors duration-300"></i>
+                            Mines & Économie
+                        </a>
+                    </li>
+                    <li>
+                        <a href="agriculture.html" class="footer-link group">
+                            <i class="fas fa-tractor mr-3 text-green-400 group-hover:text-yellow-400 transition-colors duration-300"></i>
+                            Agriculture
+                        </a>
+                    </li>
+                    <li>
+                        <a href="societe.html" class="footer-link group">
+                            <i class="fas fa-users mr-3 text-green-400 group-hover:text-yellow-400 transition-colors duration-300"></i>
+                            Société
+                        </a>
+                    </li>
+                    <li>
+                        <a href="culture-tourisme.html" class="footer-link group">
+                            <i class="fas fa-monument mr-3 text-green-400 group-hover:text-yellow-400 transition-colors duration-300"></i>
+                            Culture & Tourisme
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sports.html" class="footer-link group">
+                            <i class="fas fa-futbol mr-3 text-green-400 group-hover:text-yellow-400 transition-colors duration-300"></i>
+                            Sports
+                        </a>
+                    </li>
                 </ul>
             </div>
             
+            <!-- Newsletter Column -->
             <div class="fade-in">
-                <h4 class="text-xl font-semibold mb-6 text-white">Newsletter</h4>
-                <p class="text-gray-400 text-lg mb-4">Restez informé de nos dernières actualités</p>
-                <div class="flex mb-4">
-                    <input type="email" placeholder="Votre email" class="flex-1 px-4 py-3 rounded-l-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <button class="bg-indigo-600 px-6 py-3 rounded-r-lg hover:bg-indigo-700 transition-colors duration-300 font-semibold">
+                <h4 class="text-2xl font-bold mb-6 text-white relative inline-block">
+                    Newsletter
+                    <div class="absolute bottom-0 left-0 w-12 h-1 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full"></div>
+                </h4>
+                <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                    Restez informé de nos dernières actualités exclusives et analyses approfondies.
+                </p>
+                <div class="newsletter-form group mb-4">
+                    <input type="email" placeholder="Votre email" class="newsletter-input">
+                    <button class="newsletter-btn">
+                        <i class="fas fa-paper-plane mr-2"></i>
                         S'abonner
                     </button>
                 </div>
-                <p class="text-gray-500 text-sm">En vous abonnant, vous acceptez notre politique de confidentialité</p>
-            </div>
-        </div>
-        
-        <div class="border-t border-gray-800 mt-12 pt-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-lg mb-4 md:mb-0">© 2023 Lualaba Vision. Tous droits réservés.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Mentions légales</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Confidentialité</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 text-lg">Cookies</a>
+                <div class="flex items-center text-gray-400 text-sm">
+                    <i class="fas fa-shield-alt mr-2 text-green-400"></i>
+                    <span>100% sécurisé - Respect de votre vie privée</span>
+                </div>
+                
+                <!-- Quick Contact -->
+                <div class="mt-8 p-4 bg-white/5 rounded-2xl border border-white/10">
+                    <h5 class="font-semibold mb-3 text-white flex items-center">
+                        <i class="fas fa-clock mr-2 text-yellow-400"></i>
+                        Contact Rapide
+                    </h5>
+                    <div class="space-y-2 text-sm text-gray-300">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-green-400 w-4"></i>
+                            <span>+243 97 000 0000</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-green-400 w-4"></i>
+                            <span>info@mwangejimedia.cd</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Bottom Section -->
+        <div class="border-t border-white/10 pt-8 mt-8">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
+                <div class="flex items-center space-x-6">
+                    <p class="text-gray-400 text-lg">
+                        © 2024 <span class="text-white font-semibold">Mwangeji Media</span>. Tous droits réservés.
+                    </p>
+                    <div class="hidden md:flex items-center space-x-2 text-green-400">
+                        <i class="fas fa-heart text-sm"></i>
+                        <span class="text-sm">Fait avec passion pour le Lualaba</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#" class="footer-bottom-link group">
+                        <i class="fas fa-scale-balanced mr-2"></i>
+                        Mentions légales
+                    </a>
+                    <a href="#" class="footer-bottom-link group">
+                        <i class="fas fa-user-shield mr-2"></i>
+                        Confidentialité
+                    </a>
+                    <a href="#" class="footer-bottom-link group">
+                        <i class="fas fa-cookie mr-2"></i>
+                        Cookies
+                    </a>
+                    <a href="#" class="footer-bottom-link group">
+                        <i class="fas fa-file-contract mr-2"></i>
+                        CGU
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Back to Top Button -->
+            <div class="text-center mt-8">
+                <button onclick="scrollToTop()" class="back-to-top-btn group">
+                    <i class="fas fa-arrow-up mr-2 group-hover:animate-bounce"></i>
+                    Retour en haut
+                    <i class="fas fa-arrow-up ml-2 group-hover:animate-bounce"></i>
+                </button>
+            </div>
+        </div>
     </div>
+
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .social-icon:hover::before {
+            left: 100%;
+        }
+        
+        .social-icon:hover {
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .social-icon:hover:nth-child(1) { background: linear-gradient(135deg, #1877F2, #0D5FAB); }
+        .social-icon:hover:nth-child(2) { background: linear-gradient(135deg, #1DA1F2, #0C7ABF); }
+        .social-icon:hover:nth-child(3) { background: linear-gradient(135deg, #0077B5, #005582); }
+        .social-icon:hover:nth-child(4) { background: linear-gradient(135deg, #E4405F, #B32E4B); }
+        .social-icon:hover:nth-child(5) { background: linear-gradient(135deg, #FF0000, #CC0000); }
+        
+        .social-tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .social-icon:hover .social-tooltip {
+            opacity: 1;
+            bottom: -35px;
+        }
+        
+        .footer-link {
+            display: flex;
+            align-items: center;
+            color: #D1D5DB;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .footer-link:hover {
+            color: white;
+            transform: translateX(8px);
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), transparent);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: transparent;
+            border: none;
+            color: white;
+            outline: none;
+        }
+        
+        .newsletter-input::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .newsletter-btn {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .newsletter-btn:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: scale(1.05);
+        }
+        
+        .footer-bottom-link {
+            color: #9CA3AF;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-bottom-link:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .back-to-top-btn {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(16, 185, 129, 0.8));
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .back-to-top-btn:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 1), rgba(16, 185, 129, 1));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 12px 12px 0 0;
+            }
+            
+            .newsletter-btn {
+                border-radius: 0 0 12px 12px;
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = document.querySelector('.newsletter-input').value;
+            if (email) {
+                this.innerHTML = '<i class="fas fa-check mr-2"></i>Inscrit !';
+                this.style.background = 'linear-gradient(135deg, #059669, #047857)';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>S\'abonner';
+                    this.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+                    document.querySelector('.newsletter-input').value = '';
+                }, 2000);
+            }
+        });
+        
+        // Add enter key support for newsletter
+        document.querySelector('.newsletter-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.newsletter-btn').click();
+            }
+        });
+    </script>
 </footer>
